@@ -51,12 +51,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 </head>
 <body>
 <div id="app">
-  <!-- Debug Panel -->
-  <div id="debug" style="position:fixed;top:60px;right:10px;background:rgba(0,0,0,0.85);color:#0f0;padding:8px 12px;font-size:11px;font-family:monospace;border-radius:6px;z-index:9999;min-width:200px;display:none;">
-    <div>Bands: <span id="dbg-bands">null</span></div>
-    <div>Emotion: <span id="dbg-emotion">null</span></div>
-    <div>Canvas(c-band): <span id="dbg-canvas">null</span></div>
-  </div>
+
   <!-- Toolbar -->
   <div id="toolbar">
     <h1>NeuroViz</h1>
@@ -193,14 +188,11 @@ function connectWS() {
       if (latestBands && !window._bandsLogged) {
         console.log('[WS] Bands received:', latestBands);
         window._bandsLogged = true;
-        document.getElementById('dbg-bands').textContent = JSON.stringify(latestBands);
-        document.getElementById('dbg-canvas').textContent = JSON.stringify(document.getElementById('c-band')?.getBoundingClientRect());
-        document.getElementById('debug').style.display = 'block';
+
       }
       if (latestEmotion && !window._emotionLogged) {
         console.log('[WS] Emotion received:', latestEmotion);
         window._emotionLogged = true;
-        document.getElementById('dbg-emotion').textContent = JSON.stringify(latestEmotion);
       }
     }
     // Fallback: also accept top-level bands/emotion
@@ -324,16 +316,47 @@ function drawEmotion() {
   ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
+  // Convert valence string to numeric (-1 to +1)
+  let v = latestEmotion.valence;
+  if (typeof v === 'string') v = v === 'positive' ? 0.7 : v === 'negative' ? -0.7 : 0;
+  if (typeof v !== 'number' || isNaN(v)) v = 0;
+  // Arousal: normalize 0-5 → -1 to +1
+  let a = typeof latestEmotion.arousal === 'number' ? (latestEmotion.arousal / 5) * 2 - 1 : 0;
+  // Clamp
+  v = Math.max(-1, Math.min(1, v));
+  a = Math.max(-1, Math.min(1, a));
   // Point
-  const x = W/2 + (latestEmotion.valence || 0) * W/2;
-  const y = H/2 - (latestEmotion.arousal || 0) * H/2;
+  const px = W/2 + v * W/2 * 0.85;
+  const py = H/2 - a * H/2 * 0.85;
+  // Trail glow
+  ctx.fillStyle = 'rgba(239,68,68,0.15)';
+  ctx.beginPath(); ctx.arc(px, py, 20, 0, Math.PI*2); ctx.fill();
   ctx.fillStyle = '#ef4444';
-  ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI*2); ctx.fill();
+  // Labels
+  ctx.fillStyle = 'rgba(255,255,255,0.4)';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Positive', W*0.8, H/2 - 6);
+  ctx.fillText('Negative', W*0.2, H/2 - 6);
+  ctx.fillText('High Arousal', W/2, 16);
+  ctx.fillText('Low Arousal', W/2, H - 8);
   ctx.fillStyle = '#e2e8f0';
   ctx.font = '12px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('V: ' + ((latestEmotion.valence||0).toFixed(2)), W/2, 16);
-  ctx.fillText('A: ' + ((latestEmotion.arousal||0).toFixed(2)), W/2, H - 8);
+  ctx.textAlign = 'left';
+  ctx.fillText('V: ' + v.toFixed(2), 8, 16);
+  ctx.fillText('A: ' + a.toFixed(2), 8, 30);
+  // Focus & Relaxation
+  if (latestEmotion.focus !== undefined) {
+    ctx.fillStyle = '#10b981';
+    ctx.textAlign = 'right';
+    ctx.fillText('Focus: ' + latestEmotion.focus.toFixed(0) + '%', W - 8, 16);
+  }
+  if (latestEmotion.relaxation !== undefined) {
+    ctx.fillStyle = '#8b5cf6';
+    ctx.textAlign = 'right';
+    ctx.fillText('Relax: ' + latestEmotion.relaxation.toFixed(0) + '%', W - 8, 30);
+  }
 }
 
 // ========== 3D Brain (Three.js) ==========
