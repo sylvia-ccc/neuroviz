@@ -77,6 +77,25 @@ class EmotionEngine:
         idx = (freqs >= low) & (freqs < high)
         return float(np.trapezoid(psd[idx], freqs[idx])) if np.any(idx) else 0.0
     
+    
+    def compute_bands(self, ch_data: np.ndarray) -> dict:
+        """
+        公开方法：计算单通道频段功率
+        用于多通道场景（8电极）
+        """
+        return self._calc_bands(ch_data)
+    
+    def compute_all_channels(self, raw: np.ndarray) -> list:
+        """
+        计算所有通道的频段功率
+        raw: shape (n_channels, n_samples)
+        返回: [{'theta':v, 'alpha':v, ...}, ...] 每通道一个dict
+        """
+        result = []
+        for i in range(raw.shape[0]):
+            result.append(self._calc_bands(raw[i]))
+        return result
+
     def _calibrate_valence(self, asymmetry: float) -> str:
         """
         基于不对称性的效价判断

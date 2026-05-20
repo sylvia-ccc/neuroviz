@@ -262,6 +262,14 @@ async def websocket_endpoint(ws: WebSocket):
             # 情绪分析
             features = emotion_engine.analyze(frame["ch1"], frame["ch2"])
             
+            # 多通道频段功率（用于3D脑图）
+            try:
+                if hasattr(emotion_engine, 'compute_all_channels'):
+                    ch_bands = emotion_engine.compute_all_channels(frame["raw"])
+                    payload['channel_bands'] = [ {k: float(v) for k,v in ch.items()} for ch in ch_bands ]
+            except Exception as e:
+                print(f"[NeuroViz] compute_all_channels 失败: {e}")
+            
             # 组装推送数据（波形只推64点降采样）
             raw = frame["raw"]
             step = max(1, raw.shape[1] // 64)
