@@ -51,6 +51,12 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 </head>
 <body>
 <div id="app">
+  <!-- Debug Panel -->
+  <div id="debug" style="position:fixed;top:60px;right:10px;background:rgba(0,0,0,0.85);color:#0f0;padding:8px 12px;font-size:11px;font-family:monospace;border-radius:6px;z-index:9999;min-width:200px;display:none;">
+    <div>Bands: <span id="dbg-bands">null</span></div>
+    <div>Emotion: <span id="dbg-emotion">null</span></div>
+    <div>Canvas(c-band): <span id="dbg-canvas">null</span></div>
+  </div>
   <!-- Toolbar -->
   <div id="toolbar">
     <h1>NeuroViz</h1>
@@ -75,7 +81,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     <!-- Widget 2: Band Energies -->
     <div class="widget">
       <h3>📊 Band Energies (θ/α/β/γ/δ)</h3>
-      <div class="canvas-wrap"><canvas id="c-band"></canvas></div>
+      <div class="canvas-wrap"><canvas id="c-band" width="300" height="150"></canvas></div>
     </div>
     <!-- Widget 3: 3D Brain + Topomap -->
     <div class="widget">
@@ -88,7 +94,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     <!-- Widget 4: Emotion Quadrant -->
     <div class="widget">
       <h3>😊 Emotion State (Russell)</h3>
-      <div class="canvas-wrap"><canvas id="c-emotion"></canvas></div>
+      <div class="canvas-wrap"><canvas id="c-emotion" width="300" height="150"></canvas></div>
     </div>
   </div>
 
@@ -153,6 +159,7 @@ function connectWS() {
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
     if (data.type === 'config') {
+      console.log('[WS] Config received:', data);
       // Initialize display buffers for n_channels
       const nCh = data.n_channels || 2;
       displayBuffers = new Array(nCh);
@@ -176,6 +183,27 @@ function connectWS() {
         for (let i = 0; i < copyLen; i++) buf[DISPLAY_POINTS - copyLen + i] = src[i];
       }
     }
+    // Parse bands and emotion from features
+    if (data.features) {
+      if (data.features.bands_ch1) latestBands = data.features.bands_ch1;
+      else if (data.features.bands) latestBands = data.features.bands;
+      if (data.features.emotion) latestEmotion = data.features.emotion;
+      else if (data.features.valence !== undefined) latestEmotion = data.features;
+      // Debug log first data
+      if (latestBands && !window._bandsLogged) {
+        console.log('[WS] Bands received:', latestBands);
+        window._bandsLogged = true;
+        document.getElementById('dbg-bands').textContent = JSON.stringify(latestBands);
+        document.getElementById('dbg-canvas').textContent = JSON.stringify(document.getElementById('c-band')?.getBoundingClientRect());
+        document.getElementById('debug').style.display = 'block';
+      }
+      if (latestEmotion && !window._emotionLogged) {
+        console.log('[WS] Emotion received:', latestEmotion);
+        window._emotionLogged = true;
+        document.getElementById('dbg-emotion').textContent = JSON.stringify(latestEmotion);
+      }
+    }
+    // Fallback: also accept top-level bands/emotion
     if (data.bands) latestBands = data.bands;
     if (data.emotion) latestEmotion = data.emotion;
     if (data.timefreq) {
@@ -235,15 +263,24 @@ function drawWave() {
 
 function drawBands() {
   const canvas = document.getElementById('c-band');
-  if (!canvas || !latestBands) return;
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const rect = canvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return; // Skip if not laid out yet
   canvas.width = rect.width * devicePixelRatio;
   canvas.height = rect.height * devicePixelRatio;
   ctx.scale(devicePixelRatio, devicePixelRatio);
   const W = rect.width, H = rect.height;
   ctx.fillStyle = '#1a2235';
   ctx.fillRect(0, 0, W, H);
+  // Placeholder when no data
+  if (!latestBands) {
+    ctx.fillStyle = '#64748b';
+    ctx.font = '13px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Waiting for band data...', W/2, H/2);
+    return;
+  }
   const bands = ['theta','alpha','beta','gamma','delta'];
   const colors = ['#8b5cf6','#3b82f6','#10b981','#ef4444','#f59e0b'];
   const barW = W / bands.length * 0.7;
@@ -264,15 +301,24 @@ function drawBands() {
 
 function drawEmotion() {
   const canvas = document.getElementById('c-emotion');
-  if (!canvas || !latestEmotion) return;
+  if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const rect = canvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return; // Skip if not laid out yet
   canvas.width = rect.width * devicePixelRatio;
   canvas.height = rect.height * devicePixelRatio;
   ctx.scale(devicePixelRatio, devicePixelRatio);
   const W = rect.width, H = rect.height;
   ctx.fillStyle = '#1a2235';
   ctx.fillRect(0, 0, W, H);
+  // Placeholder when no data
+  if (!latestEmotion) {
+    ctx.fillStyle = '#64748b';
+    ctx.font = '13px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('Waiting for emotion data...', W/2, H/2);
+    return;
+  }
   // Axes
   ctx.strokeStyle = 'rgba(255,255,255,0.2)';
   ctx.lineWidth = 1;
