@@ -1,0 +1,2750 @@
+INFO:     Started server process [43093]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:50534 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50699 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50699 - "GET /static/lib/OrbitControls.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50710 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前1个
+[MockDataSource] 空间相关噪声已初始化（Cholesky）
+[MockDataSource] v6: 8ch 500Hz（Cholesky空间相关）
+[Spectrogram] 初始化: fs=500Hz, nfft=256, freq=0-50Hz (26点), history=39帧
+INFO:     127.0.0.1:50699 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50703 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 12.19, 'Fp2': 96.52}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 58320 chars
+INFO:     127.0.0.1:50703 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50720 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前2个
+INFO:     127.0.0.1:50703 - "GET /api/serial/ports HTTP/1.1" 200 OK
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 94.85, 'Fp2': 58.05}
+[NeuroViz] TimeFreq已生成: 12328 chars
+[NeuroViz] Topomap已生成: 57464 chars
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 97.7, 'Fp2': 11.28}
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 57792 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 23.46, 'Fp2': 102.34}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 58484 chars
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 6.89, 'Fp2': 15.48}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 57296 chars
+[NeuroViz] 客户端切换场景 → blink
+[NeuroViz] 客户端切换场景 → focus
+[NeuroViz] 客户端切换场景 → relax
+[NeuroViz] Topomap触发: send_counter=200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=200
+[NeuroViz] values={'Fp1': 58.92, 'Fp2': 49.21}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 56408 chars
+INFO:     127.0.0.1:50725 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50727 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前3个
+INFO:     127.0.0.1:50725 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50725 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50728 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前4个
+INFO:     127.0.0.1:50725 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50725 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50731 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前5个
+INFO:     127.0.0.1:50725 - "GET /api/serial/ports HTTP/1.1" 200 OK
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 106.36, 'Fp2': 109.66}
+[NeuroViz] TimeFreq已生成: 12360 chars
+[NeuroViz] Topomap已生成: 60460 chars
+INFO:     127.0.0.1:50725 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 81.43, 'Fp2': 29.4}
+[NeuroViz] TimeFreq已生成: 12368 chars
+[NeuroViz] Topomap已生成: 56888 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 5.92, 'Fp2': 49.01}
+[NeuroViz] TimeFreq已生成: 12364 chars
+[NeuroViz] Topomap已生成: 57892 chars
+[NeuroViz] 客户端切换场景 → focus
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 1.03, 'Fp2': 1.15}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 57180 chars
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50768 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前6个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50773 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前7个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50774 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前8个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50779 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前9个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50780 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前10个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50781 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前11个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50726 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:50726 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50786 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前12个
+INFO:     127.0.0.1:50726 - "GET /api/serial/ports HTTP/1.1" 200 OK
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.4}
+[NeuroViz] TimeFreq已生成: 12768 chars
+[NeuroViz] Topomap已生成: 61056 chars
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 0.45, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 59352 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 1.0, 'Fp2': 1.01}
+[NeuroViz] TimeFreq已生成: 12728 chars
+[NeuroViz] Topomap已生成: 57788 chars
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 0.2, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 58544 chars
+[NeuroViz] Topomap触发: send_counter=200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=200
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.24}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 58860 chars
+[NeuroViz] Topomap触发: send_counter=240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=240
+[NeuroViz] values={'Fp1': 0.36, 'Fp2': 1.48}
+[NeuroViz] TimeFreq已生成: 12952 chars
+[NeuroViz] Topomap已生成: 56812 chars
+[NeuroViz] Topomap触发: send_counter=280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=280
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 0.1}
+[NeuroViz] TimeFreq已生成: 12896 chars
+[NeuroViz] Topomap已生成: 55968 chars
+[NeuroViz] Topomap触发: send_counter=320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=320
+[NeuroViz] values={'Fp1': 0.95, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12392 chars
+[NeuroViz] Topomap已生成: 58688 chars
+[NeuroViz] Topomap触发: send_counter=360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=360
+[NeuroViz] values={'Fp1': 0.63, 'Fp2': 0.96}
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 59440 chars
+[NeuroViz] Topomap触发: send_counter=400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=400
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.59}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 62080 chars
+[NeuroViz] Topomap触发: send_counter=440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=440
+[NeuroViz] values={'Fp1': 0.8, 'Fp2': 1.36}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 56676 chars
+[NeuroViz] Topomap触发: send_counter=480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=480
+[NeuroViz] values={'Fp1': 1.69, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12724 chars
+[NeuroViz] Topomap已生成: 57512 chars
+[NeuroViz] Topomap触发: send_counter=520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=520
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 1.16}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 58140 chars
+[NeuroViz] Topomap触发: send_counter=560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=560
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.68}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 56172 chars
+[NeuroViz] Topomap触发: send_counter=600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=600
+[NeuroViz] values={'Fp1': 0.53, 'Fp2': 0.31}
+[NeuroViz] TimeFreq已生成: 12704 chars
+[NeuroViz] Topomap已生成: 61224 chars
+[NeuroViz] Topomap触发: send_counter=640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=640
+[NeuroViz] values={'Fp1': 1.36, 'Fp2': 1.12}
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 56340 chars
+[NeuroViz] Topomap触发: send_counter=680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=680
+[NeuroViz] values={'Fp1': 0.96, 'Fp2': 0.52}
+[NeuroViz] TimeFreq已生成: 12412 chars
+[NeuroViz] Topomap已生成: 60032 chars
+[NeuroViz] Topomap触发: send_counter=720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=720
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12792 chars
+[NeuroViz] Topomap已生成: 60328 chars
+[NeuroViz] Topomap触发: send_counter=760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=760
+[NeuroViz] values={'Fp1': 0.26, 'Fp2': 1.64}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 57328 chars
+[NeuroViz] Topomap触发: send_counter=800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=800
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.24}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 61336 chars
+[NeuroViz] Topomap触发: send_counter=840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=840
+[NeuroViz] values={'Fp1': 1.83, 'Fp2': 1.69}
+[NeuroViz] TimeFreq已生成: 12828 chars
+[NeuroViz] Topomap已生成: 57784 chars
+[NeuroViz] Topomap触发: send_counter=880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=880
+[NeuroViz] values={'Fp1': 0.99, 'Fp2': 0.31}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 56808 chars
+[NeuroViz] Topomap触发: send_counter=920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=920
+[NeuroViz] values={'Fp1': 0.26, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12820 chars
+[NeuroViz] Topomap已生成: 58652 chars
+[NeuroViz] Topomap触发: send_counter=960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=960
+[NeuroViz] values={'Fp1': 0.22, 'Fp2': 1.47}
+[NeuroViz] TimeFreq已生成: 12516 chars
+[NeuroViz] Topomap已生成: 56824 chars
+[NeuroViz] Topomap触发: send_counter=1000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1000
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 57132 chars
+[NeuroViz] Topomap触发: send_counter=1040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1040
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12812 chars
+[NeuroViz] Topomap已生成: 57780 chars
+[NeuroViz] Topomap触发: send_counter=1080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1080
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12668 chars
+[NeuroViz] Topomap已生成: 58784 chars
+[NeuroViz] Topomap触发: send_counter=1120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1120
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12772 chars
+[NeuroViz] Topomap已生成: 59232 chars
+[NeuroViz] Topomap触发: send_counter=1160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1160
+[NeuroViz] values={'Fp1': 0.2, 'Fp2': 1.05}
+[NeuroViz] TimeFreq已生成: 12348 chars
+[NeuroViz] Topomap已生成: 58784 chars
+[NeuroViz] Topomap触发: send_counter=1200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1200
+[NeuroViz] values={'Fp1': 1.52, 'Fp2': 0.59}
+[NeuroViz] TimeFreq已生成: 12460 chars
+[NeuroViz] Topomap已生成: 56088 chars
+[NeuroViz] Topomap触发: send_counter=1240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1240
+[NeuroViz] values={'Fp1': 1.19, 'Fp2': 0.76}
+[NeuroViz] TimeFreq已生成: 13016 chars
+[NeuroViz] Topomap已生成: 58736 chars
+[NeuroViz] Topomap触发: send_counter=1280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1280
+[NeuroViz] values={'Fp1': 0.15, 'Fp2': 1.16}
+[NeuroViz] TimeFreq已生成: 12700 chars
+[NeuroViz] Topomap已生成: 56416 chars
+[NeuroViz] Topomap触发: send_counter=1320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1320
+[NeuroViz] values={'Fp1': 0.51, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12884 chars
+[NeuroViz] Topomap已生成: 58932 chars
+[NeuroViz] Topomap触发: send_counter=1360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1360
+[NeuroViz] values={'Fp1': 1.46, 'Fp2': 1.65}
+[NeuroViz] TimeFreq已生成: 12684 chars
+[NeuroViz] Topomap已生成: 59796 chars
+[NeuroViz] Topomap触发: send_counter=1400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1400
+[NeuroViz] values={'Fp1': 2.46, 'Fp2': 2.16}
+[NeuroViz] TimeFreq已生成: 12820 chars
+[NeuroViz] Topomap已生成: 58016 chars
+[NeuroViz] Topomap触发: send_counter=1440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1440
+[NeuroViz] values={'Fp1': 1.25, 'Fp2': 0.41}
+[NeuroViz] TimeFreq已生成: 12436 chars
+[NeuroViz] Topomap已生成: 57572 chars
+[NeuroViz] Topomap触发: send_counter=1480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1480
+[NeuroViz] values={'Fp1': 0.24, 'Fp2': 1.51}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 56916 chars
+[NeuroViz] Topomap触发: send_counter=1520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1520
+[NeuroViz] values={'Fp1': 1.0, 'Fp2': 0.43}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 56784 chars
+[NeuroViz] Topomap触发: send_counter=1560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1560
+[NeuroViz] values={'Fp1': 1.24, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 56440 chars
+[NeuroViz] Topomap触发: send_counter=1600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1600
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 1.6}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 57424 chars
+[NeuroViz] Topomap触发: send_counter=1640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1640
+[NeuroViz] values={'Fp1': 0.19, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12504 chars
+[NeuroViz] Topomap已生成: 58996 chars
+[NeuroViz] Topomap触发: send_counter=1680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1680
+[NeuroViz] values={'Fp1': 0.59, 'Fp2': 0.51}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 60392 chars
+[NeuroViz] Topomap触发: send_counter=1720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1720
+[NeuroViz] values={'Fp1': 1.38, 'Fp2': 1.44}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 58204 chars
+[NeuroViz] Topomap触发: send_counter=1760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1760
+[NeuroViz] values={'Fp1': 0.36, 'Fp2': 0.01}
+[NeuroViz] TimeFreq已生成: 12880 chars
+[NeuroViz] Topomap已生成: 58544 chars
+[NeuroViz] Topomap触发: send_counter=1800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1800
+[NeuroViz] values={'Fp1': 0.2, 'Fp2': 1.63}
+[NeuroViz] TimeFreq已生成: 12680 chars
+[NeuroViz] Topomap已生成: 57812 chars
+[NeuroViz] Topomap触发: send_counter=1840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1840
+[NeuroViz] values={'Fp1': 1.02, 'Fp2': 1.0}
+[NeuroViz] TimeFreq已生成: 13108 chars
+[NeuroViz] Topomap已生成: 60616 chars
+[NeuroViz] Topomap触发: send_counter=1880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1880
+[NeuroViz] values={'Fp1': 0.49, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 59392 chars
+[NeuroViz] Topomap触发: send_counter=1920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1920
+[NeuroViz] values={'Fp1': 0.4, 'Fp2': 0.44}
+[NeuroViz] TimeFreq已生成: 12784 chars
+[NeuroViz] Topomap已生成: 62180 chars
+[NeuroViz] Topomap触发: send_counter=1960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=1960
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.41}
+[NeuroViz] TimeFreq已生成: 12604 chars
+[NeuroViz] Topomap已生成: 58952 chars
+[NeuroViz] Topomap触发: send_counter=2000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2000
+[NeuroViz] values={'Fp1': 0.47, 'Fp2': 0.21}
+[NeuroViz] TimeFreq已生成: 12652 chars
+[NeuroViz] Topomap已生成: 57384 chars
+[NeuroViz] Topomap触发: send_counter=2040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2040
+[NeuroViz] values={'Fp1': 1.56, 'Fp2': 1.43}
+[NeuroViz] TimeFreq已生成: 12404 chars
+[NeuroViz] Topomap已生成: 57940 chars
+[NeuroViz] Topomap触发: send_counter=2080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2080
+[NeuroViz] values={'Fp1': 0.79, 'Fp2': 0.23}
+[NeuroViz] TimeFreq已生成: 12648 chars
+[NeuroViz] Topomap已生成: 56280 chars
+[NeuroViz] Topomap触发: send_counter=2120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2120
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12624 chars
+[NeuroViz] Topomap已生成: 58936 chars
+[NeuroViz] Topomap触发: send_counter=2160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2160
+[NeuroViz] values={'Fp1': 0.67, 'Fp2': 1.66}
+[NeuroViz] TimeFreq已生成: 12776 chars
+[NeuroViz] Topomap已生成: 56144 chars
+[NeuroViz] Topomap触发: send_counter=2200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2200
+[NeuroViz] values={'Fp1': 0.78, 'Fp2': 0.11}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 56900 chars
+[NeuroViz] Topomap触发: send_counter=2240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2240
+[NeuroViz] values={'Fp1': 0.82, 'Fp2': 1.02}
+[NeuroViz] TimeFreq已生成: 12404 chars
+[NeuroViz] Topomap已生成: 61228 chars
+[NeuroViz] Topomap触发: send_counter=2280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2280
+[NeuroViz] values={'Fp1': 0.14, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12788 chars
+[NeuroViz] Topomap已生成: 59932 chars
+[NeuroViz] Topomap触发: send_counter=2320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2320
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.04}
+[NeuroViz] TimeFreq已生成: 12648 chars
+[NeuroViz] Topomap已生成: 59832 chars
+[NeuroViz] Topomap触发: send_counter=2360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2360
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 1.37}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 60524 chars
+[NeuroViz] Topomap触发: send_counter=2400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2400
+[NeuroViz] values={'Fp1': 1.51, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12812 chars
+[NeuroViz] Topomap已生成: 56500 chars
+[NeuroViz] Topomap触发: send_counter=2440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2440
+[NeuroViz] values={'Fp1': 0.63, 'Fp2': 0.68}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 58548 chars
+[NeuroViz] Topomap触发: send_counter=2480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2480
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 1.33}
+[NeuroViz] TimeFreq已生成: 12804 chars
+[NeuroViz] Topomap已生成: 57044 chars
+[NeuroViz] Topomap触发: send_counter=2520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2520
+[NeuroViz] values={'Fp1': 0.9, 'Fp2': 0.03}
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 58652 chars
+[NeuroViz] Topomap触发: send_counter=2560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2560
+[NeuroViz] values={'Fp1': 0.5, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 59532 chars
+[NeuroViz] Topomap触发: send_counter=2600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2600
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 1.3}
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 58288 chars
+[NeuroViz] Topomap触发: send_counter=2640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2640
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12744 chars
+[NeuroViz] Topomap已生成: 58816 chars
+[NeuroViz] Topomap触发: send_counter=2680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2680
+[NeuroViz] values={'Fp1': 0.98, 'Fp2': 0.65}
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 59116 chars
+[NeuroViz] Topomap触发: send_counter=2720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2720
+[NeuroViz] values={'Fp1': 0.92, 'Fp2': 0.52}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 59804 chars
+[NeuroViz] Topomap触发: send_counter=2760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2760
+[NeuroViz] values={'Fp1': 0.76, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12872 chars
+[NeuroViz] Topomap已生成: 56768 chars
+[NeuroViz] Topomap触发: send_counter=2800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2800
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 1.35}
+[NeuroViz] TimeFreq已生成: 12800 chars
+[NeuroViz] Topomap已生成: 56552 chars
+[NeuroViz] Topomap触发: send_counter=2840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2840
+[NeuroViz] values={'Fp1': 1.62, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12916 chars
+[NeuroViz] Topomap已生成: 57380 chars
+[NeuroViz] Topomap触发: send_counter=2880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2880
+[NeuroViz] values={'Fp1': 0.9, 'Fp2': 0.77}
+[NeuroViz] TimeFreq已生成: 12400 chars
+[NeuroViz] Topomap已生成: 59392 chars
+[NeuroViz] Topomap触发: send_counter=2920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2920
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 0.74}
+[NeuroViz] TimeFreq已生成: 12580 chars
+[NeuroViz] Topomap已生成: 60452 chars
+[NeuroViz] Topomap触发: send_counter=2960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=2960
+[NeuroViz] values={'Fp1': 0.17, 'Fp2': 0.23}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 58952 chars
+[NeuroViz] Topomap触发: send_counter=3000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3000
+[NeuroViz] values={'Fp1': 0.18, 'Fp2': 0.83}
+[NeuroViz] TimeFreq已生成: 12688 chars
+[NeuroViz] Topomap已生成: 57960 chars
+[NeuroViz] Topomap触发: send_counter=3040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3040
+[NeuroViz] values={'Fp1': 0.38, 'Fp2': 0.26}
+[NeuroViz] TimeFreq已生成: 12700 chars
+[NeuroViz] Topomap已生成: 59272 chars
+[NeuroViz] Topomap触发: send_counter=3080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3080
+[NeuroViz] values={'Fp1': 0.99, 'Fp2': 0.99}
+[NeuroViz] TimeFreq已生成: 12736 chars
+[NeuroViz] Topomap已生成: 26208 chars
+[NeuroViz] Topomap触发: send_counter=3120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3120
+[NeuroViz] values={'Fp1': 0.69, 'Fp2': 0.08}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 56764 chars
+[NeuroViz] Topomap触发: send_counter=3160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3160
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 0.28}
+[NeuroViz] TimeFreq已生成: 12680 chars
+[NeuroViz] Topomap已生成: 59572 chars
+[NeuroViz] Topomap触发: send_counter=3200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3200
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.66}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 57184 chars
+[NeuroViz] Topomap触发: send_counter=3240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3240
+[NeuroViz] values={'Fp1': 0.33, 'Fp2': 0.18}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 59744 chars
+[NeuroViz] Topomap触发: send_counter=3280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3280
+[NeuroViz] values={'Fp1': 1.09, 'Fp2': 1.37}
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 57216 chars
+[NeuroViz] Topomap触发: send_counter=3320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3320
+[NeuroViz] values={'Fp1': 0.58, 'Fp2': 0.26}
+[NeuroViz] TimeFreq已生成: 12956 chars
+[NeuroViz] Topomap已生成: 57992 chars
+[NeuroViz] Topomap触发: send_counter=3360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3360
+[NeuroViz] values={'Fp1': 0.62, 'Fp2': 0.42}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 60496 chars
+[NeuroViz] Topomap触发: send_counter=3400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3400
+[NeuroViz] values={'Fp1': 0.03, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 56480 chars
+[NeuroViz] Topomap触发: send_counter=3440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3440
+[NeuroViz] values={'Fp1': 0.49, 'Fp2': 0.11}
+[NeuroViz] TimeFreq已生成: 12952 chars
+[NeuroViz] Topomap已生成: 58764 chars
+[NeuroViz] Topomap触发: send_counter=3480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3480
+[NeuroViz] values={'Fp1': 0.95, 'Fp2': 0.77}
+[NeuroViz] TimeFreq已生成: 12768 chars
+[NeuroViz] Topomap已生成: 60672 chars
+[NeuroViz] Topomap触发: send_counter=3520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3520
+[NeuroViz] values={'Fp1': 1.8, 'Fp2': 0.18}
+[NeuroViz] TimeFreq已生成: 12864 chars
+[NeuroViz] Topomap已生成: 58108 chars
+[NeuroViz] Topomap触发: send_counter=3560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3560
+[NeuroViz] values={'Fp1': 0.83, 'Fp2': 1.01}
+[NeuroViz] TimeFreq已生成: 13028 chars
+[NeuroViz] Topomap已生成: 60076 chars
+[NeuroViz] Topomap触发: send_counter=3600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3600
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 1.12}
+[NeuroViz] TimeFreq已生成: 12624 chars
+[NeuroViz] Topomap已生成: 56384 chars
+[NeuroViz] Topomap触发: send_counter=3640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3640
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12056 chars
+[NeuroViz] Topomap已生成: 58348 chars
+[NeuroViz] Topomap触发: send_counter=3680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3680
+[NeuroViz] values={'Fp1': 1.07, 'Fp2': 0.79}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 57648 chars
+[NeuroViz] Topomap触发: send_counter=3720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3720
+[NeuroViz] values={'Fp1': 0.77, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 57288 chars
+[NeuroViz] Topomap触发: send_counter=3760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3760
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.55}
+[NeuroViz] TimeFreq已生成: 12820 chars
+[NeuroViz] Topomap已生成: 24572 chars
+[NeuroViz] Topomap触发: send_counter=3800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3800
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 0.47}
+[NeuroViz] TimeFreq已生成: 12840 chars
+[NeuroViz] Topomap已生成: 60704 chars
+[NeuroViz] Topomap触发: send_counter=3840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3840
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.86}
+[NeuroViz] TimeFreq已生成: 12860 chars
+[NeuroViz] Topomap已生成: 59332 chars
+[NeuroViz] Topomap触发: send_counter=3880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3880
+[NeuroViz] values={'Fp1': 1.33, 'Fp2': 1.7}
+[NeuroViz] TimeFreq已生成: 12976 chars
+[NeuroViz] Topomap已生成: 58800 chars
+[NeuroViz] Topomap触发: send_counter=3920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3920
+[NeuroViz] values={'Fp1': 0.34, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12972 chars
+[NeuroViz] Topomap已生成: 60372 chars
+[NeuroViz] Topomap触发: send_counter=3960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=3960
+[NeuroViz] values={'Fp1': 1.35, 'Fp2': 0.78}
+[NeuroViz] TimeFreq已生成: 12780 chars
+[NeuroViz] Topomap已生成: 56316 chars
+[NeuroViz] Topomap触发: send_counter=4000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4000
+[NeuroViz] values={'Fp1': 0.17, 'Fp2': 0.5}
+[NeuroViz] TimeFreq已生成: 12804 chars
+[NeuroViz] Topomap已生成: 59180 chars
+[NeuroViz] Topomap触发: send_counter=4040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4040
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 1.09}
+[NeuroViz] TimeFreq已生成: 12928 chars
+[NeuroViz] Topomap已生成: 57164 chars
+[NeuroViz] Topomap触发: send_counter=4080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4080
+[NeuroViz] values={'Fp1': 0.54, 'Fp2': 1.57}
+[NeuroViz] TimeFreq已生成: 12532 chars
+[NeuroViz] Topomap已生成: 56348 chars
+[NeuroViz] Topomap触发: send_counter=4120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4120
+[NeuroViz] values={'Fp1': 1.3, 'Fp2': 0.32}
+[NeuroViz] TimeFreq已生成: 12592 chars
+[NeuroViz] Topomap已生成: 55960 chars
+[NeuroViz] Topomap触发: send_counter=4160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4160
+[NeuroViz] values={'Fp1': 2.29, 'Fp2': 2.14}
+[NeuroViz] TimeFreq已生成: 12716 chars
+[NeuroViz] Topomap已生成: 59328 chars
+[NeuroViz] Topomap触发: send_counter=4200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4200
+[NeuroViz] values={'Fp1': 0.78, 'Fp2': 0.82}
+[NeuroViz] TimeFreq已生成: 12940 chars
+[NeuroViz] Topomap已生成: 62504 chars
+[NeuroViz] Topomap触发: send_counter=4240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4240
+[NeuroViz] values={'Fp1': 0.14, 'Fp2': 1.14}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 56264 chars
+[NeuroViz] Topomap触发: send_counter=4280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4280
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 0.35}
+[NeuroViz] TimeFreq已生成: 12600 chars
+[NeuroViz] Topomap已生成: 59156 chars
+[NeuroViz] Topomap触发: send_counter=4320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4320
+[NeuroViz] values={'Fp1': 1.32, 'Fp2': 0.44}
+[NeuroViz] TimeFreq已生成: 12424 chars
+[NeuroViz] Topomap已生成: 57744 chars
+[NeuroViz] Topomap触发: send_counter=4360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4360
+[NeuroViz] values={'Fp1': 1.25, 'Fp2': 0.99}
+[NeuroViz] TimeFreq已生成: 12712 chars
+[NeuroViz] Topomap已生成: 56932 chars
+[NeuroViz] Topomap触发: send_counter=4400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4400
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.34}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 59248 chars
+[NeuroViz] Topomap触发: send_counter=4440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4440
+[NeuroViz] values={'Fp1': 0.23, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12788 chars
+[NeuroViz] Topomap已生成: 58284 chars
+[NeuroViz] Topomap触发: send_counter=4480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4480
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 0.41}
+[NeuroViz] TimeFreq已生成: 12860 chars
+[NeuroViz] Topomap已生成: 26200 chars
+[NeuroViz] Topomap触发: send_counter=4520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4520
+[NeuroViz] values={'Fp1': 1.34, 'Fp2': 0.92}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 58396 chars
+[NeuroViz] Topomap触发: send_counter=4560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4560
+[NeuroViz] values={'Fp1': 0.8, 'Fp2': 0.51}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 58176 chars
+[NeuroViz] Topomap触发: send_counter=4600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4600
+[NeuroViz] values={'Fp1': 0.73, 'Fp2': 0.03}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 57312 chars
+[NeuroViz] Topomap触发: send_counter=4640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4640
+[NeuroViz] values={'Fp1': 0.05, 'Fp2': 0.89}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 58320 chars
+[NeuroViz] Topomap触发: send_counter=4680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4680
+[NeuroViz] values={'Fp1': 0.22, 'Fp2': 0.45}
+[NeuroViz] TimeFreq已生成: 12796 chars
+[NeuroViz] Topomap已生成: 57744 chars
+[NeuroViz] Topomap触发: send_counter=4720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4720
+[NeuroViz] values={'Fp1': 1.52, 'Fp2': 1.14}
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 58048 chars
+[NeuroViz] Topomap触发: send_counter=4760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4760
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.42}
+[NeuroViz] TimeFreq已生成: 12924 chars
+[NeuroViz] Topomap已生成: 57908 chars
+[NeuroViz] Topomap触发: send_counter=4800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4800
+[NeuroViz] values={'Fp1': 1.52, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 56348 chars
+[NeuroViz] Topomap触发: send_counter=4840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4840
+[NeuroViz] values={'Fp1': 0.04, 'Fp2': 0.97}
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 56284 chars
+[NeuroViz] Topomap触发: send_counter=4880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4880
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12468 chars
+[NeuroViz] Topomap已生成: 57188 chars
+[NeuroViz] Topomap触发: send_counter=4920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4920
+[NeuroViz] values={'Fp1': 0.79, 'Fp2': 0.55}
+[NeuroViz] TimeFreq已生成: 12388 chars
+[NeuroViz] Topomap已生成: 57244 chars
+[NeuroViz] Topomap触发: send_counter=4960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=4960
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 1.21}
+[NeuroViz] TimeFreq已生成: 12552 chars
+[NeuroViz] Topomap已生成: 57864 chars
+[NeuroViz] Topomap触发: send_counter=5000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5000
+[NeuroViz] values={'Fp1': 1.4, 'Fp2': 0.74}
+[NeuroViz] TimeFreq已生成: 12832 chars
+[NeuroViz] Topomap已生成: 56724 chars
+[NeuroViz] Topomap触发: send_counter=5040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5040
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 1.27}
+[NeuroViz] TimeFreq已生成: 12752 chars
+[NeuroViz] Topomap已生成: 58552 chars
+[NeuroViz] Topomap触发: send_counter=5080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5080
+[NeuroViz] values={'Fp1': 0.26, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12644 chars
+[NeuroViz] Topomap已生成: 58576 chars
+[NeuroViz] Topomap触发: send_counter=5120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5120
+[NeuroViz] values={'Fp1': 0.58, 'Fp2': 1.05}
+[NeuroViz] TimeFreq已生成: 12692 chars
+[NeuroViz] Topomap已生成: 56480 chars
+[NeuroViz] Topomap触发: send_counter=5160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5160
+[NeuroViz] values={'Fp1': 0.31, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 57548 chars
+[NeuroViz] Topomap触发: send_counter=5200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5200
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 0.31}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 58152 chars
+[NeuroViz] Topomap触发: send_counter=5240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5240
+[NeuroViz] values={'Fp1': 0.27, 'Fp2': 0.79}
+[NeuroViz] TimeFreq已生成: 12840 chars
+[NeuroViz] Topomap已生成: 56852 chars
+[NeuroViz] Topomap触发: send_counter=5280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5280
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 13000 chars
+[NeuroViz] Topomap已生成: 58012 chars
+[NeuroViz] Topomap触发: send_counter=5320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5320
+[NeuroViz] values={'Fp1': 0.52, 'Fp2': 0.34}
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 61300 chars
+[NeuroViz] Topomap触发: send_counter=5360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5360
+[NeuroViz] values={'Fp1': 1.38, 'Fp2': 0.37}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 56048 chars
+[NeuroViz] Topomap触发: send_counter=5400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5400
+[NeuroViz] values={'Fp1': 0.89, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 59100 chars
+[NeuroViz] Topomap触发: send_counter=5440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5440
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 0.8}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 59972 chars
+[NeuroViz] Topomap触发: send_counter=5480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5480
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12944 chars
+[NeuroViz] Topomap已生成: 58112 chars
+[NeuroViz] Topomap触发: send_counter=5520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5520
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.52}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 58400 chars
+[NeuroViz] Topomap触发: send_counter=5560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5560
+[NeuroViz] values={'Fp1': 1.75, 'Fp2': 0.41}
+[NeuroViz] TimeFreq已生成: 12668 chars
+[NeuroViz] Topomap已生成: 56484 chars
+[NeuroViz] Topomap触发: send_counter=5600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5600
+[NeuroViz] values={'Fp1': 1.26, 'Fp2': 1.43}
+[NeuroViz] TimeFreq已生成: 12584 chars
+[NeuroViz] Topomap已生成: 59820 chars
+[NeuroViz] Topomap触发: send_counter=5640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5640
+[NeuroViz] values={'Fp1': 0.6, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 60392 chars
+[NeuroViz] Topomap触发: send_counter=5680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5680
+[NeuroViz] values={'Fp1': 0.25, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12540 chars
+[NeuroViz] Topomap已生成: 60392 chars
+[NeuroViz] Topomap触发: send_counter=5720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5720
+[NeuroViz] values={'Fp1': 0.23, 'Fp2': 1.45}
+[NeuroViz] TimeFreq已生成: 12248 chars
+[NeuroViz] Topomap已生成: 57120 chars
+[NeuroViz] Topomap触发: send_counter=5760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5760
+[NeuroViz] values={'Fp1': 1.07, 'Fp2': 0.04}
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 56132 chars
+[NeuroViz] Topomap触发: send_counter=5800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5800
+[NeuroViz] values={'Fp1': 2.68, 'Fp2': 2.25}
+[NeuroViz] TimeFreq已生成: 12468 chars
+[NeuroViz] Topomap已生成: 59984 chars
+[NeuroViz] Topomap触发: send_counter=5840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5840
+[NeuroViz] values={'Fp1': 0.98, 'Fp2': 0.55}
+[NeuroViz] TimeFreq已生成: 13020 chars
+[NeuroViz] Topomap已生成: 60356 chars
+[NeuroViz] Topomap触发: send_counter=5880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5880
+[NeuroViz] values={'Fp1': 0.23, 'Fp2': 1.13}
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 58244 chars
+[NeuroViz] Topomap触发: send_counter=5920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5920
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.81}
+[NeuroViz] TimeFreq已生成: 12792 chars
+[NeuroViz] Topomap已生成: 57996 chars
+[NeuroViz] Topomap触发: send_counter=5960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=5960
+[NeuroViz] values={'Fp1': 0.76, 'Fp2': 0.1}
+[NeuroViz] TimeFreq已生成: 12748 chars
+[NeuroViz] Topomap已生成: 57404 chars
+[NeuroViz] Topomap触发: send_counter=6000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6000
+[NeuroViz] values={'Fp1': 2.06, 'Fp2': 1.39}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 56692 chars
+[NeuroViz] Topomap触发: send_counter=6040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6040
+[NeuroViz] values={'Fp1': 0.58, 'Fp2': 0.59}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 60184 chars
+[NeuroViz] Topomap触发: send_counter=6080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6080
+[NeuroViz] values={'Fp1': 0.17, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 59724 chars
+[NeuroViz] Topomap触发: send_counter=6120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6120
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 1.02}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 58672 chars
+[NeuroViz] Topomap触发: send_counter=6160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6160
+[NeuroViz] values={'Fp1': 0.22, 'Fp2': 0.59}
+[NeuroViz] TimeFreq已生成: 12644 chars
+[NeuroViz] Topomap已生成: 59212 chars
+[NeuroViz] Topomap触发: send_counter=6200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6200
+[NeuroViz] values={'Fp1': 0.86, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12688 chars
+[NeuroViz] Topomap已生成: 58032 chars
+[NeuroViz] Topomap触发: send_counter=6240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6240
+[NeuroViz] values={'Fp1': 1.17, 'Fp2': 1.22}
+[NeuroViz] TimeFreq已生成: 12832 chars
+[NeuroViz] Topomap已生成: 57396 chars
+[NeuroViz] Topomap触发: send_counter=6280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6280
+[NeuroViz] values={'Fp1': 0.29, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12780 chars
+[NeuroViz] Topomap已生成: 57580 chars
+[NeuroViz] Topomap触发: send_counter=6320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6320
+[NeuroViz] values={'Fp1': 0.22, 'Fp2': 0.03}
+[NeuroViz] TimeFreq已生成: 12884 chars
+[NeuroViz] Topomap已生成: 59364 chars
+[NeuroViz] Topomap触发: send_counter=6360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6360
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.44}
+[NeuroViz] TimeFreq已生成: 12768 chars
+[NeuroViz] Topomap已生成: 61568 chars
+[NeuroViz] Topomap触发: send_counter=6400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6400
+[NeuroViz] values={'Fp1': 1.35, 'Fp2': 1.04}
+[NeuroViz] TimeFreq已生成: 12592 chars
+[NeuroViz] Topomap已生成: 57588 chars
+[NeuroViz] Topomap触发: send_counter=6440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6440
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.19}
+[NeuroViz] TimeFreq已生成: 12896 chars
+[NeuroViz] Topomap已生成: 59044 chars
+[NeuroViz] Topomap触发: send_counter=6480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6480
+[NeuroViz] values={'Fp1': 0.07, 'Fp2': 0.06}
+[NeuroViz] TimeFreq已生成: 12660 chars
+[NeuroViz] Topomap已生成: 59148 chars
+[NeuroViz] Topomap触发: send_counter=6520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6520
+[NeuroViz] values={'Fp1': 1.67, 'Fp2': 2.22}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 56436 chars
+[NeuroViz] Topomap触发: send_counter=6560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6560
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 58384 chars
+[NeuroViz] Topomap触发: send_counter=6600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6600
+[NeuroViz] values={'Fp1': 0.19, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 62820 chars
+[NeuroViz] Topomap触发: send_counter=6640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6640
+[NeuroViz] values={'Fp1': 1.06, 'Fp2': 1.37}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 57432 chars
+[NeuroViz] Topomap触发: send_counter=6680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6680
+[NeuroViz] values={'Fp1': 1.69, 'Fp2': 1.28}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 58388 chars
+[NeuroViz] Topomap触发: send_counter=6720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6720
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.08}
+[NeuroViz] TimeFreq已生成: 12864 chars
+[NeuroViz] Topomap已生成: 63336 chars
+[NeuroViz] Topomap触发: send_counter=6760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6760
+[NeuroViz] values={'Fp1': 0.73, 'Fp2': 1.05}
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 59068 chars
+[NeuroViz] Topomap触发: send_counter=6800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6800
+[NeuroViz] values={'Fp1': 0.75, 'Fp2': 0.58}
+[NeuroViz] TimeFreq已生成: 12820 chars
+[NeuroViz] Topomap已生成: 60384 chars
+[NeuroViz] Topomap触发: send_counter=6840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6840
+[NeuroViz] values={'Fp1': 0.38, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 58808 chars
+[NeuroViz] Topomap触发: send_counter=6880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6880
+[NeuroViz] values={'Fp1': 0.38, 'Fp2': 1.13}
+[NeuroViz] TimeFreq已生成: 12916 chars
+[NeuroViz] Topomap已生成: 57968 chars
+[NeuroViz] Topomap触发: send_counter=6920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6920
+[NeuroViz] values={'Fp1': 0.78, 'Fp2': 1.02}
+[NeuroViz] TimeFreq已生成: 12996 chars
+[NeuroViz] Topomap已生成: 57628 chars
+[NeuroViz] Topomap触发: send_counter=6960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=6960
+[NeuroViz] values={'Fp1': 0.84, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12740 chars
+[NeuroViz] Topomap已生成: 57904 chars
+[NeuroViz] Topomap触发: send_counter=7000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7000
+[NeuroViz] values={'Fp1': 0.16, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12668 chars
+[NeuroViz] Topomap已生成: 58888 chars
+[NeuroViz] Topomap触发: send_counter=7040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7040
+[NeuroViz] values={'Fp1': 0.48, 'Fp2': 1.31}
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 58284 chars
+[NeuroViz] Topomap触发: send_counter=7080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7080
+[NeuroViz] values={'Fp1': 1.36, 'Fp2': 0.39}
+[NeuroViz] TimeFreq已生成: 12696 chars
+[NeuroViz] Topomap已生成: 56024 chars
+[NeuroViz] Topomap触发: send_counter=7120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7120
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 58384 chars
+[NeuroViz] Topomap触发: send_counter=7160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7160
+[NeuroViz] values={'Fp1': 0.49, 'Fp2': 2.11}
+[NeuroViz] TimeFreq已生成: 12568 chars
+[NeuroViz] Topomap已生成: 57840 chars
+[NeuroViz] Topomap触发: send_counter=7200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7200
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12676 chars
+[NeuroViz] Topomap已生成: 57568 chars
+[NeuroViz] Topomap触发: send_counter=7240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7240
+[NeuroViz] values={'Fp1': 0.67, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12728 chars
+[NeuroViz] Topomap已生成: 56256 chars
+[NeuroViz] Topomap触发: send_counter=7280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7280
+[NeuroViz] values={'Fp1': 0.03, 'Fp2': 1.38}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 57016 chars
+[NeuroViz] Topomap触发: send_counter=7320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7320
+[NeuroViz] values={'Fp1': 0.45, 'Fp2': 0.69}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 57564 chars
+[NeuroViz] Topomap触发: send_counter=7360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7360
+[NeuroViz] values={'Fp1': 0.91, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 58272 chars
+[NeuroViz] Topomap触发: send_counter=7400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7400
+[NeuroViz] values={'Fp1': 0.15, 'Fp2': 1.28}
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 57044 chars
+[NeuroViz] Topomap触发: send_counter=7440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7440
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.91}
+[NeuroViz] TimeFreq已生成: 12956 chars
+[NeuroViz] Topomap已生成: 60572 chars
+[NeuroViz] Topomap触发: send_counter=7480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7480
+[NeuroViz] values={'Fp1': 1.22, 'Fp2': 0.34}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 57884 chars
+[NeuroViz] Topomap触发: send_counter=7520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7520
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 0.97}
+[NeuroViz] TimeFreq已生成: 12692 chars
+[NeuroViz] Topomap已生成: 57808 chars
+[NeuroViz] Topomap触发: send_counter=7560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7560
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12724 chars
+[NeuroViz] Topomap已生成: 59600 chars
+[NeuroViz] Topomap触发: send_counter=7600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7600
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 60576 chars
+[NeuroViz] Topomap触发: send_counter=7640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7640
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 57132 chars
+[NeuroViz] Topomap触发: send_counter=7680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7680
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.55}
+[NeuroViz] TimeFreq已生成: 12468 chars
+[NeuroViz] Topomap已生成: 56588 chars
+[NeuroViz] Topomap触发: send_counter=7720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7720
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12340 chars
+[NeuroViz] Topomap已生成: 57220 chars
+[NeuroViz] Topomap触发: send_counter=7760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7760
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12920 chars
+[NeuroViz] Topomap已生成: 61476 chars
+[NeuroViz] Topomap触发: send_counter=7800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7800
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12660 chars
+[NeuroViz] Topomap已生成: 60512 chars
+[NeuroViz] Topomap触发: send_counter=7840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7840
+[NeuroViz] values={'Fp1': 0.45, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12504 chars
+[NeuroViz] Topomap已生成: 58408 chars
+[NeuroViz] Topomap触发: send_counter=7880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7880
+[NeuroViz] values={'Fp1': 1.16, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12952 chars
+[NeuroViz] Topomap已生成: 56260 chars
+[NeuroViz] Topomap触发: send_counter=7920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7920
+[NeuroViz] values={'Fp1': 0.91, 'Fp2': 1.24}
+[NeuroViz] TimeFreq已生成: 12596 chars
+[NeuroViz] Topomap已生成: 57796 chars
+[NeuroViz] Topomap触发: send_counter=7960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=7960
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 1.0}
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 58372 chars
+[NeuroViz] Topomap触发: send_counter=8000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8000
+[NeuroViz] values={'Fp1': 1.02, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12704 chars
+[NeuroViz] Topomap已生成: 58160 chars
+[NeuroViz] Topomap触发: send_counter=8040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8040
+[NeuroViz] values={'Fp1': 0.82, 'Fp2': 1.1}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 58036 chars
+[NeuroViz] Topomap触发: send_counter=8080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8080
+[NeuroViz] values={'Fp1': 0.15, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 58372 chars
+[NeuroViz] Topomap触发: send_counter=8120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8120
+[NeuroViz] values={'Fp1': 1.13, 'Fp2': 0.34}
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 57356 chars
+[NeuroViz] Topomap触发: send_counter=8160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8160
+[NeuroViz] values={'Fp1': 1.3, 'Fp2': 1.09}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 60088 chars
+[NeuroViz] Topomap触发: send_counter=8200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8200
+[NeuroViz] values={'Fp1': 0.52, 'Fp2': 0.89}
+[NeuroViz] TimeFreq已生成: 12532 chars
+[NeuroViz] Topomap已生成: 59288 chars
+[NeuroViz] Topomap触发: send_counter=8240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8240
+[NeuroViz] values={'Fp1': 0.16, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 57624 chars
+[NeuroViz] Topomap触发: send_counter=8280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8280
+[NeuroViz] values={'Fp1': 0.79, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12812 chars
+[NeuroViz] Topomap已生成: 59664 chars
+[NeuroViz] Topomap触发: send_counter=8320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8320
+[NeuroViz] values={'Fp1': 0.93, 'Fp2': 1.36}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 59224 chars
+[NeuroViz] Topomap触发: send_counter=8360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8360
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.19}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 60616 chars
+[NeuroViz] Topomap触发: send_counter=8400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8400
+[NeuroViz] values={'Fp1': 0.14, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 13064 chars
+[NeuroViz] Topomap已生成: 58812 chars
+[NeuroViz] Topomap触发: send_counter=8440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8440
+[NeuroViz] values={'Fp1': 0.91, 'Fp2': 0.88}
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 60672 chars
+[NeuroViz] Topomap触发: send_counter=8480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8480
+[NeuroViz] values={'Fp1': 0.29, 'Fp2': 0.33}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 62284 chars
+[NeuroViz] Topomap触发: send_counter=8520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8520
+[NeuroViz] values={'Fp1': 0.47, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12800 chars
+[NeuroViz] Topomap已生成: 58236 chars
+[NeuroViz] Topomap触发: send_counter=8560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8560
+[NeuroViz] values={'Fp1': 0.8, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12676 chars
+[NeuroViz] Topomap已生成: 58204 chars
+[NeuroViz] Topomap触发: send_counter=8600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8600
+[NeuroViz] values={'Fp1': 0.91, 'Fp2': 0.81}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 57668 chars
+[NeuroViz] Topomap触发: send_counter=8640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8640
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12044 chars
+[NeuroViz] Topomap已生成: 60052 chars
+[NeuroViz] Topomap触发: send_counter=8680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8680
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 1.18}
+[NeuroViz] TimeFreq已生成: 12472 chars
+[NeuroViz] Topomap已生成: 57008 chars
+[NeuroViz] Topomap触发: send_counter=8720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8720
+[NeuroViz] values={'Fp1': 1.04, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12564 chars
+[NeuroViz] Topomap已生成: 56220 chars
+[NeuroViz] Topomap触发: send_counter=8760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8760
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.18}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 57948 chars
+[NeuroViz] Topomap触发: send_counter=8800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8800
+[NeuroViz] values={'Fp1': 0.28, 'Fp2': 0.42}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 60060 chars
+[NeuroViz] Topomap触发: send_counter=8840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8840
+[NeuroViz] values={'Fp1': 0.68, 'Fp2': 0.47}
+[NeuroViz] TimeFreq已生成: 12956 chars
+[NeuroViz] Topomap已生成: 61124 chars
+[NeuroViz] Topomap触发: send_counter=8880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8880
+[NeuroViz] values={'Fp1': 0.89, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 57484 chars
+[NeuroViz] Topomap触发: send_counter=8920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8920
+[NeuroViz] values={'Fp1': 0.03, 'Fp2': 0.46}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 60208 chars
+[NeuroViz] Topomap触发: send_counter=8960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=8960
+[NeuroViz] values={'Fp1': 0.79, 'Fp2': 1.43}
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 57152 chars
+[NeuroViz] Topomap触发: send_counter=9000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9000
+[NeuroViz] values={'Fp1': 1.16, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12864 chars
+[NeuroViz] Topomap已生成: 56056 chars
+[NeuroViz] Topomap触发: send_counter=9040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9040
+[NeuroViz] values={'Fp1': 0.31, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 58404 chars
+[NeuroViz] Topomap触发: send_counter=9080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9080
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.66}
+[NeuroViz] TimeFreq已生成: 12472 chars
+[NeuroViz] Topomap已生成: 56736 chars
+[NeuroViz] Topomap触发: send_counter=9120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9120
+[NeuroViz] values={'Fp1': 1.0, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12804 chars
+[NeuroViz] Topomap已生成: 56656 chars
+[NeuroViz] Topomap触发: send_counter=9160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9160
+[NeuroViz] values={'Fp1': 0.61, 'Fp2': 0.3}
+[NeuroViz] TimeFreq已生成: 12744 chars
+[NeuroViz] Topomap已生成: 58764 chars
+[NeuroViz] Topomap触发: send_counter=9200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9200
+[NeuroViz] values={'Fp1': 0.25, 'Fp2': 1.52}
+[NeuroViz] TimeFreq已生成: 12432 chars
+[NeuroViz] Topomap已生成: 56872 chars
+[NeuroViz] Topomap触发: send_counter=9240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9240
+[NeuroViz] values={'Fp1': 1.7, 'Fp2': 1.05}
+[NeuroViz] TimeFreq已生成: 12424 chars
+[NeuroViz] Topomap已生成: 56300 chars
+[NeuroViz] Topomap触发: send_counter=9280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9280
+[NeuroViz] values={'Fp1': 1.36, 'Fp2': 0.45}
+[NeuroViz] TimeFreq已生成: 12620 chars
+[NeuroViz] Topomap已生成: 55676 chars
+[NeuroViz] Topomap触发: send_counter=9320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9320
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.64}
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 56716 chars
+[NeuroViz] Topomap触发: send_counter=9360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9360
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.37}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 58504 chars
+[NeuroViz] Topomap触发: send_counter=9400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9400
+[NeuroViz] values={'Fp1': 1.66, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12884 chars
+[NeuroViz] Topomap已生成: 57344 chars
+[NeuroViz] Topomap触发: send_counter=9440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9440
+[NeuroViz] values={'Fp1': 0.38, 'Fp2': 1.02}
+[NeuroViz] TimeFreq已生成: 12888 chars
+[NeuroViz] Topomap已生成: 57744 chars
+[NeuroViz] Topomap触发: send_counter=9480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9480
+[NeuroViz] values={'Fp1': 0.05, 'Fp2': 0.74}
+[NeuroViz] TimeFreq已生成: 12612 chars
+[NeuroViz] Topomap已生成: 57608 chars
+[NeuroViz] Topomap触发: send_counter=9520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9520
+[NeuroViz] values={'Fp1': 1.17, 'Fp2': 0.06}
+[NeuroViz] TimeFreq已生成: 12516 chars
+[NeuroViz] Topomap已生成: 56152 chars
+[NeuroViz] Topomap触发: send_counter=9560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9560
+[NeuroViz] values={'Fp1': 1.71, 'Fp2': 1.35}
+[NeuroViz] TimeFreq已生成: 13084 chars
+[NeuroViz] Topomap已生成: 58188 chars
+[NeuroViz] Topomap触发: send_counter=9600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9600
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 1.2}
+[NeuroViz] TimeFreq已生成: 12584 chars
+[NeuroViz] Topomap已生成: 56464 chars
+[NeuroViz] Topomap触发: send_counter=9640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9640
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12864 chars
+[NeuroViz] Topomap已生成: 60080 chars
+[NeuroViz] Topomap触发: send_counter=9680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9680
+[NeuroViz] values={'Fp1': 0.67, 'Fp2': 0.25}
+[NeuroViz] TimeFreq已生成: 12776 chars
+[NeuroViz] Topomap已生成: 60232 chars
+[NeuroViz] Topomap触发: send_counter=9720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9720
+[NeuroViz] values={'Fp1': 0.58, 'Fp2': 1.41}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 58200 chars
+[NeuroViz] Topomap触发: send_counter=9760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9760
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.52}
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 56632 chars
+[NeuroViz] Topomap触发: send_counter=9800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9800
+[NeuroViz] values={'Fp1': 0.74, 'Fp2': 0.26}
+[NeuroViz] TimeFreq已生成: 12460 chars
+[NeuroViz] Topomap已生成: 56256 chars
+[NeuroViz] Topomap触发: send_counter=9840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9840
+[NeuroViz] values={'Fp1': 1.17, 'Fp2': 1.46}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 57500 chars
+[NeuroViz] Topomap触发: send_counter=9880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9880
+[NeuroViz] values={'Fp1': 0.18, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12760 chars
+[NeuroViz] Topomap已生成: 57896 chars
+[NeuroViz] Topomap触发: send_counter=9920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9920
+[NeuroViz] values={'Fp1': 1.03, 'Fp2': 0.28}
+[NeuroViz] TimeFreq已生成: 12648 chars
+[NeuroViz] Topomap已生成: 57776 chars
+[NeuroViz] Topomap触发: send_counter=9960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=9960
+[NeuroViz] values={'Fp1': 1.46, 'Fp2': 1.5}
+[NeuroViz] TimeFreq已生成: 12724 chars
+[NeuroViz] Topomap已生成: 61292 chars
+[NeuroViz] Topomap触发: send_counter=10000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10000
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 1.06}
+[NeuroViz] TimeFreq已生成: 12740 chars
+[NeuroViz] Topomap已生成: 57340 chars
+[NeuroViz] Topomap触发: send_counter=10040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10040
+[NeuroViz] values={'Fp1': 0.34, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 56828 chars
+[NeuroViz] Topomap触发: send_counter=10080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10080
+[NeuroViz] values={'Fp1': 1.91, 'Fp2': 1.68}
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 56804 chars
+[NeuroViz] Topomap触发: send_counter=10120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10120
+[NeuroViz] values={'Fp1': 1.0, 'Fp2': 0.61}
+[NeuroViz] TimeFreq已生成: 13068 chars
+[NeuroViz] Topomap已生成: 59628 chars
+[NeuroViz] Topomap触发: send_counter=10160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10160
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12940 chars
+[NeuroViz] Topomap已生成: 60180 chars
+[NeuroViz] Topomap触发: send_counter=10200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10200
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12572 chars
+[NeuroViz] Topomap已生成: 59156 chars
+[NeuroViz] Topomap触发: send_counter=10240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10240
+[NeuroViz] values={'Fp1': 0.95, 'Fp2': 1.11}
+[NeuroViz] TimeFreq已生成: 12580 chars
+[NeuroViz] Topomap已生成: 59088 chars
+[NeuroViz] Topomap触发: send_counter=10280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10280
+[NeuroViz] values={'Fp1': 0.45, 'Fp2': 0.3}
+[NeuroViz] TimeFreq已生成: 12812 chars
+[NeuroViz] Topomap已生成: 59764 chars
+[NeuroViz] Topomap触发: send_counter=10320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10320
+[NeuroViz] values={'Fp1': 0.61, 'Fp2': 1.11}
+[NeuroViz] TimeFreq已生成: 12572 chars
+[NeuroViz] Topomap已生成: 56184 chars
+[NeuroViz] Topomap触发: send_counter=10360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10360
+[NeuroViz] values={'Fp1': 0.95, 'Fp2': 0.76}
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 61056 chars
+[NeuroViz] Topomap触发: send_counter=10400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10400
+[NeuroViz] values={'Fp1': 0.66, 'Fp2': 0.19}
+[NeuroViz] TimeFreq已生成: 12708 chars
+[NeuroViz] Topomap已生成: 56376 chars
+[NeuroViz] Topomap触发: send_counter=10440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10440
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.32}
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 58164 chars
+[NeuroViz] Topomap触发: send_counter=10480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10480
+[NeuroViz] values={'Fp1': 1.16, 'Fp2': 1.46}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 57632 chars
+[NeuroViz] Topomap触发: send_counter=10520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10520
+[NeuroViz] values={'Fp1': 0.94, 'Fp2': 0.64}
+[NeuroViz] TimeFreq已生成: 12704 chars
+[NeuroViz] Topomap已生成: 58352 chars
+[NeuroViz] Topomap触发: send_counter=10560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10560
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.35}
+[NeuroViz] TimeFreq已生成: 12812 chars
+[NeuroViz] Topomap已生成: 57576 chars
+[NeuroViz] Topomap触发: send_counter=10600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10600
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12596 chars
+[NeuroViz] Topomap已生成: 58388 chars
+[NeuroViz] Topomap触发: send_counter=10640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10640
+[NeuroViz] values={'Fp1': 1.0, 'Fp2': 0.41}
+[NeuroViz] TimeFreq已生成: 12516 chars
+[NeuroViz] Topomap已生成: 57080 chars
+[NeuroViz] Topomap触发: send_counter=10680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10680
+[NeuroViz] values={'Fp1': 0.76, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 56612 chars
+[NeuroViz] Topomap触发: send_counter=10720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10720
+[NeuroViz] values={'Fp1': 0.17, 'Fp2': 0.91}
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 58544 chars
+[NeuroViz] Topomap触发: send_counter=10760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10760
+[NeuroViz] values={'Fp1': 0.66, 'Fp2': 0.23}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 59920 chars
+[NeuroViz] Topomap触发: send_counter=10800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10800
+[NeuroViz] values={'Fp1': 0.9, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12776 chars
+[NeuroViz] Topomap已生成: 57568 chars
+[NeuroViz] Topomap触发: send_counter=10840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10840
+[NeuroViz] values={'Fp1': 0.17, 'Fp2': 1.2}
+[NeuroViz] TimeFreq已生成: 12876 chars
+[NeuroViz] Topomap已生成: 56992 chars
+[NeuroViz] Topomap触发: send_counter=10880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10880
+[NeuroViz] values={'Fp1': 0.53, 'Fp2': 0.52}
+[NeuroViz] TimeFreq已生成: 12956 chars
+[NeuroViz] Topomap已生成: 59544 chars
+[NeuroViz] Topomap触发: send_counter=10920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10920
+[NeuroViz] values={'Fp1': 1.08, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 55852 chars
+[NeuroViz] Topomap触发: send_counter=10960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=10960
+[NeuroViz] values={'Fp1': 0.51, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 62812 chars
+[NeuroViz] Topomap触发: send_counter=11000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11000
+[NeuroViz] values={'Fp1': 0.15, 'Fp2': 1.13}
+[NeuroViz] TimeFreq已生成: 12152 chars
+[NeuroViz] Topomap已生成: 56412 chars
+[NeuroViz] Topomap触发: send_counter=11040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11040
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.31}
+[NeuroViz] TimeFreq已生成: 12584 chars
+[NeuroViz] Topomap已生成: 59512 chars
+[NeuroViz] Topomap触发: send_counter=11080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11080
+[NeuroViz] values={'Fp1': 1.44, 'Fp2': 0.47}
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 55928 chars
+[NeuroViz] Topomap触发: send_counter=11120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11120
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 1.33}
+[NeuroViz] TimeFreq已生成: 12872 chars
+[NeuroViz] Topomap已生成: 57044 chars
+[NeuroViz] Topomap触发: send_counter=11160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11160
+[NeuroViz] values={'Fp1': 0.6, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 62212 chars
+[NeuroViz] Topomap触发: send_counter=11200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11200
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.21}
+[NeuroViz] TimeFreq已生成: 12828 chars
+[NeuroViz] Topomap已生成: 56368 chars
+[NeuroViz] Topomap触发: send_counter=11240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11240
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.88}
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 58448 chars
+[NeuroViz] Topomap触发: send_counter=11280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11280
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.44}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 60048 chars
+[NeuroViz] Topomap触发: send_counter=11320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11320
+[NeuroViz] values={'Fp1': 1.26, 'Fp2': 0.06}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 56424 chars
+[NeuroViz] Topomap触发: send_counter=11360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11360
+[NeuroViz] values={'Fp1': 0.99, 'Fp2': 1.32}
+[NeuroViz] TimeFreq已生成: 12828 chars
+[NeuroViz] Topomap已生成: 58048 chars
+[NeuroViz] Topomap触发: send_counter=11400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11400
+[NeuroViz] values={'Fp1': 0.16, 'Fp2': 0.57}
+[NeuroViz] TimeFreq已生成: 12676 chars
+[NeuroViz] Topomap已生成: 59672 chars
+[NeuroViz] Topomap触发: send_counter=11440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11440
+[NeuroViz] values={'Fp1': 1.16, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12816 chars
+[NeuroViz] Topomap已生成: 58188 chars
+[NeuroViz] Topomap触发: send_counter=11480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11480
+[NeuroViz] values={'Fp1': 1.01, 'Fp2': 0.9}
+[NeuroViz] TimeFreq已生成: 12516 chars
+[NeuroViz] Topomap已生成: 58164 chars
+[NeuroViz] Topomap触发: send_counter=11520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11520
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 1.18}
+[NeuroViz] TimeFreq已生成: 12392 chars
+[NeuroViz] Topomap已生成: 56580 chars
+[NeuroViz] Topomap触发: send_counter=11560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11560
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12140 chars
+[NeuroViz] Topomap已生成: 59244 chars
+[NeuroViz] Topomap触发: send_counter=11600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11600
+[NeuroViz] values={'Fp1': 1.12, 'Fp2': 0.44}
+[NeuroViz] TimeFreq已生成: 12432 chars
+[NeuroViz] Topomap已生成: 57032 chars
+[NeuroViz] Topomap触发: send_counter=11640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11640
+[NeuroViz] values={'Fp1': 0.29, 'Fp2': 0.67}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 59772 chars
+[NeuroViz] Topomap触发: send_counter=11680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11680
+[NeuroViz] values={'Fp1': 0.01, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 58920 chars
+[NeuroViz] Topomap触发: send_counter=11720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11720
+[NeuroViz] values={'Fp1': 1.01, 'Fp2': 0.6}
+[NeuroViz] TimeFreq已生成: 13088 chars
+[NeuroViz] Topomap已生成: 60052 chars
+[NeuroViz] Topomap触发: send_counter=11760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11760
+[NeuroViz] values={'Fp1': 0.8, 'Fp2': 1.61}
+[NeuroViz] TimeFreq已生成: 12712 chars
+[NeuroViz] Topomap已生成: 58108 chars
+[NeuroViz] Topomap触发: send_counter=11800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11800
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12900 chars
+[NeuroViz] Topomap已生成: 58332 chars
+[NeuroViz] Topomap触发: send_counter=11840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11840
+[NeuroViz] values={'Fp1': 0.59, 'Fp2': 0.76}
+[NeuroViz] TimeFreq已生成: 12596 chars
+[NeuroViz] Topomap已生成: 60764 chars
+[NeuroViz] Topomap触发: send_counter=11880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11880
+[NeuroViz] values={'Fp1': 1.56, 'Fp2': 1.85}
+[NeuroViz] TimeFreq已生成: 12784 chars
+[NeuroViz] Topomap已生成: 58124 chars
+[NeuroViz] Topomap触发: send_counter=11920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11920
+[NeuroViz] values={'Fp1': 0.29, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 58040 chars
+[NeuroViz] Topomap触发: send_counter=11960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=11960
+[NeuroViz] values={'Fp1': 1.28, 'Fp2': 1.26}
+[NeuroViz] TimeFreq已生成: 12548 chars
+[NeuroViz] Topomap已生成: 62376 chars
+[NeuroViz] Topomap触发: send_counter=12000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12000
+[NeuroViz] values={'Fp1': 1.1, 'Fp2': 1.28}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 59832 chars
+[NeuroViz] Topomap触发: send_counter=12040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12040
+[NeuroViz] values={'Fp1': 0.73, 'Fp2': 0.51}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 61160 chars
+[NeuroViz] Topomap触发: send_counter=12080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12080
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 59292 chars
+[NeuroViz] Topomap触发: send_counter=12120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12120
+[NeuroViz] values={'Fp1': 0.28, 'Fp2': 0.73}
+[NeuroViz] TimeFreq已生成: 12756 chars
+[NeuroViz] Topomap已生成: 60520 chars
+[NeuroViz] Topomap触发: send_counter=12160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12160
+[NeuroViz] values={'Fp1': 1.22, 'Fp2': 0.43}
+[NeuroViz] TimeFreq已生成: 12816 chars
+[NeuroViz] Topomap已生成: 57380 chars
+[NeuroViz] Topomap触发: send_counter=12200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12200
+[NeuroViz] values={'Fp1': 0.31, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12568 chars
+[NeuroViz] Topomap已生成: 57152 chars
+[NeuroViz] Topomap触发: send_counter=12240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12240
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 60696 chars
+[NeuroViz] Topomap触发: send_counter=12280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12280
+[NeuroViz] values={'Fp1': 1.18, 'Fp2': 1.65}
+[NeuroViz] TimeFreq已生成: 12764 chars
+[NeuroViz] Topomap已生成: 55948 chars
+[NeuroViz] Topomap触发: send_counter=12320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12320
+[NeuroViz] values={'Fp1': 0.71, 'Fp2': 0.21}
+[NeuroViz] TimeFreq已生成: 12948 chars
+[NeuroViz] Topomap已生成: 56388 chars
+[NeuroViz] Topomap触发: send_counter=12360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12360
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.79}
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 56832 chars
+[NeuroViz] Topomap触发: send_counter=12400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12400
+[NeuroViz] values={'Fp1': 0.22, 'Fp2': 0.72}
+[NeuroViz] TimeFreq已生成: 12880 chars
+[NeuroViz] Topomap已生成: 56612 chars
+[NeuroViz] Topomap触发: send_counter=12440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12440
+[NeuroViz] values={'Fp1': 0.93, 'Fp2': 0.3}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 57588 chars
+[NeuroViz] Topomap触发: send_counter=12480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12480
+[NeuroViz] values={'Fp1': 0.05, 'Fp2': 0.62}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 56988 chars
+[NeuroViz] Topomap触发: send_counter=12520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12520
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 1.8}
+[NeuroViz] TimeFreq已生成: 12748 chars
+[NeuroViz] Topomap已生成: 57348 chars
+[NeuroViz] Topomap触发: send_counter=12560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12560
+[NeuroViz] values={'Fp1': 1.46, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12948 chars
+[NeuroViz] Topomap已生成: 56356 chars
+[NeuroViz] Topomap触发: send_counter=12600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12600
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12424 chars
+[NeuroViz] Topomap已生成: 60336 chars
+[NeuroViz] Topomap触发: send_counter=12640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12640
+[NeuroViz] values={'Fp1': 0.77, 'Fp2': 2.67}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 58436 chars
+[NeuroViz] Topomap触发: send_counter=12680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12680
+[NeuroViz] values={'Fp1': 0.67, 'Fp2': 0.35}
+[NeuroViz] TimeFreq已生成: 12568 chars
+[NeuroViz] Topomap已生成: 58676 chars
+[NeuroViz] Topomap触发: send_counter=12720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12720
+[NeuroViz] values={'Fp1': 0.85, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12628 chars
+[NeuroViz] Topomap已生成: 57824 chars
+[NeuroViz] Topomap触发: send_counter=12760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12760
+[NeuroViz] values={'Fp1': 0.24, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12924 chars
+[NeuroViz] Topomap已生成: 58596 chars
+[NeuroViz] Topomap触发: send_counter=12800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12800
+[NeuroViz] values={'Fp1': 1.45, 'Fp2': 0.73}
+[NeuroViz] TimeFreq已生成: 12084 chars
+[NeuroViz] Topomap已生成: 56816 chars
+[NeuroViz] Topomap触发: send_counter=12840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12840
+[NeuroViz] values={'Fp1': 1.58, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12876 chars
+[NeuroViz] Topomap已生成: 57188 chars
+[NeuroViz] Topomap触发: send_counter=12880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12880
+[NeuroViz] values={'Fp1': 0.54, 'Fp2': 0.83}
+[NeuroViz] TimeFreq已生成: 12632 chars
+[NeuroViz] Topomap已生成: 58168 chars
+[NeuroViz] Topomap触发: send_counter=12920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12920
+[NeuroViz] values={'Fp1': 0.08, 'Fp2': 0.98}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 58876 chars
+[NeuroViz] Topomap触发: send_counter=12960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=12960
+[NeuroViz] values={'Fp1': 0.76, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 56704 chars
+[NeuroViz] Topomap触发: send_counter=13000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13000
+[NeuroViz] values={'Fp1': 0.69, 'Fp2': 0.84}
+[NeuroViz] TimeFreq已生成: 12240 chars
+[NeuroViz] Topomap已生成: 60112 chars
+[NeuroViz] Topomap触发: send_counter=13040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13040
+[NeuroViz] values={'Fp1': 0.19, 'Fp2': 1.2}
+[NeuroViz] TimeFreq已生成: 12868 chars
+[NeuroViz] Topomap已生成: 57048 chars
+[NeuroViz] Topomap触发: send_counter=13080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13080
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12564 chars
+[NeuroViz] Topomap已生成: 58292 chars
+[NeuroViz] Topomap触发: send_counter=13120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13120
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12728 chars
+[NeuroViz] Topomap已生成: 58800 chars
+[NeuroViz] Topomap触发: send_counter=13160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13160
+[NeuroViz] values={'Fp1': 0.54, 'Fp2': 0.53}
+[NeuroViz] TimeFreq已生成: 12592 chars
+[NeuroViz] Topomap已生成: 59660 chars
+[NeuroViz] Topomap触发: send_counter=13200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13200
+[NeuroViz] values={'Fp1': 1.08, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12944 chars
+[NeuroViz] Topomap已生成: 57728 chars
+[NeuroViz] Topomap触发: send_counter=13240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13240
+[NeuroViz] values={'Fp1': 0.7, 'Fp2': 0.71}
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 59360 chars
+[NeuroViz] Topomap触发: send_counter=13280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13280
+[NeuroViz] values={'Fp1': 0.69, 'Fp2': 0.58}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 58464 chars
+[NeuroViz] Topomap触发: send_counter=13320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13320
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 0.69}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 57508 chars
+[NeuroViz] Topomap触发: send_counter=13360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13360
+[NeuroViz] values={'Fp1': 0.03, 'Fp2': 0.1}
+[NeuroViz] TimeFreq已生成: 12880 chars
+[NeuroViz] Topomap已生成: 59700 chars
+[NeuroViz] Topomap触发: send_counter=13400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13400
+[NeuroViz] values={'Fp1': 0.04, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12616 chars
+[NeuroViz] Topomap已生成: 60544 chars
+[NeuroViz] Topomap触发: send_counter=13440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13440
+[NeuroViz] values={'Fp1': 0.18, 'Fp2': 1.2}
+[NeuroViz] TimeFreq已生成: 12916 chars
+[NeuroViz] Topomap已生成: 56968 chars
+[NeuroViz] Topomap触发: send_counter=13480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13480
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12752 chars
+[NeuroViz] Topomap已生成: 56828 chars
+[NeuroViz] Topomap触发: send_counter=13520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13520
+[NeuroViz] values={'Fp1': 1.07, 'Fp2': 1.46}
+[NeuroViz] TimeFreq已生成: 12644 chars
+[NeuroViz] Topomap已生成: 58376 chars
+[NeuroViz] Topomap触发: send_counter=13560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13560
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 1.0}
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 57468 chars
+[NeuroViz] Topomap触发: send_counter=13600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13600
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12876 chars
+[NeuroViz] Topomap已生成: 57624 chars
+[NeuroViz] Topomap触发: send_counter=13640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13640
+[NeuroViz] values={'Fp1': 1.25, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12988 chars
+[NeuroViz] Topomap已生成: 59640 chars
+[NeuroViz] Topomap触发: send_counter=13680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13680
+[NeuroViz] values={'Fp1': 0.86, 'Fp2': 1.0}
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 60052 chars
+[NeuroViz] Topomap触发: send_counter=13720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13720
+[NeuroViz] values={'Fp1': 0.52, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12764 chars
+[NeuroViz] Topomap已生成: 58908 chars
+[NeuroViz] Topomap触发: send_counter=13760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13760
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.3}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 60652 chars
+[NeuroViz] Topomap触发: send_counter=13800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13800
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.6}
+[NeuroViz] TimeFreq已生成: 12796 chars
+[NeuroViz] Topomap已生成: 57104 chars
+[NeuroViz] Topomap触发: send_counter=13840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13840
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.02}
+[NeuroViz] TimeFreq已生成: 12888 chars
+[NeuroViz] Topomap已生成: 58044 chars
+[NeuroViz] Topomap触发: send_counter=13880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13880
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 13256 chars
+[NeuroViz] Topomap已生成: 59188 chars
+[NeuroViz] Topomap触发: send_counter=13920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13920
+[NeuroViz] values={'Fp1': 0.33, 'Fp2': 1.46}
+[NeuroViz] TimeFreq已生成: 12740 chars
+[NeuroViz] Topomap已生成: 56808 chars
+[NeuroViz] Topomap触发: send_counter=13960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=13960
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 0.71}
+[NeuroViz] TimeFreq已生成: 12288 chars
+[NeuroViz] Topomap已生成: 58000 chars
+[NeuroViz] Topomap触发: send_counter=14000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14000
+[NeuroViz] values={'Fp1': 1.22, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12504 chars
+[NeuroViz] Topomap已生成: 56496 chars
+[NeuroViz] Topomap触发: send_counter=14040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14040
+[NeuroViz] values={'Fp1': 0.98, 'Fp2': 1.12}
+[NeuroViz] TimeFreq已生成: 12580 chars
+[NeuroViz] Topomap已生成: 58572 chars
+[NeuroViz] Topomap触发: send_counter=14080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14080
+[NeuroViz] values={'Fp1': 1.23, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12664 chars
+[NeuroViz] Topomap已生成: 56840 chars
+[NeuroViz] Topomap触发: send_counter=14120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14120
+[NeuroViz] values={'Fp1': 2.11, 'Fp2': 0.32}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 57852 chars
+[NeuroViz] Topomap触发: send_counter=14160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14160
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 1.11}
+[NeuroViz] TimeFreq已生成: 12748 chars
+[NeuroViz] Topomap已生成: 57960 chars
+[NeuroViz] Topomap触发: send_counter=14200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14200
+[NeuroViz] values={'Fp1': 0.25, 'Fp2': 0.94}
+[NeuroViz] TimeFreq已生成: 12892 chars
+[NeuroViz] Topomap已生成: 58052 chars
+[NeuroViz] Topomap触发: send_counter=14240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14240
+[NeuroViz] values={'Fp1': 1.25, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12924 chars
+[NeuroViz] Topomap已生成: 57868 chars
+[NeuroViz] Topomap触发: send_counter=14280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14280
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.83}
+[NeuroViz] TimeFreq已生成: 12928 chars
+[NeuroViz] Topomap已生成: 58388 chars
+[NeuroViz] Topomap触发: send_counter=14320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14320
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 0.58}
+[NeuroViz] TimeFreq已生成: 12988 chars
+[NeuroViz] Topomap已生成: 58264 chars
+[NeuroViz] Topomap触发: send_counter=14360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14360
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 0.26}
+[NeuroViz] TimeFreq已生成: 12608 chars
+[NeuroViz] Topomap已生成: 60668 chars
+[NeuroViz] Topomap触发: send_counter=14400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14400
+[NeuroViz] values={'Fp1': 0.74, 'Fp2': 0.64}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 58220 chars
+[NeuroViz] Topomap触发: send_counter=14440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14440
+[NeuroViz] values={'Fp1': 1.39, 'Fp2': 0.79}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 56496 chars
+[NeuroViz] Topomap触发: send_counter=14480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14480
+[NeuroViz] values={'Fp1': 1.2, 'Fp2': 0.4}
+[NeuroViz] TimeFreq已生成: 12472 chars
+[NeuroViz] Topomap已生成: 58296 chars
+[NeuroViz] Topomap触发: send_counter=14520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14520
+[NeuroViz] values={'Fp1': 0.82, 'Fp2': 0.67}
+[NeuroViz] TimeFreq已生成: 12604 chars
+[NeuroViz] Topomap已生成: 59864 chars
+[NeuroViz] Topomap触发: send_counter=14560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14560
+[NeuroViz] values={'Fp1': 2.21, 'Fp2': 1.47}
+[NeuroViz] TimeFreq已生成: 12940 chars
+[NeuroViz] Topomap已生成: 57212 chars
+[NeuroViz] Topomap触发: send_counter=14600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14600
+[NeuroViz] values={'Fp1': 1.2, 'Fp2': 0.72}
+[NeuroViz] TimeFreq已生成: 12624 chars
+[NeuroViz] Topomap已生成: 55868 chars
+[NeuroViz] Topomap触发: send_counter=14640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14640
+[NeuroViz] values={'Fp1': 0.08, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12532 chars
+[NeuroViz] Topomap已生成: 59424 chars
+[NeuroViz] Topomap触发: send_counter=14680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14680
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 0.93}
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 58784 chars
+[NeuroViz] Topomap触发: send_counter=14720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14720
+[NeuroViz] values={'Fp1': 0.27, 'Fp2': 1.11}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 58524 chars
+[NeuroViz] Topomap触发: send_counter=14760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14760
+[NeuroViz] values={'Fp1': 0.55, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12452 chars
+[NeuroViz] Topomap已生成: 60376 chars
+[NeuroViz] Topomap触发: send_counter=14800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14800
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 1.03}
+[NeuroViz] TimeFreq已生成: 13264 chars
+[NeuroViz] Topomap已生成: 57172 chars
+[NeuroViz] Topomap触发: send_counter=14840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14840
+[NeuroViz] values={'Fp1': 0.41, 'Fp2': 1.11}
+[NeuroViz] TimeFreq已生成: 12800 chars
+[NeuroViz] Topomap已生成: 57332 chars
+[NeuroViz] Topomap触发: send_counter=14880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14880
+[NeuroViz] values={'Fp1': 0.23, 'Fp2': 0.04}
+[NeuroViz] TimeFreq已生成: 12696 chars
+[NeuroViz] Topomap已生成: 60252 chars
+[NeuroViz] Topomap触发: send_counter=14920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14920
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.42}
+[NeuroViz] TimeFreq已生成: 13092 chars
+[NeuroViz] Topomap已生成: 57196 chars
+[NeuroViz] Topomap触发: send_counter=14960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=14960
+[NeuroViz] values={'Fp1': 1.69, 'Fp2': 1.47}
+[NeuroViz] TimeFreq已生成: 12864 chars
+[NeuroViz] Topomap已生成: 59848 chars
+[NeuroViz] Topomap触发: send_counter=15000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15000
+[NeuroViz] values={'Fp1': 1.05, 'Fp2': 0.29}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 57784 chars
+[NeuroViz] Topomap触发: send_counter=15040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15040
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.2}
+[NeuroViz] TimeFreq已生成: 12472 chars
+[NeuroViz] Topomap已生成: 60576 chars
+[NeuroViz] Topomap触发: send_counter=15080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15080
+[NeuroViz] values={'Fp1': 1.38, 'Fp2': 2.33}
+[NeuroViz] TimeFreq已生成: 12424 chars
+[NeuroViz] Topomap已生成: 56212 chars
+[NeuroViz] Topomap触发: send_counter=15120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15120
+[NeuroViz] values={'Fp1': 0.04, 'Fp2': 0.37}
+[NeuroViz] TimeFreq已生成: 12076 chars
+[NeuroViz] Topomap已生成: 59224 chars
+[NeuroViz] Topomap触发: send_counter=15160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15160
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12612 chars
+[NeuroViz] Topomap已生成: 57724 chars
+[NeuroViz] Topomap触发: send_counter=15200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15200
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.75}
+[NeuroViz] TimeFreq已生成: 12600 chars
+[NeuroViz] Topomap已生成: 59768 chars
+[NeuroViz] Topomap触发: send_counter=15240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15240
+[NeuroViz] values={'Fp1': 0.18, 'Fp2': 0.4}
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 61948 chars
+[NeuroViz] Topomap触发: send_counter=15280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15280
+[NeuroViz] values={'Fp1': 0.88, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 57496 chars
+[NeuroViz] Topomap触发: send_counter=15320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15320
+[NeuroViz] values={'Fp1': 0.73, 'Fp2': 0.8}
+[NeuroViz] TimeFreq已生成: 12704 chars
+[NeuroViz] Topomap已生成: 59852 chars
+[NeuroViz] Topomap触发: send_counter=15360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15360
+[NeuroViz] values={'Fp1': 1.92, 'Fp2': 1.65}
+[NeuroViz] TimeFreq已生成: 12932 chars
+[NeuroViz] Topomap已生成: 57564 chars
+[NeuroViz] Topomap触发: send_counter=15400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15400
+[NeuroViz] values={'Fp1': 1.04, 'Fp2': 0.03}
+[NeuroViz] TimeFreq已生成: 12740 chars
+[NeuroViz] Topomap已生成: 56240 chars
+[NeuroViz] Topomap触发: send_counter=15440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15440
+[NeuroViz] values={'Fp1': 0.54, 'Fp2': 1.02}
+[NeuroViz] TimeFreq已生成: 12788 chars
+[NeuroViz] Topomap已生成: 56548 chars
+[NeuroViz] Topomap触发: send_counter=15480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15480
+[NeuroViz] values={'Fp1': 0.94, 'Fp2': 1.59}
+[NeuroViz] TimeFreq已生成: 12780 chars
+[NeuroViz] Topomap已生成: 56212 chars
+[NeuroViz] Topomap触发: send_counter=15520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15520
+[NeuroViz] values={'Fp1': 0.29, 'Fp2': 0.08}
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 60072 chars
+[NeuroViz] Topomap触发: send_counter=15560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15560
+[NeuroViz] values={'Fp1': 0.07, 'Fp2': 0.91}
+[NeuroViz] TimeFreq已生成: 12884 chars
+[NeuroViz] Topomap已生成: 58868 chars
+[NeuroViz] Topomap触发: send_counter=15600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15600
+[NeuroViz] values={'Fp1': 0.05, 'Fp2': 0.28}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 57628 chars
+[NeuroViz] Topomap触发: send_counter=15640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15640
+[NeuroViz] values={'Fp1': 0.34, 'Fp2': 0.32}
+[NeuroViz] TimeFreq已生成: 12736 chars
+[NeuroViz] Topomap已生成: 62968 chars
+[NeuroViz] Topomap触发: send_counter=15680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15680
+[NeuroViz] values={'Fp1': 1.17, 'Fp2': 0.79}
+[NeuroViz] TimeFreq已生成: 12900 chars
+[NeuroViz] Topomap已生成: 58880 chars
+[NeuroViz] Topomap触发: send_counter=15720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15720
+[NeuroViz] values={'Fp1': 1.41, 'Fp2': 1.26}
+[NeuroViz] TimeFreq已生成: 12728 chars
+[NeuroViz] Topomap已生成: 58704 chars
+[NeuroViz] Topomap触发: send_counter=15760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15760
+[NeuroViz] values={'Fp1': 0.87, 'Fp2': 0.35}
+[NeuroViz] TimeFreq已生成: 12572 chars
+[NeuroViz] Topomap已生成: 56572 chars
+[NeuroViz] Topomap触发: send_counter=15800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15800
+[NeuroViz] values={'Fp1': 1.76, 'Fp2': 0.55}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 56540 chars
+[NeuroViz] Topomap触发: send_counter=15840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15840
+[NeuroViz] values={'Fp1': 0.75, 'Fp2': 1.75}
+[NeuroViz] TimeFreq已生成: 12460 chars
+[NeuroViz] Topomap已生成: 56356 chars
+[NeuroViz] Topomap触发: send_counter=15880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15880
+[NeuroViz] values={'Fp1': 1.04, 'Fp2': 1.34}
+[NeuroViz] TimeFreq已生成: 12644 chars
+[NeuroViz] Topomap已生成: 57392 chars
+[NeuroViz] Topomap触发: send_counter=15920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15920
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12808 chars
+[NeuroViz] Topomap已生成: 57748 chars
+[NeuroViz] Topomap触发: send_counter=15960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=15960
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 1.79}
+[NeuroViz] TimeFreq已生成: 12900 chars
+[NeuroViz] Topomap已生成: 57260 chars
+[NeuroViz] Topomap触发: send_counter=16000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16000
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.65}
+[NeuroViz] TimeFreq已生成: 12432 chars
+[NeuroViz] Topomap已生成: 57144 chars
+[NeuroViz] Topomap触发: send_counter=16040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16040
+[NeuroViz] values={'Fp1': 0.08, 'Fp2': 0.02}
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 58860 chars
+[NeuroViz] Topomap触发: send_counter=16080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16080
+[NeuroViz] values={'Fp1': 0.48, 'Fp2': 1.24}
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 58004 chars
+[NeuroViz] Topomap触发: send_counter=16120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16120
+[NeuroViz] values={'Fp1': 0.4, 'Fp2': 0.96}
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 57340 chars
+[NeuroViz] Topomap触发: send_counter=16160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16160
+[NeuroViz] values={'Fp1': 0.68, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12564 chars
+[NeuroViz] Topomap已生成: 56792 chars
+[NeuroViz] Topomap触发: send_counter=16200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16200
+[NeuroViz] values={'Fp1': 0.46, 'Fp2': 0.26}
+[NeuroViz] TimeFreq已生成: 12548 chars
+[NeuroViz] Topomap已生成: 60812 chars
+[NeuroViz] Topomap触发: send_counter=16240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16240
+[NeuroViz] values={'Fp1': 1.17, 'Fp2': 1.05}
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 56820 chars
+[NeuroViz] Topomap触发: send_counter=16280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16280
+[NeuroViz] values={'Fp1': 0.85, 'Fp2': 0.06}
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 57736 chars
+[NeuroViz] Topomap触发: send_counter=16320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16320
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 0.64}
+[NeuroViz] TimeFreq已生成: 12412 chars
+[NeuroViz] Topomap已生成: 58252 chars
+[NeuroViz] Topomap触发: send_counter=16360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16360
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12468 chars
+[NeuroViz] Topomap已生成: 60196 chars
+[NeuroViz] Topomap触发: send_counter=16400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16400
+[NeuroViz] values={'Fp1': 0.07, 'Fp2': 0.08}
+[NeuroViz] TimeFreq已生成: 12752 chars
+[NeuroViz] Topomap已生成: 59616 chars
+[NeuroViz] Topomap触发: send_counter=16440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16440
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12676 chars
+[NeuroViz] Topomap已生成: 59124 chars
+[NeuroViz] Topomap触发: send_counter=16480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16480
+[NeuroViz] values={'Fp1': 0.2, 'Fp2': 0.96}
+[NeuroViz] TimeFreq已生成: 13104 chars
+[NeuroViz] Topomap已生成: 58388 chars
+[NeuroViz] Topomap触发: send_counter=16520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16520
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 0.56}
+[NeuroViz] TimeFreq已生成: 12460 chars
+[NeuroViz] Topomap已生成: 60040 chars
+[NeuroViz] Topomap触发: send_counter=16560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16560
+[NeuroViz] values={'Fp1': 1.12, 'Fp2': 0.61}
+[NeuroViz] TimeFreq已生成: 12612 chars
+[NeuroViz] Topomap已生成: 55872 chars
+[NeuroViz] Topomap触发: send_counter=16600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16600
+[NeuroViz] values={'Fp1': 1.04, 'Fp2': 2.0}
+[NeuroViz] TimeFreq已生成: 12988 chars
+[NeuroViz] Topomap已生成: 56192 chars
+[NeuroViz] Topomap触发: send_counter=16640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16640
+[NeuroViz] values={'Fp1': 1.53, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12708 chars
+[NeuroViz] Topomap已生成: 56440 chars
+[NeuroViz] Topomap触发: send_counter=16680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16680
+[NeuroViz] values={'Fp1': 1.27, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12620 chars
+[NeuroViz] Topomap已生成: 56376 chars
+[NeuroViz] Topomap触发: send_counter=16720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16720
+[NeuroViz] values={'Fp1': 0.75, 'Fp2': 1.27}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 56296 chars
+[NeuroViz] Topomap触发: send_counter=16760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16760
+[NeuroViz] values={'Fp1': 1.04, 'Fp2': 1.42}
+[NeuroViz] TimeFreq已生成: 12540 chars
+[NeuroViz] Topomap已生成: 58696 chars
+[NeuroViz] Topomap触发: send_counter=16800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16800
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.08}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 58620 chars
+[NeuroViz] Topomap触发: send_counter=16840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16840
+[NeuroViz] values={'Fp1': 0.48, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 57032 chars
+[NeuroViz] Topomap触发: send_counter=16880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16880
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 1.35}
+[NeuroViz] TimeFreq已生成: 12840 chars
+[NeuroViz] Topomap已生成: 56996 chars
+[NeuroViz] Topomap触发: send_counter=16920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16920
+[NeuroViz] values={'Fp1': 0.1, 'Fp2': 0.24}
+[NeuroViz] TimeFreq已生成: 13148 chars
+[NeuroViz] Topomap已生成: 59404 chars
+[NeuroViz] Topomap触发: send_counter=16960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=16960
+[NeuroViz] values={'Fp1': 0.49, 'Fp2': 1.37}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 58420 chars
+[NeuroViz] Topomap触发: send_counter=17000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17000
+[NeuroViz] values={'Fp1': 0.42, 'Fp2': 0.66}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 57476 chars
+[NeuroViz] Topomap触发: send_counter=17040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17040
+[NeuroViz] values={'Fp1': 0.56, 'Fp2': 0.16}
+[NeuroViz] TimeFreq已生成: 12860 chars
+[NeuroViz] Topomap已生成: 59432 chars
+[NeuroViz] Topomap触发: send_counter=17080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17080
+[NeuroViz] values={'Fp1': 1.44, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 56804 chars
+[NeuroViz] Topomap触发: send_counter=17120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17120
+[NeuroViz] values={'Fp1': 0.85, 'Fp2': 1.61}
+[NeuroViz] TimeFreq已生成: 12836 chars
+[NeuroViz] Topomap已生成: 57368 chars
+[NeuroViz] Topomap触发: send_counter=17160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17160
+[NeuroViz] values={'Fp1': 1.47, 'Fp2': 0.82}
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 56020 chars
+[NeuroViz] Topomap触发: send_counter=17200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17200
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 56376 chars
+[NeuroViz] Topomap触发: send_counter=17240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17240
+[NeuroViz] values={'Fp1': 0.26, 'Fp2': 1.53}
+[NeuroViz] TimeFreq已生成: 12916 chars
+[NeuroViz] Topomap已生成: 56748 chars
+[NeuroViz] Topomap触发: send_counter=17280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17280
+[NeuroViz] values={'Fp1': 0.85, 'Fp2': 1.64}
+[NeuroViz] TimeFreq已生成: 12900 chars
+[NeuroViz] Topomap已生成: 57548 chars
+[NeuroViz] Topomap触发: send_counter=17320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17320
+[NeuroViz] values={'Fp1': 0.05, 'Fp2': 0.15}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 57232 chars
+[NeuroViz] Topomap触发: send_counter=17360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17360
+[NeuroViz] values={'Fp1': 0.07, 'Fp2': 1.0}
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 56628 chars
+[NeuroViz] Topomap触发: send_counter=17400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17400
+[NeuroViz] values={'Fp1': 0.28, 'Fp2': 1.07}
+[NeuroViz] TimeFreq已生成: 12768 chars
+[NeuroViz] Topomap已生成: 58332 chars
+[NeuroViz] Topomap触发: send_counter=17440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17440
+[NeuroViz] values={'Fp1': 1.43, 'Fp2': 0.48}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 55832 chars
+[NeuroViz] Topomap触发: send_counter=17480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17480
+[NeuroViz] values={'Fp1': 0.84, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12684 chars
+[NeuroViz] Topomap已生成: 56236 chars
+[NeuroViz] Topomap触发: send_counter=17520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17520
+[NeuroViz] values={'Fp1': 0.07, 'Fp2': 0.35}
+[NeuroViz] TimeFreq已生成: 12868 chars
+[NeuroViz] Topomap已生成: 58312 chars
+[NeuroViz] Topomap触发: send_counter=17560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17560
+[NeuroViz] values={'Fp1': 1.18, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12656 chars
+[NeuroViz] Topomap已生成: 55996 chars
+INFO:     127.0.0.1:57170 - "GET /static/index.html HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57171 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] Topomap触发: send_counter=17600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17600
+[NeuroViz] values={'Fp1': 0.97, 'Fp2': 0.93}
+[NeuroViz] 客户端连接, 当前13个
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 62412 chars
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 0.23, 'Fp2': 0.82}
+[NeuroViz] TimeFreq已生成: 12772 chars
+[NeuroViz] Topomap已生成: 57180 chars
+[NeuroViz] Topomap触发: send_counter=17640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17640
+[NeuroViz] values={'Fp1': 1.03, 'Fp2': 0.4}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 57420 chars
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.57}
+[NeuroViz] TimeFreq已生成: 12752 chars
+[NeuroViz] Topomap已生成: 60864 chars
+[NeuroViz] Topomap触发: send_counter=17680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17680
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 1.38}
+[NeuroViz] TimeFreq已生成: 12468 chars
+[NeuroViz] Topomap已生成: 56988 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 1.44, 'Fp2': 0.83}
+[NeuroViz] TimeFreq已生成: 12800 chars
+[NeuroViz] Topomap已生成: 56120 chars
+[NeuroViz] Topomap触发: send_counter=17720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17720
+[NeuroViz] values={'Fp1': 0.39, 'Fp2': 0.37}
+[NeuroViz] TimeFreq已生成: 12892 chars
+[NeuroViz] Topomap已生成: 63732 chars
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 0.4, 'Fp2': 0.13}
+[NeuroViz] TimeFreq已生成: 12796 chars
+[NeuroViz] Topomap已生成: 58024 chars
+[NeuroViz] Topomap触发: send_counter=17760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17760
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.04}
+[NeuroViz] TimeFreq已生成: 12856 chars
+[NeuroViz] Topomap已生成: 60624 chars
+[NeuroViz] Topomap触发: send_counter=200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=200
+[NeuroViz] values={'Fp1': 0.26, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12960 chars
+[NeuroViz] Topomap已生成: 57288 chars
+[NeuroViz] Topomap触发: send_counter=17800, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17800
+[NeuroViz] values={'Fp1': 0.87, 'Fp2': 0.66}
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 60768 chars
+[NeuroViz] Topomap触发: send_counter=240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=240
+[NeuroViz] values={'Fp1': 0.16, 'Fp2': 0.14}
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 62416 chars
+[NeuroViz] Topomap触发: send_counter=17840, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17840
+[NeuroViz] values={'Fp1': 0.86, 'Fp2': 0.8}
+[NeuroViz] TimeFreq已生成: 12672 chars
+[NeuroViz] Topomap已生成: 59368 chars
+[NeuroViz] Topomap触发: send_counter=280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=280
+[NeuroViz] values={'Fp1': 1.16, 'Fp2': 1.48}
+[NeuroViz] TimeFreq已生成: 12780 chars
+[NeuroViz] Topomap已生成: 57604 chars
+[NeuroViz] Topomap触发: send_counter=17880, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17880
+[NeuroViz] values={'Fp1': 0.31, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 57152 chars
+INFO:     127.0.0.1:57265 - "GET /static/index.html HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:57266 - "WebSocket /ws" [accepted]
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:57394 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前14个
+[NeuroViz] Topomap触发: send_counter=17920, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17920
+[NeuroViz] values={'Fp1': 1.01, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12796 chars
+[NeuroViz] Topomap已生成: 57640 chars
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 0.09, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 58184 chars
+[NeuroViz] Topomap触发: send_counter=17960, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=17960
+[NeuroViz] values={'Fp1': 0.21, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 59072 chars
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 1.06, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 12744 chars
+[NeuroViz] Topomap已生成: 56004 chars
+[NeuroViz] Topomap触发: send_counter=18000, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18000
+[NeuroViz] values={'Fp1': 0.02, 'Fp2': 1.08}
+[NeuroViz] TimeFreq已生成: 12604 chars
+[NeuroViz] Topomap已生成: 56532 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 1.13, 'Fp2': 1.33}
+[NeuroViz] TimeFreq已生成: 12832 chars
+[NeuroViz] Topomap已生成: 59608 chars
+[NeuroViz] Topomap触发: send_counter=18040, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18040
+[NeuroViz] values={'Fp1': 0.36, 'Fp2': 0.11}
+[NeuroViz] TimeFreq已生成: 12764 chars
+[NeuroViz] Topomap已生成: 57184 chars
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 0.76, 'Fp2': 0.12}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 56768 chars
+[NeuroViz] Topomap触发: send_counter=18080, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18080
+[NeuroViz] values={'Fp1': 0.37, 'Fp2': 0.42}
+[NeuroViz] TimeFreq已生成: 12764 chars
+[NeuroViz] Topomap已生成: 58524 chars
+[NeuroViz] Topomap触发: send_counter=200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=200
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.74}
+[NeuroViz] TimeFreq已生成: 12868 chars
+[NeuroViz] Topomap已生成: 60004 chars
+[NeuroViz] Topomap触发: send_counter=18120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18120
+[NeuroViz] values={'Fp1': 1.5, 'Fp2': 1.59}
+[NeuroViz] TimeFreq已生成: 12688 chars
+[NeuroViz] Topomap已生成: 57108 chars
+[NeuroViz] Topomap触发: send_counter=240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=240
+[NeuroViz] values={'Fp1': 0.34, 'Fp2': 0.3}
+[NeuroViz] TimeFreq已生成: 12480 chars
+[NeuroViz] Topomap已生成: 61828 chars
+[NeuroViz] Topomap触发: send_counter=18160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18160
+[NeuroViz] values={'Fp1': 1.32, 'Fp2': 0.97}
+[NeuroViz] TimeFreq已生成: 12676 chars
+[NeuroViz] Topomap已生成: 57300 chars
+[NeuroViz] Topomap触发: send_counter=280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=280
+[NeuroViz] values={'Fp1': 0.5, 'Fp2': 0.05}
+[NeuroViz] TimeFreq已生成: 12980 chars
+[NeuroViz] Topomap已生成: 60852 chars
+[NeuroViz] Topomap触发: send_counter=18200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18200
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 0.07}
+[NeuroViz] TimeFreq已生成: 13036 chars
+[NeuroViz] Topomap已生成: 56660 chars
+[NeuroViz] Topomap触发: send_counter=320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=320
+[NeuroViz] values={'Fp1': 0.99, 'Fp2': 1.35}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 58552 chars
+[NeuroViz] Topomap触发: send_counter=18240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18240
+[NeuroViz] values={'Fp1': 0.88, 'Fp2': 0.83}
+[NeuroViz] TimeFreq已生成: 12548 chars
+[NeuroViz] Topomap已生成: 58652 chars
+[NeuroViz] 客户端连接, 当前15个
+[NeuroViz] Topomap触发: send_counter=18280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18280
+[NeuroViz] values={'Fp1': 1.29, 'Fp2': 0.02}
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 56556 chars
+[NeuroViz] Topomap触发: send_counter=40, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=40
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 1.16}
+[NeuroViz] TimeFreq已生成: 12740 chars
+[NeuroViz] Topomap已生成: 58380 chars
+[NeuroViz] Topomap触发: send_counter=18320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18320
+[NeuroViz] values={'Fp1': 1.05, 'Fp2': 0.76}
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 57840 chars
+[NeuroViz] Topomap触发: send_counter=80, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=80
+[NeuroViz] values={'Fp1': 0.38, 'Fp2': 0.17}
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 61344 chars
+[NeuroViz] Topomap触发: send_counter=18360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18360
+[NeuroViz] values={'Fp1': 0.3, 'Fp2': 0.22}
+[NeuroViz] TimeFreq已生成: 12712 chars
+[NeuroViz] Topomap已生成: 60660 chars
+[NeuroViz] Topomap触发: send_counter=120, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=120
+[NeuroViz] values={'Fp1': 1.07, 'Fp2': 1.24}
+[NeuroViz] TimeFreq已生成: 12556 chars
+[NeuroViz] Topomap已生成: 59268 chars
+[NeuroViz] Topomap触发: send_counter=18400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18400
+[NeuroViz] values={'Fp1': 0.13, 'Fp2': 0.54}
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 59944 chars
+[NeuroViz] Topomap触发: send_counter=160, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=160
+[NeuroViz] values={'Fp1': 1.19, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12916 chars
+[NeuroViz] Topomap已生成: 57712 chars
+[NeuroViz] Topomap触发: send_counter=18440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18440
+[NeuroViz] values={'Fp1': 0.65, 'Fp2': 2.09}
+[NeuroViz] TimeFreq已生成: 12332 chars
+[NeuroViz] Topomap已生成: 57300 chars
+[NeuroViz] Topomap触发: send_counter=200, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=200
+[NeuroViz] values={'Fp1': 0.47, 'Fp2': 0.27}
+[NeuroViz] TimeFreq已生成: 12848 chars
+[NeuroViz] Topomap已生成: 60644 chars
+[NeuroViz] Topomap触发: send_counter=18480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18480
+[NeuroViz] values={'Fp1': 0.64, 'Fp2': 0.09}
+[NeuroViz] TimeFreq已生成: 12608 chars
+[NeuroViz] Topomap已生成: 56716 chars
+[NeuroViz] Topomap触发: send_counter=240, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=240
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 0.85}
+[NeuroViz] TimeFreq已生成: 12780 chars
+[NeuroViz] Topomap已生成: 57836 chars
+[NeuroViz] Topomap触发: send_counter=18520, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18520
+[NeuroViz] values={'Fp1': 1.15, 'Fp2': 1.18}
+[NeuroViz] TimeFreq已生成: 12956 chars
+[NeuroViz] Topomap已生成: 59012 chars
+[NeuroViz] Topomap触发: send_counter=280, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=280
+[NeuroViz] values={'Fp1': 0.51, 'Fp2': 0.28}
+[NeuroViz] TimeFreq已生成: 12872 chars
+[NeuroViz] Topomap已生成: 57340 chars
+[NeuroViz] Topomap触发: send_counter=18560, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18560
+[NeuroViz] values={'Fp1': 0.12, 'Fp2': 1.25}
+[NeuroViz] TimeFreq已生成: 12220 chars
+[NeuroViz] Topomap已生成: 56796 chars
+INFO:     127.0.0.1:57502 - "POST /api/export/csv HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/applications.py", line 1159, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/app.py", line 348, in export_csv_endpoint
+    raw = np.array(body["raw"], dtype=np.float32)
+                   ~~~~^^^^^^^
+KeyError: 'raw'
+[NeuroViz] Topomap触发: send_counter=320, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=320
+[NeuroViz] values={'Fp1': 0.35, 'Fp2': 0.48}
+[NeuroViz] TimeFreq已生成: 12880 chars
+[NeuroViz] Topomap已生成: 59328 chars
+[NeuroViz] Topomap触发: send_counter=18600, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18600
+[NeuroViz] values={'Fp1': 0.32, 'Fp2': 0.38}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 59188 chars
+[NeuroViz] Topomap触发: send_counter=360, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=360
+[NeuroViz] values={'Fp1': 1.27, 'Fp2': 1.73}
+[NeuroViz] TimeFreq已生成: 12412 chars
+[NeuroViz] Topomap已生成: 55728 chars
+[NeuroViz] Topomap触发: send_counter=18640, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18640
+[NeuroViz] values={'Fp1': 0.36, 'Fp2': 0.19}
+[NeuroViz] TimeFreq已生成: 12724 chars
+[NeuroViz] Topomap已生成: 60540 chars
+[NeuroViz] Topomap触发: send_counter=400, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=400
+[NeuroViz] values={'Fp1': 1.31, 'Fp2': 0.28}
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 56092 chars
+[NeuroViz] Topomap触发: send_counter=18680, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18680
+[NeuroViz] values={'Fp1': 2.05, 'Fp2': 0.36}
+[NeuroViz] TimeFreq已生成: 12852 chars
+[NeuroViz] Topomap已生成: 58036 chars
+[NeuroViz] Topomap触发: send_counter=440, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=440
+[NeuroViz] values={'Fp1': 0.75, 'Fp2': 0.51}
+[NeuroViz] TimeFreq已生成: 12960 chars
+[NeuroViz] Topomap已生成: 57388 chars
+[NeuroViz] Topomap触发: send_counter=18720, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18720
+[NeuroViz] values={'Fp1': 0.44, 'Fp2': 0.49}
+[NeuroViz] TimeFreq已生成: 12552 chars
+[NeuroViz] Topomap已生成: 58656 chars
+[NeuroViz] Topomap触发: send_counter=480, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=480
+[NeuroViz] values={'Fp1': 0.06, 'Fp2': 1.13}
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 56484 chars
+[NeuroViz] Topomap触发: send_counter=18760, mod=0, topomap_module=<module 'processors.topomap' from '/Users/sss/projects/neuroviz/backend/processors/topomap.py'>
+[NeuroViz] 进入40帧触发块: send_counter=18760
+[NeuroViz] values={'Fp1': 0.43, 'Fp2': 0.02}
+[NeuroViz] TimeFreq已生成: 12584 chars
+[NeuroViz] Topomap已生成: 59432 chars
+INFO:     127.0.0.1:57559 - "POST /api/export/pdf HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/uvicorn/protocols/http/h11_impl.py", line 415, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/applications.py", line 1159, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/applications.py", line 90, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/sss/projects/neuroviz/backend/venv/lib/python3.14/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sss/projects/neuroviz/backend/app.py", line 368, in export_pdf_endpoint
+    raw = np.array(body["raw"], dtype=np.float32)
+                   ~~~~^^^^^^^
+KeyError: 'raw'

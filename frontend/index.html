@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroViz - EEG Real-time Visualization</title>
+<style>
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: #1a2235;
+  --border-color: #2d3748;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  --accent-purple: #8b5cf6;
+  --accent-red: #ef4444;
+  --accent-yellow: #f59e0b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg-primary); color: var(--text-primary); font-family: 'Segoe UI', system-ui, sans-serif; overflow: hidden; height: 100vh; }
+#app { display: flex; flex-direction: column; height: 100vh; }
+#toolbar { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-wrap: wrap; }
+#toolbar h1 { font-size: 18px; font-weight: 700; color: var(--accent-blue); margin-right: 20px; }
+.btn { padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 13px; transition: all 0.2s; }
+.btn:hover { background: var(--accent-blue); color: white; }
+.btn.btn-active { background: var(--accent-blue); color: white; }
+#sel-source { padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); font-size: 13px; }
+#status { font-size: 12px; color: var(--text-secondary); margin-left: auto; display: flex; align-items: center; gap: 6px; }
+#status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-red); }
+#status-dot.connected { background: var(--accent-green); }
+#main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; padding: 12px; overflow: hidden; }
+.widget { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; overflow: hidden; }
+.widget h3 { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 600; }
+.canvas-wrap { flex: 1; position: relative; min-height: 0; }
+.canvas-wrap canvas, .canvas-wrap img { width: 100%; height: 100%; display: block; }
+#drop-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 14, 23, 0.92); border: 3px dashed var(--accent-blue); z-index: 9999; justify-content: center; align-items: center; flex-direction: column; color: var(--text-primary); font-size: 20px; }
+#drop-overlay.show { display: flex; }
+#drop-overlay small { color: var(--text-secondary); margin-top: 8px; font-size: 14px; }
+#file-input { display: none; }
+#timefreq-wrap { position: relative; }
+#sel-ch { position: absolute; bottom: 8px; right: 8px; padding: 4px 8px; font-size: 12px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 4px; }
+#export-bar { position: fixed; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 100; }
+#export-bar .btn { background: var(--bg-card); border-color: var(--accent-green); color: var(--accent-green); }
+#export-bar .btn:hover { background: var(--accent-green); color: white; }
+@media (max-width: 900px) {
+  #main { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Toolbar -->
+  <div id="toolbar">
+    <h1>NeuroViz</h1>
+    <select id="sel-source">
+      <option value="mock">Mock Data</option>
+      <option value="file">File Upload</option>
+      <option value="serial">Serial (EEG102)</option>
+    </select>
+    <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
+    <button class="btn" id="btn-file" onclick="switchSource('file')">📂 Upload</button>
+    <button class="btn" id="btn-serial" onclick="switchSource('serial')">🔌 Serial</button>
+    <span id="status"><span id="status-dot"></span> Disconnected</span>
+  </div>
+
+  <!-- Main Grid -->
+  <div id="main">
+    <!-- Widget 1: Waveform -->
+    <div class="widget">
+      <h3>📈 Real-time Waveform</h3>
+      <div class="canvas-wrap"><canvas id="c-wave"></canvas></div>
+    </div>
+    <!-- Widget 2: Band Energies -->
+    <div class="widget">
+      <h3>📊 Band Energies (θ/α/β/γ/δ)</h3>
+      <div class="canvas-wrap"><canvas id="c-band"></canvas></div>
+    </div>
+    <!-- Widget 3: 3D Brain + Topomap -->
+    <div class="widget">
+      <h3>🧠 3D Brain & Topomap</h3>
+      <div class="canvas-wrap" id="brain-wrap">
+        <canvas id="c-brain"></canvas>
+        <img id="i-topomap" style="position:absolute;bottom:8px;right:8px;width:120px;height:100px;border-radius:6px;border:1px solid var(--border-color);">
+      </div>
+    </div>
+    <!-- Widget 4: Emotion Quadrant -->
+    <div class="widget">
+      <h3>😊 Emotion State (Russell)</h3>
+      <div class="canvas-wrap"><canvas id="c-emotion"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Time-Freq Widget (fixed bottom-left) -->
+  <div id="timefreq-wrap" style="position:fixed;bottom:60px;left:12px;width:200px;height:150px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:8px;overflow:hidden;z-index:100;">
+    <img id="i-timefreq" style="width:100%;height:100%;">
+    <select id="sel-ch" title="Timefreq channel"></select>
+  </div>
+
+  <!-- Export Bar -->
+  <div id="export-bar">
+    <button class="btn" onclick="exportCSV()">📥 Export CSV</button>
+    <button class="btn" onclick="exportPDF()">📄 Export PDF</button>
+  </div>
+
+  <!-- Drop Overlay -->
+  <div id="drop-overlay">
+    📂 Drop EDF / BDF / CSV file here
+    <small>Supports .edf, .bdf, .csv formats</small>
+  </div>
+  <input type="file" id="file-input" accept=".edf,.bdf,.csv">
+</div>
+
+<!-- Three.js + OrbitControls -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+<script src="/static/lib/OrbitControls.js"></script>
+
+<script>
+// ========== Config ==========
+const DISPLAY_POINTS = 400;
+const MAX_SPECTROGRAM_HISTORY = 200;
+const PRO_ENABLED = false;
+
+// ========== State ==========
+let displayBuffers = [];      // Float32Array[], dynamic channels
+let hiddenChannels = new Set();
+let latestRawData = null;
+let latestChannelNames = null;
+let latestBands = null;
+let latestEmotion = null;
+let latestTimefreq = null;
+let spectrogramHistory = [];
+let spectrogramNF = 0;
+let timefreqChIdx = 0;
+
+// ========== WebSocket ==========
+let ws = null;
+let reconnectTimer = null;
+
+function connectWS() {
+  ws = new WebSocket(`ws://${location.host}/ws`);
+  ws.onopen = () => {
+    document.getElementById('status-dot').classList.add('connected');
+    document.getElementById('status').childNodes[1].textContent = ' Connected';
+  };
+  ws.onclose = () => {
+    document.getElementById('status-dot').classList.remove('connected');
+    document.getElementById('status').childNodes[1].textContent = ' Disconnected';
+    clearTimeout(reconnectTimer);
+    reconnectTimer = setTimeout(connectWS, 2000);
+  };
+  ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    if (data.type === 'config') {
+      // Initialize display buffers for n_channels
+      const nCh = data.n_channels || 2;
+      displayBuffers = new Array(nCh);
+      for (let ch = 0; ch < nCh; ch++) displayBuffers[ch] = new Float32Array(DISPLAY_POINTS);
+      // Populate channel selector
+      const sel = document.getElementById('sel-ch');
+      sel.innerHTML = '';
+      for (let i = 0; i < nCh; i++) sel.add(new Option('Ch' + i, i));
+      console.log('[Config] n_channels=' + nCh);
+    }
+    if (data.raw) {
+      latestRawData = data.raw;
+      // Roll buffers
+      const nCh = Math.min(data.raw.length, displayBuffers.length);
+      for (let ch = 0; ch < nCh; ch++) {
+        const buf = displayBuffers[ch];
+        const src = data.raw[ch];
+        if (!src) continue;
+        const copyLen = Math.min(src.length, DISPLAY_POINTS);
+        buf.set(buf.subarray(copyLen), 0);
+        for (let i = 0; i < copyLen; i++) buf[DISPLAY_POINTS - copyLen + i] = src[i];
+      }
+    }
+    if (data.bands) latestBands = data.bands;
+    if (data.emotion) latestEmotion = data.emotion;
+    if (data.timefreq) {
+      latestTimefreq = data.timefreq;
+      document.getElementById('i-timefreq').src = 'data:image/png;base64,' + data.timefreq;
+    }
+    if (data.topomap) {
+      document.getElementById('i-topomap').src = 'data:image/png;base64,' + data.topomap;
+    }
+  };
+}
+
+// ========== Drawing ==========
+function drawWave() {
+  const canvas = document.getElementById('c-wave');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const W = rect.width, H = rect.height;
+  ctx.fillStyle = '#1a2235';
+  ctx.fillRect(0, 0, W, H);
+  // Grid
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+  ctx.lineWidth = 1;
+  for (let i = 1; i < 5; i++) { ctx.beginPath(); ctx.moveTo(0, H*i/5); ctx.lineTo(W, H*i/5); ctx.stroke(); }
+  for (let i = 1; i < 5; i++) { ctx.beginPath(); ctx.moveTo(W*i/5, 0); ctx.lineTo(W*i/5, H); ctx.stroke(); }
+  // Channels (vertical offset to avoid overlap)
+  const nCh = displayBuffers.filter((_, i) => !hiddenChannels.has(i)).length;
+  const chHeight = H / Math.max(nCh, 1);
+  let chIdx = 0;
+  const colors = ['#3b82f6','#10b981','#8b5cf6','#ef4444','#f59e0b','#06b6d4','#ec4899','#84cc16'];
+  for (let ch = 0; ch < displayBuffers.length; ch++) {
+    if (hiddenChannels.has(ch)) continue;
+    const buf = displayBuffers[ch];
+    if (!buf || buf.length === 0) { chIdx++; continue; }
+    const yBase = chIdx * chHeight + chHeight / 2;
+    ctx.strokeStyle = colors[ch % colors.length];
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let i = 0; i < buf.length; i++) {
+      const x = (i / (buf.length - 1)) * W;
+      const y = yBase - (buf[i] / 200) * (chHeight / 2);  // ±200µV range per channel
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // Channel label
+    ctx.fillStyle = colors[ch % colors.length];
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('Ch'+ch, 4, yBase - chHeight/2 + 12);
+    chIdx++;
+  }
+}
+
+function drawBands() {
+  const canvas = document.getElementById('c-band');
+  if (!canvas || !latestBands) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const W = rect.width, H = rect.height;
+  ctx.fillStyle = '#1a2235';
+  ctx.fillRect(0, 0, W, H);
+  const bands = ['theta','alpha','beta','gamma','delta'];
+  const colors = ['#8b5cf6','#3b82f6','#10b981','#ef4444','#f59e0b'];
+  const barW = W / bands.length * 0.7;
+  const gap = W / bands.length;
+  for (let i = 0; i < bands.length; i++) {
+    const val = latestBands[bands[i]] || 0;
+    const barH = Math.min(val * H, H - 10);
+    const x = gap * i + (gap - barW) / 2;
+    const y = H - barH;
+    ctx.fillStyle = colors[i];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(bands[i].charAt(0).toUpperCase() + bands[i].slice(1, 3), x + barW/2, y - 4);
+  }
+}
+
+function drawEmotion() {
+  const canvas = document.getElementById('c-emotion');
+  if (!canvas || !latestEmotion) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const W = rect.width, H = rect.height;
+  ctx.fillStyle = '#1a2235';
+  ctx.fillRect(0, 0, W, H);
+  // Axes
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
+  // Point
+  const x = W/2 + (latestEmotion.valence || 0) * W/2;
+  const y = H/2 - (latestEmotion.arousal || 0) * H/2;
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath(); ctx.arc(x, y, 8, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#e2e8f0';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('V: ' + ((latestEmotion.valence||0).toFixed(2)), W/2, 16);
+  ctx.fillText('A: ' + ((latestEmotion.arousal||0).toFixed(2)), W/2, H - 8);
+}
+
+// ========== 3D Brain (Three.js) ==========
+let scene = null, camera = null, renderer = null, brainMesh = null, controls = null;
+let brainInited = false;
+
+function initBrain() {
+  const canvas = document.getElementById('c-brain');
+  if (!canvas || brainInited) return;
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1a2235);
+  camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(0, 0, 5);
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  // Light
+  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+  const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+  dir.position.set(5, 5, 5);
+  scene.add(dir);
+  // Brain ellipsoid
+  const geo = new THREE.SphereGeometry(1.0, 64, 64);
+  const mat = new THREE.MeshPhongMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.35, wireframe: false });
+  brainMesh = new THREE.Mesh(geo, mat);
+  scene.add(brainMesh);
+  // Electrode markers (Fp1, Fp2)
+  [[-0.35,0.7,0.8],[0.35,0.7,0.8]].forEach((pos,i) => {
+    const dot = new THREE.Mesh(new THREE.SphereGeometry(0.06,16,16), new THREE.MeshBasicMaterial({color: 0xef4444}));
+    dot.position.set(pos[0], pos[1], pos[2]);
+    scene.add(dot);
+  });
+  // Controls
+  if (typeof THREE.OrbitControls === 'function') {
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+  }
+  brainInited = true;
+}
+
+function renderBrain() {
+  if (!brainInited) return;
+  controls && controls.update();
+  renderer.render(scene, camera);
+}
+
+// ========== Render Loop ==========
+function render() {
+  drawWave();
+  drawBands();
+  drawEmotion();
+  renderBrain();
+  requestAnimationFrame(render);
+}
+
+// ========== Source Switching ==========
+function switchSource(type) {
+  document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
+  if (type === 'mock') document.getElementById('btn-mock').classList.add('btn-active');
+  if (type === 'file') document.getElementById('btn-file').classList.add('btn-active');
+  if (type === 'serial') document.getElementById('btn-serial').classList.add('btn-active');
+  if (ws && ws.readyState === 1) {
+    ws.send(JSON.stringify({ action: 'switch_source', type }));
+  }
+  if (type === 'file') {
+    document.getElementById('file-input').click();
+  }
+}
+
+// ========== File Upload ==========
+const dropOverlay = document.getElementById('drop-overlay');
+document.addEventListener('dragenter', (e) => { e.preventDefault(); dropOverlay.classList.add('show'); });
+document.addEventListener('dragover', (e) => { e.preventDefault(); });
+document.addEventListener('dragleave', (e) => { if (!e.relatedTarget) dropOverlay.classList.remove('show'); });
+document.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropOverlay.classList.remove('show');
+  const file = e.dataTransfer.files[0];
+  if (file) uploadFile(file);
+});
+document.getElementById('file-input').addEventListener('change', (e) => {
+  if (e.target.files[0]) uploadFile(e.target.files[0]);
+});
+
+function uploadFile(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  fetch('/api/upload', { method: 'POST', body: formData })
+    .then(r => r.json())
+    .then(d => { console.log('Upload success:', d); switchSource('file'); })
+    .catch(e => console.error('Upload failed:', e));
+}
+
+// ========== Channel Selector ==========
+document.getElementById('sel-ch').addEventListener('change', (e) => {
+  timefreqChIdx = parseInt(e.target.value);
+  if (ws && ws.readyState === 1) {
+    ws.send(JSON.stringify({ config: { timefreq_ch: timefreqChIdx } }));
+  }
+});
+
+// ========== Export ==========
+function exportCSV() {
+  fetch('/api/export/csv', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_data:{}}) })
+    .then(r => r.blob())
+    .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='neuroviz_export.csv'; a.click(); });
+}
+function exportPDF() {
+  fetch('/api/export/pdf', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_data:{}}) })
+    .then(r => r.blob())
+    .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='neuroviz_report.pdf'; a.click(); });
+}
+
+// ========== Resize ==========
+window.addEventListener('resize', () => {
+  if (renderer && camera) {
+    const canvas = document.getElementById('c-brain');
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  }
+});
+
+// ========== Init ==========
+connectWS();
+initBrain();
+render();
+</script>
+</body>
+</html>

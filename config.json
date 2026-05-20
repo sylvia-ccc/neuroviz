@@ -1,0 +1,10 @@
+# NeuroViz 配置
+{
+  "n_channels": 2,
+  "fs": 500,
+  "data_source": "mock",
+  "serial_port": "",
+  "push_fps": 20,
+  "window_sec": 2.0,
+  "step_sec": 0.5
+}
