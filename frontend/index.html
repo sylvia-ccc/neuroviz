@@ -63,6 +63,10 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
     <button class="btn" id="btn-file" onclick="switchSource('file')">📂 Upload</button>
     <button class="btn" id="btn-serial" onclick="switchSource('serial')">🔌 Serial</button>
+    <span style="margin-left:16px;color:var(--text-secondary);font-size:12px;">场景:</span>
+    <button class="btn btn-scene btn-active" id="btn-relax" onclick="setScene('relax')">😌 放松</button>
+    <button class="btn btn-scene" id="btn-focus" onclick="setScene('focus')">🎯 专注</button>
+    <button class="btn btn-scene" id="btn-blink" onclick="setScene('blink')">😉 眨眼</button>
     <span id="status"><span id="status-dot"></span> Disconnected</span>
   </div>
 
@@ -532,6 +536,16 @@ function render() {
 }
 
 // ========== Source Switching ==========
+function setScene(scene) {
+  document.querySelectorAll('.btn-scene').forEach(b => b.classList.remove('btn-active'));
+  if (scene === 'relax') document.getElementById('btn-relax').classList.add('btn-active');
+  if (scene === 'focus') document.getElementById('btn-focus').classList.add('btn-active');
+  if (scene === 'blink') document.getElementById('btn-blink').classList.add('btn-active');
+  if (ws && ws.readyState === 1) {
+    ws.send(JSON.stringify({ action: 'set_scene', scene }));
+  }
+}
+
 function switchSource(type) {
   document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
   if (type === 'mock') document.getElementById('btn-mock').classList.add('btn-active');
