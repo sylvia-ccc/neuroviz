@@ -27,6 +27,13 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 #toolbar h1 { font-size: 18px; font-weight: 700; color: var(--accent-blue); margin-right: 20px; }
 .btn { padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 13px; transition: all 0.2s; }
 .btn-sm { padding: 4px 12px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 12px; transition: all 0.2s; }
+
+/* Mode Toggle - Prominent 3-Button Pill Toggle */
+#mode-toggle { display: flex; background: var(--bg-primary); border: 2px solid var(--accent-blue); border-radius: 8px; overflow: hidden; margin: 0 auto; box-shadow: 0 2px 12px rgba(59,130,246,0.4); }
+.mode-btn { padding: 8px 20px; border: none; background: transparent; color: var(--text-primary); cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; border-right: 1px solid var(--border-color); }
+.mode-btn:last-child { border-right: none; }
+.mode-btn:hover { background: rgba(59,130,246,0.15) !important; }
+.mode-btn.active { background: var(--accent-blue) !important; color: white !important; font-weight: 600; box-shadow: 0 2px 4px rgba(59,130,246,0.3); }
 .btn:hover { background: var(--accent-blue); color: white; }
 .btn.btn-active { background: var(--accent-blue); color: white; }
 #sel-source { padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); font-size: 13px; }
@@ -137,15 +144,17 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
       <option value="serial">Serial (EEG102)</option>
       <option value="lsl">LSL Stream</option>
     </select>
-    <select id="sel-mode" onchange="switchMode(this.value)" style="margin-right:12px;padding:6px 12px;background:var(--bg-primary);border:1px solid var(--border-color);color:var(--text-primary);border-radius:6px;font-size:13px;">
-      <option value="simple">📊 Simple</option>
-      <option value="research">🔬 Research</option>
-      <option value="bci">🧠 BCI Developer</option>
-    </select>
     <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
     <button class="btn" id="btn-file" onclick="switchSource('file')">📂 Upload</button>
     <button class="btn" id="btn-serial" onclick="switchSource('serial')" data-mode="bci">🔌 Serial</button>
     <button class="btn" id="btn-lsl" onclick="switchSource('lsl')" data-mode="bci">📡 LSL</button>
+    
+    <!-- Mode Toggle: Center Prominent -->
+    <div id="mode-toggle">
+      <button class="mode-btn active" onclick="switchMode('simple')" id="mode-simple">📊 Simple</button>
+      <button class="mode-btn" onclick="switchMode('research')" id="mode-research">🔬 Research</button>
+      <button class="mode-btn" onclick="switchMode('bci')" id="mode-bci">🧠 BCI Developer</button>
+    </div>
     
     <!-- Preprocessing Status (Research+) -->
     <div id="preproc-status" data-mode="research bci">
@@ -919,6 +928,15 @@ function switchMode(mode) {
   }
   
   console.log('[Mode] Switched to:', mode);
+  
+  // Update mode toggle button active states
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.classList.remove('active');
+  });
+  const activeBtn = document.getElementById('mode-' + mode);
+  if (activeBtn) {
+    activeBtn.classList.add('active');
+  }
 }
 
 // ========== Brain View Switching (3D/2D Tab) ==========
