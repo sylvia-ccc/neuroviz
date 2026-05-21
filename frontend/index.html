@@ -1399,6 +1399,121 @@ function toggleFullWave() {
   setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
 }
 
+// ========== Full Panel Render Helpers ==========
+function drawPSDonCanvas(canvas, lwScale) {
+  if (!canvas || !psdData) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return;
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+  const W = rect.width, H = rect.height;
+  const padL = 60, padR = 24, padT = 24, padB = 44;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  ctx.fillStyle = '#0d1117';
+  ctx.fillRect(0, 0, W, H);
+  if (!psdData.freqs || psdData.freqs.length === 0) {
+    ctx.fillStyle = '#475569'; ctx.font = '13px Inter,sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('计算中...', W/2, H/2); return;
+  }
+  const freqs = psdData.freqs, powers = psdData.powers;
+  const maxFreq = 50, maxPower = Math.max(...powers, 1), minPower = Math.min(...powers, 0);
+  BANDS.forEach(band => {
+    const [fS, fE] = band.range;
+    const xS = padL + (fS/maxFreq)*plotW, xE = padL + (fE/maxFreq)*plotW;
+    ctx.fillStyle = band.color + '20';
+    ctx.fillRect(xS, padT, xE-xS, plotH);
+    ctx.fillStyle = band.color + 'cc'; ctx.font = '11px Inter,sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(band.name, (xS+xE)/2, padT-6);
+  });
+  ctx.strokeStyle = 'rgba(45,212,191,0.3)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(padL,padT); ctx.lineTo(padL,padT+plotH); ctx.lineTo(padL+plotW,padT+plotH); ctx.stroke();
+  for (let i=1;i<=5;i++) {
+    const y=padT+plotH*(i/5);
+    ctx.strokeStyle='rgba(45,212,191,0.06)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(padL+plotW,y); ctx.stroke();
+  }
+  ctx.fillStyle='#64748b'; ctx.font='11px JetBrains Mono,monospace'; ctx.textAlign='right';
+  for (let i=0;i<=5;i++) {
+    const y=padT+plotH*(1-i/5), val=minPower+(maxPower-minPower)*(i/5);
+    ctx.fillText(val.toFixed(1), padL-8, y+4);
+  }
+  ctx.textAlign='center';
+  for (let f=0;f<=maxFreq;f+=10) {
+    ctx.fillText(f+'Hz', padL+(f/maxFreq)*plotW, padT+plotH+20);
+  }
+  ctx.shadowColor='#60a5fa'; ctx.shadowBlur=8;
+  ctx.strokeStyle='#60a5fa'; ctx.lineWidth=2*lwScale;
+  ctx.beginPath();
+  for (let i=0;i<freqs.length&&i<powers.length;i++) {
+    const x=padL+(freqs[i]/maxFreq)*plotW;
+    const y=padT+plotH*(1-(powers[i]-minPower)/(maxPower-minPower));
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke(); ctx.shadowBlur=0;
+  ctx.lineTo(padL+plotW,padT+plotH); ctx.lineTo(padL,padT+plotH); ctx.closePath();
+  const grad=ctx.createLinearGradient(0,padT,0,padT+plotH);
+  grad.addColorStop(0,'rgba(96,165,250,0.3)'); grad.addColorStop(1,'rgba(96,165,250,0.02)');
+  ctx.fillStyle=grad; ctx.fill();
+}
+
+function drawEmotionOnCanvas(canvas, lwScale) {
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  if (rect.width===0||rect.height===0) return;
+  canvas.width=rect.width*devicePixelRatio; canvas.height=rect.height*devicePixelRatio;
+  ctx.scale(devicePixelRatio,devicePixelRatio);
+  const W=rect.width, H=rect.height;
+  ctx.fillStyle='#0d1117'; ctx.fillRect(0,0,W,H);
+  if (!latestEmotion) {
+    ctx.fillStyle='#475569'; ctx.font='13px Inter,sans-serif'; ctx.textAlign='center';
+    ctx.fillText('等待情绪数据...',W/2,H/2); return;
+  }
+  // Quadrant tints
+  ctx.fillStyle='rgba(52,211,153,0.04)'; ctx.fillRect(W/2,0,W/2,H/2);
+  ctx.fillStyle='rgba(251,113,133,0.04)'; ctx.fillRect(0,0,W/2,H/2);
+  ctx.fillStyle='rgba(129,140,248,0.04)'; ctx.fillRect(0,H/2,W/2,H/2);
+  ctx.fillStyle='rgba(96,165,250,0.04)'; ctx.fillRect(W/2,H/2,W/2,H/2);
+  // Axes
+  ctx.strokeStyle='rgba(148,163,184,0.2)'; ctx.lineWidth=1;
+  ctx.setLineDash([5,5]);
+  ctx.beginPath(); ctx.moveTo(W/2,0); ctx.lineTo(W/2,H); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+  ctx.setLineDash([]);
+  let v=latestEmotion.valence;
+  if (typeof v==='string') v=v==='positive'?0.7:v==='negative'?-0.7:0;
+  if (typeof v!=='number'||isNaN(v)) v=0;
+  let a=typeof latestEmotion.arousal==='number'?(latestEmotion.arousal/5)*2-1:0;
+  v=Math.max(-1,Math.min(1,v)); a=Math.max(-1,Math.min(1,a));
+  const px=W/2+v*W/2*0.85, py=H/2-a*H/2*0.85;
+  const ring=ctx.createRadialGradient(px,py,0,px,py,28*lwScale);
+  ring.addColorStop(0,'rgba(167,139,250,0.3)'); ring.addColorStop(1,'rgba(167,139,250,0)');
+  ctx.fillStyle=ring; ctx.beginPath(); ctx.arc(px,py,28*lwScale,0,Math.PI*2); ctx.fill();
+  ctx.strokeStyle='rgba(167,139,250,0.4)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.arc(px,py,16*lwScale,0,Math.PI*2); ctx.stroke();
+  ctx.shadowColor='#a78bfa'; ctx.shadowBlur=12;
+  ctx.fillStyle='#a78bfa'; ctx.beginPath(); ctx.arc(px,py,8*lwScale,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+  ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(px,py,4*lwScale,0,Math.PI*2); ctx.fill();
+  // Labels
+  ctx.fillStyle='rgba(148,163,184,0.4)'; ctx.font='11px Inter,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('效价 +',W*0.83,H/2-6); ctx.fillText('效价 -',W*0.17,H/2-6);
+  ctx.fillText('唤醒↑',W/2,16); ctx.fillText('唤醒↓',W/2,H-6);
+  // Values
+  ctx.fillStyle='#94a3b8'; ctx.font='13px JetBrains Mono,monospace'; ctx.textAlign='left';
+  ctx.fillText('V: '+(v>=0?'+':'')+v.toFixed(2),8,18);
+  ctx.fillText('A: '+(a>=0?'+':'')+a.toFixed(2),8,36);
+  if (latestEmotion.focus!==undefined) {
+    ctx.fillStyle='#34d399'; ctx.textAlign='right'; ctx.font='13px JetBrains Mono,monospace';
+    ctx.fillText('专注 '+latestEmotion.focus.toFixed(0)+'%',W-8,18);
+  }
+  if (latestEmotion.relaxation!==undefined) {
+    ctx.fillStyle='#818cf8'; ctx.textAlign='right'; ctx.font='13px JetBrains Mono,monospace';
+    ctx.fillText('放松 '+latestEmotion.relaxation.toFixed(0)+'%',W-8,36);
+  }
+}
+
 // ========== Full Panel Toggle (PSD / Band / Brain / Emotion) ==========
 let activePanelFull = null; // 'psd' | 'band' | 'brain' | 'emotion'
 
@@ -1448,15 +1563,11 @@ function toggleFullPanel(panel) {
 function syncFullPanel(panel) {
   if (panel === 'psd') {
     const dst = document.getElementById('c-psd-full');
-    if (dst) {
-      dst.width = dst.offsetWidth * devicePixelRatio;
-      dst.height = dst.offsetHeight * devicePixelRatio;
-      const orig = document.getElementById('c-psd');
-      if (orig) {
-        const ctx = dst.getContext('2d');
-        ctx.drawImage(orig, 0, 0, dst.width, dst.height);
-      }
-    }
+    if (!dst || !psdData) return;
+    dst.width = dst.offsetWidth * devicePixelRatio;
+    dst.height = dst.offsetHeight * devicePixelRatio;
+    // Re-use drawPSD logic but target fullscreen canvas
+    drawPSDonCanvas(dst, 1.5); // 1.5x line width for fullscreen
   } else if (panel === 'band') {
     const src = document.getElementById('band-stats-body');
     const dst = document.getElementById('band-stats-body-full');
@@ -1466,14 +1577,12 @@ function syncFullPanel(panel) {
     const dst = document.getElementById('i-topomap-full');
     if (src && dst) dst.src = src.src;
   } else if (panel === 'emotion') {
-    const src = document.getElementById('c-emotion');
     const dst = document.getElementById('c-emotion-full');
-    if (src && dst) {
-      dst.width = dst.offsetWidth * devicePixelRatio;
-      dst.height = dst.offsetHeight * devicePixelRatio;
-      const ctx = dst.getContext('2d');
-      ctx.drawImage(src, 0, 0, dst.width, dst.height);
-    }
+    if (!dst) return;
+    dst.width = dst.offsetWidth * devicePixelRatio;
+    dst.height = dst.offsetHeight * devicePixelRatio;
+    // Re-use drawEmotion logic on fullscreen canvas
+    drawEmotionOnCanvas(dst, 1.5);
   }
 }
 
