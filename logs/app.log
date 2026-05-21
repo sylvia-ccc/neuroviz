@@ -44,3 +44,783 @@ INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
 [NeuroViz] TimeFreq已生成: 12528 chars
 [NeuroViz] Topomap已生成: 71628 chars
 INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12568 chars
+[NeuroViz] Topomap已生成: 71972 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 71616 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12912 chars
+[NeuroViz] Topomap已生成: 70660 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12092 chars
+[NeuroViz] Topomap已生成: 72444 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12352 chars
+[NeuroViz] Topomap已生成: 74376 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 73508 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12212 chars
+[NeuroViz] Topomap已生成: 73020 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12440 chars
+[NeuroViz] Topomap已生成: 70652 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12376 chars
+[NeuroViz] Topomap已生成: 70856 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12408 chars
+[NeuroViz] Topomap已生成: 72552 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12360 chars
+[NeuroViz] Topomap已生成: 74112 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12504 chars
+[NeuroViz] Topomap已生成: 72576 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12332 chars
+[NeuroViz] Topomap已生成: 72612 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12536 chars
+[NeuroViz] Topomap已生成: 71180 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 71496 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12312 chars
+[NeuroViz] Topomap已生成: 70152 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12232 chars
+[NeuroViz] Topomap已生成: 73064 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:64591 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前3个
+INFO:     127.0.0.1:64545 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:64592 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前4个
+INFO:     127.0.0.1:64546 - "GET / HTTP/1.1" 200 OK
+INFO:     connection closed
+INFO:     127.0.0.1:64593 - "WebSocket /ws" [accepted]
+INFO:     connection open
+[NeuroViz] 客户端连接, 当前5个
+[NeuroViz] TimeFreq已生成: 12404 chars
+[NeuroViz] Topomap已生成: 72712 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 70032 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 70056 chars
+[NeuroViz] Topomap立即推送: 70516 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 68928 chars
+[NeuroViz] Topomap立即推送: 68128 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12044 chars
+[NeuroViz] Topomap已生成: 68244 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 11980 chars
+[NeuroViz] Topomap已生成: 75048 chars
+[NeuroViz] 文件已保存: /Users/sss/projects/neuroviz/data/image.png
+INFO:     127.0.0.1:64545 - "POST /api/upload HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12196 chars
+[NeuroViz] Topomap已生成: 71760 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12460 chars
+[NeuroViz] Topomap已生成: 72684 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 70996 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 70120 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12376 chars
+[NeuroViz] Topomap已生成: 72188 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 11952 chars
+[NeuroViz] Topomap已生成: 73160 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12172 chars
+[NeuroViz] Topomap已生成: 70652 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 72868 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] Topomap立即推送: 71156 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12360 chars
+[NeuroViz] Topomap已生成: 70192 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12396 chars
+[NeuroViz] Topomap已生成: 71132 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12508 chars
+[NeuroViz] Topomap已生成: 70980 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12540 chars
+[NeuroViz] Topomap已生成: 70968 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12516 chars
+[NeuroViz] Topomap已生成: 69208 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12256 chars
+[NeuroViz] Topomap已生成: 73084 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12576 chars
+[NeuroViz] Topomap已生成: 71656 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12456 chars
+[NeuroViz] Topomap已生成: 70232 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12792 chars
+[NeuroViz] Topomap已生成: 70904 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12032 chars
+[NeuroViz] Topomap已生成: 72444 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12540 chars
+[NeuroViz] Topomap已生成: 73348 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 70412 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 70348 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12240 chars
+[NeuroViz] Topomap已生成: 70524 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12376 chars
+[NeuroViz] Topomap已生成: 73460 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12428 chars
+[NeuroViz] Topomap已生成: 70776 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12532 chars
+[NeuroViz] Topomap已生成: 72112 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12520 chars
+[NeuroViz] Topomap已生成: 71188 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12380 chars
+[NeuroViz] Topomap已生成: 73472 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12448 chars
+[NeuroViz] Topomap已生成: 67192 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12732 chars
+[NeuroViz] Topomap已生成: 70152 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 72516 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12588 chars
+[NeuroViz] Topomap已生成: 71284 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12112 chars
+[NeuroViz] Topomap已生成: 72592 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12432 chars
+[NeuroViz] Topomap已生成: 72012 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12372 chars
+[NeuroViz] Topomap已生成: 74912 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12240 chars
+[NeuroViz] Topomap已生成: 72040 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 71296 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12564 chars
+[NeuroViz] Topomap已生成: 69716 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12412 chars
+[NeuroViz] Topomap已生成: 73492 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 67744 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 74100 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12004 chars
+[NeuroViz] Topomap已生成: 67608 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12500 chars
+[NeuroViz] Topomap已生成: 73128 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12568 chars
+[NeuroViz] Topomap已生成: 73332 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12380 chars
+[NeuroViz] Topomap已生成: 71156 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12236 chars
+[NeuroViz] Topomap已生成: 71256 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12092 chars
+[NeuroViz] Topomap已生成: 69920 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 11968 chars
+[NeuroViz] Topomap已生成: 74244 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12540 chars
+[NeuroViz] Topomap已生成: 70356 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12392 chars
+[NeuroViz] Topomap已生成: 69576 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12364 chars
+[NeuroViz] Topomap已生成: 70696 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 73184 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12524 chars
+[NeuroViz] Topomap已生成: 73132 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12672 chars
+[NeuroViz] Topomap已生成: 71652 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 69340 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12364 chars
+[NeuroViz] Topomap已生成: 72796 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 11964 chars
+[NeuroViz] Topomap已生成: 72080 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 71192 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12860 chars
+[NeuroViz] Topomap已生成: 69928 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12496 chars
+[NeuroViz] Topomap已生成: 71816 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12528 chars
+[NeuroViz] Topomap已生成: 71316 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12552 chars
+[NeuroViz] Topomap已生成: 72008 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12404 chars
+[NeuroViz] Topomap已生成: 69712 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] Topomap立即推送: 69060 chars
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 70468 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12060 chars
+[NeuroViz] Topomap已生成: 72068 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12280 chars
+[NeuroViz] Topomap已生成: 66856 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12316 chars
+[NeuroViz] Topomap已生成: 73584 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12548 chars
+[NeuroViz] Topomap已生成: 69548 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12580 chars
+[NeuroViz] Topomap已生成: 72224 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12984 chars
+[NeuroViz] Topomap已生成: 70552 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12432 chars
+[NeuroViz] Topomap已生成: 72908 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 11888 chars
+[NeuroViz] Topomap已生成: 69992 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12376 chars
+[NeuroViz] Topomap已生成: 71768 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12416 chars
+[NeuroViz] Topomap已生成: 71604 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 71028 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12240 chars
+[NeuroViz] Topomap已生成: 71604 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12220 chars
+[NeuroViz] Topomap已生成: 70820 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12588 chars
+[NeuroViz] Topomap已生成: 71020 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12588 chars
+[NeuroViz] Topomap已生成: 71724 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 73180 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 71872 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12368 chars
+[NeuroViz] Topomap已生成: 72120 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 71508 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 74360 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12824 chars
+[NeuroViz] Topomap已生成: 69584 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12512 chars
+[NeuroViz] Topomap已生成: 71292 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12340 chars
+[NeuroViz] Topomap已生成: 71600 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12588 chars
+[NeuroViz] Topomap已生成: 73864 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12300 chars
+[NeuroViz] Topomap已生成: 74652 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12476 chars
+[NeuroViz] Topomap已生成: 68036 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12908 chars
+[NeuroViz] Topomap已生成: 68300 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12424 chars
+[NeuroViz] Topomap已生成: 72808 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12204 chars
+[NeuroViz] Topomap已生成: 72464 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12348 chars
+[NeuroViz] Topomap已生成: 73408 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12300 chars
+[NeuroViz] Topomap已生成: 71024 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 70152 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12544 chars
+[NeuroViz] Topomap已生成: 72464 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12504 chars
+[NeuroViz] Topomap已生成: 72584 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12200 chars
+[NeuroViz] Topomap已生成: 70824 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 69136 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12420 chars
+[NeuroViz] Topomap已生成: 71772 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12488 chars
+[NeuroViz] Topomap已生成: 70916 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12624 chars
+[NeuroViz] Topomap已生成: 72316 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12492 chars
+[NeuroViz] Topomap已生成: 69248 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12464 chars
+[NeuroViz] Topomap已生成: 70768 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12796 chars
+[NeuroViz] Topomap已生成: 72932 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12484 chars
+[NeuroViz] Topomap已生成: 66576 chars
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12616 chars
+[NeuroViz] Topomap已生成: 70488 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/epoch HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12392 chars
+[NeuroViz] Topomap已生成: 70456 chars
+INFO:     127.0.0.1:64546 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+[NeuroViz] TimeFreq已生成: 12368 chars
+[NeuroViz] Topomap已生成: 72748 chars
+INFO:     127.0.0.1:64653 - "POST /api/analysis/psd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64546 - "POST /api/analysis/band-stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64545 - "POST /api/analysis/artifact HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "POST /api/analysis/epoch HTTP/1.1" 200 OK

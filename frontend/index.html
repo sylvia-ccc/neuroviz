@@ -957,16 +957,21 @@ function switchBrainView(view) {
     if (tab3d) tab3d.classList.add('btn-active');
     if (tab2d) tab2d.classList.remove('btn-active');
     
-    // FIX: Brain was initialized when canvas was hidden (0×0 viewport).
-    // Force Three.js renderer resize + re-render when switching to 3D.
-    if (renderer && camera && cBrain) {
-      const w = cBrain.clientWidth || 400;
-      const h = cBrain.clientHeight || 320;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.render(scene, camera);
+    // FIX: initBrain() ran when canvas was hidden (clientWidth=0 → NaN aspect).
+    // Re-initialize Three.js when canvas is visible (has real dimensions).
+    const initW = cBrain.clientWidth;
+    const initH = cBrain.clientHeight;
+    if (!brainInited || initW === 0) {
+      brainInited = false;
+      initBrain();  // re-init when visible → has real dimensions
+      return;
     }
+    const w = initW || 400;
+    const h = initH || 320;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
     
     // Request immediate topomap redraw on electrodes
     if (latestChannelBands) {
@@ -1909,7 +1914,7 @@ setInterval(fetchEpochAnalysis, 5000);
 switchMode('simple');
 
 connectWS();
-initBrain();
+// initBrain() is lazy: called on first switch to 3D (canvas must be visible)
 render();
 
 // Update brain tab active state
