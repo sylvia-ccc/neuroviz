@@ -22,6 +22,7 @@ sys.path.insert(0, str(BACKEND_DIR))
 from data_sources.mock import MockDataSource
 from data_sources.file_source import FileDataSource
 from data_sources.serial_source import SerialDataSource
+from data_sources.lsl_source import LSLDataSource, list_lsl_streams
 
 # 信号处理
 from processors.emotion import EmotionEngine
@@ -30,11 +31,23 @@ from processors.spectrogram import SpectrogramProcessor
 from processors.preprocessing import Preprocessor
 from processors.report import export_csv, export_pdf
 from processors.timefreq import TimeFreqProcessor
+from processors.psd import compute_psd_multi, compute_stats_multi, BANDS, REF_RANGES
+from processors.epoch import Epocher, compute_epoch_trend
+from processors.artifact import ArtifactDetector
+from processors.topomap import generate_topomap_base64, generate_topomap_base64_from_array
+from processors.markers import marker_manager, MarkerManager, LSLMarkerReceiver
+from processors.classifier import OnlineClassifier, BCIManager
+
+# 范式设计器
+from paradigm import router as paradigm_router
 
 BASE_DIR = Path(__file__).parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
 app = FastAPI(title="NeuroViz")
+
+# 注册范式设计器路由
+app.include_router(paradigm_router)
 
 # 静态文件
 app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR)), name="static")
@@ -125,6 +138,7 @@ async def get_source_status():
 
 # ===== 串口数据源 API =====
 serial_source = None  # 串口数据源
+lsl_source = None  # LSL数据源
 
 @app.get("/api/serial/ports")
 async def list_serial_ports():
@@ -165,15 +179,313 @@ async def disconnect_serial():
     
     # 切换回mock
     if mock_source is None:
-        mock_source = MockDataSource(n_channels=body.get("n_channels", 8), fs=500)
+        mock_source = MockDataSource(n_channels=8, fs=500)
     data_source = mock_source
     current_source_type = "mock"
     
     return {"status": "ok", "message": "已断开串口, 切换回Mock"}
 
 
+# ===== LSL数据源 API =====
+
+@app.get("/api/lsl/streams")
+async def api_list_lsl_streams():
+    """列出当前网络上可用的LSL流"""
+    streams = list_lsl_streams(timeout=2.0)
+    return {"streams": streams, "count": len(streams)}
+
+@app.post("/api/lsl/connect")
+async def connect_lsl(body: dict):
+    """连接LSL流: {"stream_name": "Muse-EEG", "stream_type": "EEG"}"""
+    global lsl_source, data_source, current_source_type, emotion_engine
+    
+    stream_name = body.get("stream_name")  # None则自动发现
+    stream_type = body.get("stream_type", "EEG")
+    
+    try:
+        lsl_source = LSLDataSource(
+            fs_target=500,
+            stream_name=stream_name,
+            stream_type=stream_type,
+            timeout=5.0
+        )
+        data_source = lsl_source
+        current_source_type = "lsl"
+        emotion_engine = EmotionEngine(fs=500)
+        print(f"[NeuroViz] 已切换到LSL源: {stream_name or 'auto'}")
+        return {"status": "ok", "info": lsl_source.get_info()}
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.post("/api/lsl/disconnect")
+async def disconnect_lsl():
+    """断开LSL流"""
+    global lsl_source, data_source, current_source_type, mock_source
+    
+    if lsl_source:
+        lsl_source.close()
+        lsl_source = None
+    
+    # 切换回mock
+    if mock_source is None:
+        mock_source = MockDataSource(n_channels=8, fs=500)
+    data_source = mock_source
+    current_source_type = "mock"
+    
+    return {"status": "ok", "message": "已断开LSL, 切换回Mock"}
+
+
+# ===== Marker API =====
+
+@app.get("/api/markers")
+async def get_markers(n: int = 50):
+    """获取最近n个Marker"""
+    return {"markers": marker_manager.get_recent_markers(n)}
+
+@app.post("/api/markers/add")
+async def add_marker(body: dict):
+    """添加Marker"""
+    marker = marker_manager.add_marker(
+        name=body.get("name", "event"),
+        value=body.get("value", 0),
+        duration=body.get("duration", 0.0),
+        metadata=body.get("metadata")
+    )
+    return {"status": "ok", "marker": marker.to_dict()}
+
+@app.post("/api/markers/trial/start")
+async def start_trial(body: dict):
+    """开始Trial"""
+    trial_num = marker_manager.start_trial(
+        trial_type=body.get("trial_type", ""),
+        metadata=body.get("metadata")
+    )
+    return {"status": "ok", "trial_num": trial_num}
+
+@app.post("/api/markers/trial/end")
+async def end_trial(body: dict):
+    """结束Trial"""
+    trial_info = marker_manager.end_trial(
+        result=body.get("result", ""),
+        metadata=body.get("metadata")
+    )
+    if trial_info:
+        return {"status": "ok", "trial": trial_info}
+    return {"error": "No active trial"}
+
+@app.post("/api/markers/stimulus")
+async def mark_stimulus(body: dict):
+    """标记刺激"""
+    marker = marker_manager.mark_stimulus(
+        stimulus_type=body.get("stimulus_type", ""),
+        value=body.get("value", 0)
+    )
+    return {"status": "ok", "marker": marker.to_dict()}
+
+@app.post("/api/markers/response")
+async def mark_response(body: dict):
+    """标记响应"""
+    marker = marker_manager.mark_response(
+        response=body.get("response", ""),
+        correct=body.get("correct", False),
+        rt_ms=body.get("rt_ms", 0)
+    )
+    return {"status": "ok", "marker": marker.to_dict()}
+
+@app.get("/api/markers/trials")
+async def get_trials():
+    """获取所有Trial信息"""
+    return {"trials": marker_manager.get_trials()}
+
+@app.get("/api/markers/export")
+async def export_markers():
+    """导出所有Marker数据"""
+    return marker_manager.export_to_dict()
+
+@app.post("/api/markers/clear")
+async def clear_markers():
+    """清空所有Marker"""
+    marker_manager.clear()
+    return {"status": "ok"}
+
+
+# ===== BCI Classifier API =====
+
+bci_manager = None  # 全局BCI管理器
+
+def get_bci_manager(paradigm: str = 'mi'):
+    """获取或创建BCI管理器"""
+    global bci_manager
+    if bci_manager is None or bci_manager.paradigm != paradigm:
+        bci_manager = BCIManager(paradigm=paradigm)
+    return bci_manager
+
+@app.post("/api/classifier/init")
+async def init_classifier(body: dict):
+    """初始化分类器: {"paradigm": "mi"}"""
+    paradigm = body.get("paradigm", "mi")
+    manager = get_bci_manager(paradigm)
+    return {"status": "ok", "paradigm": paradigm}
+
+@app.get("/api/classifier/status")
+async def classifier_status():
+    """获取分类器状态"""
+    if bci_manager is None:
+        return {"initialized": False}
+    
+    return {
+        "initialized": True,
+        "paradigm": bci_manager.paradigm,
+        "trained": bci_manager.classifier.is_trained,
+        "trial_count": bci_manager.session.trial_count,
+        "accuracy": bci_manager.get_accuracy()
+    }
+
+@app.post("/api/classifier/train")
+async def train_classifier(body: dict):
+    """
+    训练分类器
+    body: {"paradigm": "mi", "data": [[epoch1], [epoch2], ...], "labels": ["left", "right", ...]}
+    epoch shape: (n_channels, n_samples)
+    """
+    paradigm = body.get("paradigm", "mi")
+    epochs = body.get("data", [])
+    labels = body.get("labels", [])
+    
+    if len(epochs) == 0 or len(labels) == 0:
+        return {"error": "No training data provided"}
+    
+    manager = get_bci_manager(paradigm)
+    fs = 500  # 假设采样率
+    
+    # 提取特征并训练
+    X = []
+    for epoch in epochs:
+        epoch_arr = np.array(epoch)
+        features = manager.classifier.extract_features(epoch_arr, fs)
+        X.append(features)
+    
+    X = np.array(X)
+    y = np.array(labels)
+    
+    try:
+        manager.classifier.train(X, y)
+        return {
+            "status": "ok",
+            "n_samples": len(X),
+            "classes": manager.classifier.classes
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+@app.post("/api/classifier/predict")
+async def predict_classifier(body: dict):
+    """
+    实时预测
+    body: {"epoch": [[ch1_data], [ch2_data], ...]}
+    """
+    if bci_manager is None or not bci_manager.classifier.is_trained:
+        return {"error": "Classifier not trained"}
+    
+    epoch = np.array(body.get("epoch", []))
+    fs = body.get("fs", 500)
+    
+    if epoch.size == 0:
+        return {"error": "No epoch data"}
+    
+    pred_class, confidence = bci_manager.classifier.predict(epoch, fs)
+    
+    return {
+        "prediction": pred_class,
+        "confidence": confidence,
+        "paradigm": bci_manager.paradigm
+    }
+
+@app.post("/api/classifier/update")
+async def update_classifier(body: dict):
+    """
+    在线更新分类器
+    body: {"epoch": [[...]], "label": "left"}
+    """
+    if bci_manager is None:
+        return {"error": "BCI manager not initialized"}
+    
+    epoch = np.array(body.get("epoch", []))
+    label = body.get("label", "")
+    fs = body.get("fs", 500)
+    
+    if epoch.size == 0 or not label:
+        return {"error": "Missing epoch or label"}
+    
+    bci_manager.classifier.update(epoch, fs, label)
+    
+    return {"status": "ok", "buffer_size": len(bci_manager.classifier.feature_buffer)}
+
+@app.post("/api/classifier/trial/result")
+async def record_trial_result(body: dict):
+    """记录Trial结果"""
+    if bci_manager is None:
+        return {"error": "BCI manager not initialized"}
+    
+    correct = body.get("correct", False)
+    bci_manager.record_trial_result(correct)
+    
+    return {
+        "status": "ok",
+        "trial_count": bci_manager.session.trial_count,
+        "accuracy": bci_manager.get_accuracy()
+    }
+
+@app.get("/api/classifier/metrics")
+async def classifier_metrics():
+    """获取分类器性能指标"""
+    if bci_manager is None:
+        return {"error": "BCI manager not initialized"}
+    
+    return {
+        "paradigm": bci_manager.paradigm,
+        "trial_count": bci_manager.session.trial_count,
+        "correct_count": bci_manager.session.correct_count,
+        "accuracy": bci_manager.get_accuracy(),
+        "recent_predictions": bci_manager.session.predictions[-10:]
+    }
+
+@app.post("/api/classifier/save")
+async def save_classifier_model(body: dict):
+    """保存模型"""
+    if bci_manager is None or not bci_manager.classifier.is_trained:
+        return {"error": "No trained model to save"}
+    
+    path = body.get("path", "model.pkl")
+    bci_manager.save_model(path)
+    
+    return {"status": "ok", "path": path}
+
+@app.post("/api/classifier/load")
+async def load_classifier_model(body: dict):
+    """加载模型"""
+    paradigm = body.get("paradigm", "mi")
+    path = body.get("path", "model.pkl")
+    
+    manager = get_bci_manager(paradigm)
+    
+    if not os.path.exists(path):
+        return {"error": f"Model file not found: {path}"}
+    
+    try:
+        manager.classifier.load(path)
+        return {"status": "ok", "classes": manager.classifier.classes}
+    except Exception as e:
+        return {"error": str(e)}
+
+
 # 全局状态
 connected_clients: list[WebSocket] = []
+
+# 设置范式设计器的WebSocket引用
+from paradigm.api import set_ws_clients
+set_ws_clients(connected_clients)
+
 data_source = None  # 当前活跃数据源
 mock_source = None   # Mock数据源(缓存)
 file_source = None   # 文件数据源
@@ -292,17 +604,20 @@ async def websocket_endpoint(ws: WebSocket):
             
             # Topomap推送(每2秒=40帧×0.05秒)
             send_counter += 1
-            if send_counter % 40 == 0:
-                print(f'[NeuroViz] Topomap触发: send_counter={send_counter}, mod={send_counter%40}, topomap_module={topomap_module}')
             if send_counter % 40 == 0 and topomap_module:
-                print(f'[NeuroViz] 进入40帧触发块: send_counter={send_counter}')
                 try:
-                    # 构造topomap数值(使用alpha频段)
+                    # 使用channel_bands构建Topomap（全部8通道）
                     values = {}
-                    if 'bands_ch1' in features and 'bands_ch2' in features:
+                    electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T3','T4','C3','C4','T5','P3','P4','T6','O1','O2']
+                    if 'channel_bands' in payload and payload['channel_bands']:
+                        for i, ch_data in enumerate(payload['channel_bands']):
+                            if i < len(electrode_names):
+                                values[electrode_names[i]] = ch_data.get('alpha', 0.0)
+                    
+                    # 兜底：只有2通道时用features
+                    elif 'bands_ch1' in features and 'bands_ch2' in features:
                         values['Fp1'] = features['bands_ch1'].get('alpha', 0.0)
                         values['Fp2'] = features['bands_ch2'].get('alpha', 0.0)
-                        print(f'[NeuroViz] values={values}')
                     
                     if len(values) >= 2:
                         topomap_b64 = await asyncio.get_event_loop().run_in_executor(
@@ -349,6 +664,134 @@ async def websocket_endpoint(ws: WebSocket):
 from fastapi.responses import FileResponse
 import tempfile
 from datetime import datetime
+
+@app.get("/api/preprocessing/status")
+async def preprocessing_status():
+    """获取当前预处理参数"""
+    return {
+        "notch_freq": 50.0,
+        "notch_Q": 30.0,
+        "bandpass_low": 1.0,
+        "bandpass_high": 40.0,
+        "bandpass_order": 4,
+        "artifact_threshold": 150.0,
+        "fs": data_source.fs if data_source else 500,
+    }
+
+
+@app.post("/api/analysis/psd")
+async def analyze_psd(body: dict):
+    """计算PSD（接收raw数组或帧数组）"""
+    fs = body.get("fs", 500)
+    if "raw" in body:
+        raw = np.array(body["raw"], dtype=np.float64)
+    elif "raw_data" in body:
+        frames = body["raw_data"]
+        all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
+        raw = np.concatenate([np.array(r, dtype=np.float64).T for r in all_raw], axis=1)
+    else:
+        return {"error": "no raw data provided"}
+    
+    # 返回格式: {freqs, powers, bands}
+    from processors.psd import compute_psd, band_power_from_psd, BANDS
+    result = {"freqs": [], "powers": [], "bands": {}}
+    if raw.ndim == 1:
+        raw = raw.reshape(1, -1)
+    
+    # 取第一通道作为代表
+    freqs, psd = compute_psd(raw[0], fs=fs)
+    result["freqs"] = freqs.tolist()
+    result["powers"] = psd.tolist()
+    result["bands"] = band_power_from_psd(freqs, psd, BANDS)
+    
+    return result
+
+
+@app.post("/api/analysis/band-stats")
+async def analyze_band_stats(body: dict):
+    """计算频段统计（绝对功率/相对功率/参考范围）"""
+    fs = body.get("fs", 500)
+    if "raw" in body:
+        raw = np.array(body["raw"], dtype=np.float64)
+    elif "raw_data" in body:
+        frames = body["raw_data"]
+        all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
+        raw = np.concatenate([np.array(r, dtype=np.float64).T for r in all_raw], axis=1)
+    else:
+        return {"error": "no raw data provided"}
+    
+    from processors.psd import compute_stats_multi
+    if raw.ndim == 1:
+        raw = raw.reshape(1, -1)
+    stats = compute_stats_multi(raw, fs=fs)
+    
+    # 返回格式: {channels: [{name, bands: {band: {abs, rel, status}}}]}
+    channels = []
+    for ch_name, bands in stats.items():
+        channels.append({"name": ch_name, "bands": bands})
+    return {"channels": channels}
+
+
+@app.post("/api/analysis/epoch")
+async def analyze_epochs(body: dict):
+    """分段分析（Epoching）"""
+    fs = body.get("fs", 500)
+    epoch_len = body.get("epoch_len", 5.0)  # 秒
+    overlap = body.get("overlap", 0.0)  # 重叠比例
+    
+    if "raw" in body:
+        raw = np.array(body["raw"], dtype=np.float64)
+    elif "raw_data" in body:
+        frames = body["raw_data"]
+        all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
+        raw = np.concatenate([np.array(r, dtype=np.float64) for r in all_raw], axis=1)
+    else:
+        return {"error": "no raw data provided"}
+    
+    epocher = Epocher(fs=fs, epoch_len=epoch_len, overlap=overlap)
+    return epocher.analyze_all_epochs(raw)
+
+
+@app.post("/api/analysis/artifact")
+async def detect_artifacts(body: dict):
+    """伪迹自动检测"""
+    fs = body.get("fs", 500)
+    threshold = body.get("threshold_uv", 150.0)
+    
+    if "raw" in body:
+        raw = np.array(body["raw"], dtype=np.float64)
+    elif "raw_data" in body:
+        frames = body["raw_data"]
+        all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
+        raw = np.concatenate([np.array(r, dtype=np.float64) for r in all_raw], axis=1)
+    else:
+        return {"error": "no raw data provided"}
+    
+    detector = ArtifactDetector(fs=fs, threshold_uv=threshold)
+    return detector.detect_all(raw)
+
+
+@app.post("/api/analysis/topomap")
+async def generate_topomap_endpoint(body: dict):
+    """生成2D脑地形图"""
+    values = body.get("values")  # {'Fp1': 5.2, ...}
+    channel_values = body.get("channel_values")  # [v0, v1, ...]
+    channel_names = body.get("channel_names")
+    method = body.get("method", "auto")  # 'auto', 'rbf', 'cubic', 'linear', 'nearest'
+    
+    if channel_values:
+        b64 = generate_topomap_base64_from_array(
+            channel_values, 
+            channel_names=channel_names,
+            method=method
+        )
+    elif values:
+        b64 = generate_topomap_base64(values, method=method)
+    else:
+        return {"error": "需要 values 或 channel_values"}
+    
+    return {"topomap_base64": b64}
+
 
 @app.post("/api/export/csv")
 async def export_csv_endpoint(body: dict):

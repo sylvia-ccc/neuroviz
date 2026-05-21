@@ -1,6 +1,6 @@
 """
-文件数据源 — EDF/CSV回放
-支持EDF(优先pyedflib，mne作为后备)和CSV格式
+文件数据源 — EDF/BDF/GDF/BrainVision/CSV回放
+支持EDF/BDF(优先pyedflib)、GDF、BrainVision(.vhdr)、CSV格式
 """
 
 import asyncio
@@ -42,8 +42,12 @@ class FileDataSource:
 
     def _load_file(self, filepath: str):
         ext = os.path.splitext(filepath)[1].lower()
-        if ext == ".edf":
-            self._load_edf(filepath)
+        if ext in (".edf", ".bdf"):
+            self._load_edf(filepath)  # EDF/BDF统一处理
+        elif ext == ".gdf":
+            self._load_gdf(filepath)
+        elif ext == ".vhdr":
+            self._load_brainvision(filepath)
         elif ext == ".csv":
             self._load_csv(filepath)
         else:
@@ -101,6 +105,45 @@ class FileDataSource:
             print(f"[FileDataSource] 重采样: {self._fs_original}Hz → {self.fs_target}Hz")
             self._data = self._resample(self._data, self._fs_original, self.fs_target)
             self._total_samples = self._data.shape[1]
+
+    def _load_gdf(self, filepath: str):
+        """读取GDF文件 (使用mne)"""
+        if not HAS_MNE:
+            raise RuntimeError("需要mne才能读取GDF。请运行: pip install mne")
+        
+        raw = mne.io.read_raw_gdf(filepath, preload=True, verbose=False)
+        self._fs_original = int(raw.info["sfreq"])
+        self._data = raw.get_data()
+        self.n_channels = self._data.shape[0]
+        self.channel_names = raw.ch_names[:self.n_channels]
+        self._total_samples = self._data.shape[1]
+        
+        if self._fs_original != self.fs_target:
+            print(f"[FileDataSource] 重采样: {self._fs_original}Hz → {self.fs_target}Hz")
+            self._data = self._resample(self._data, self._fs_original, self.fs_target)
+            self._total_samples = self._data.shape[1]
+        
+        print(f"[FileDataSource] GDF读取成功: {self.n_channels}通道, {self._total_samples}样本")
+
+    def _load_brainvision(self, filepath: str):
+        """读取BrainVision文件 (.vhdr + .vmrk + .eeg)"""
+        if not HAS_MNE:
+            raise RuntimeError("需要mne才能读取BrainVision。请运行: pip install mne")
+        
+        # BrainVision主文件是.vhdr，mne会自动关联.vmrk和.eeg
+        raw = mne.io.read_raw_brainvision(filepath, preload=True, verbose=False)
+        self._fs_original = int(raw.info["sfreq"])
+        self._data = raw.get_data()
+        self.n_channels = self._data.shape[0]
+        self.channel_names = raw.ch_names[:self.n_channels]
+        self._total_samples = self._data.shape[1]
+        
+        if self._fs_original != self.fs_target:
+            print(f"[FileDataSource] 重采样: {self._fs_original}Hz → {self.fs_target}Hz")
+            self._data = self._resample(self._data, self._fs_original, self.fs_target)
+            self._total_samples = self._data.shape[1]
+        
+        print(f"[FileDataSource] BrainVision读取成功: {self.n_channels}通道, {self._total_samples}样本")
 
     def _load_csv(self, filepath: str):
         # CSV格式: 每行=一个时间点, 每列=一个通道

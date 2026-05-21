@@ -1,6 +1,7 @@
 """
 2D脑地形图(Topomap)生成
 用matplotlib + scipy插值生成头皮电位分布图
+支持动态电极数自适应
 """
 
 import numpy as np
@@ -39,6 +40,26 @@ ELECTRODE_POS = {
 }
 
 
+# 通道索引到电极名的映射（常用配置）
+CHANNEL_MAPS = {
+    2: ['Fp1', 'Fp2'],  # 双通道前额
+    4: ['Fp1', 'Fp2', 'O1', 'O2'],  # 4通道额枕
+    8: ['Fp1', 'Fp2', 'F7', 'F8', 'T7', 'T8', 'O1', 'O2'],  # 8通道常用
+    14: ['Fp1', 'Fp2', 'F7', 'F8', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'Fz', 'Cz'],
+    19: ['Fp1', 'Fp2', 'F7', 'F8', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'O1', 'O2', 'Fz', 'Cz', 'Pz', 'T7', 'T8', 'F7', 'F8'],  # 标准10-20
+}
+
+
+def get_electrode_names(n_channels: int, channel_names: list = None) -> list:
+    """
+    根据通道数返回电极名列表
+    如果提供了channel_names，直接使用
+    """
+    if channel_names:
+        return channel_names
+    return CHANNEL_MAPS.get(n_channels, [f'Ch{i}' for i in range(n_channels)])
+
+
 def generate_topomap(
     values: dict,  # {'Fp1': 5.2, 'Fp2': 4.8, ...}
     title: str = "EEG Topomap",
@@ -46,6 +67,7 @@ def generate_topomap(
     vmax: float = None,
     cmap: str = 'RdBu_r',  # 红蓝(反转=暖色高激活)
     save_to: str = None,  # 文件路径(可选)
+    method: str = 'auto',  # 'auto', 'nearest', 'linear', 'cubic', 'rbf'
 ) -> bytes:
     """
     生成2D脑地形图, 返回PNG图片bytes
@@ -55,6 +77,7 @@ def generate_topomap(
         title: 图片标题
         vmin/vmax: 颜色范围(自动计算如果为None)
         cmap: 颜色映射
+        method: 插值方法('auto'自动选择)
         save_to: 保存到文件路径(可选)
     
     Returns:
@@ -83,19 +106,29 @@ def generate_topomap(
     if vmax is None:
         vmax = vals.max()
     
-    # 自动选择插值方法
-    if len(pos) >= 3:
-        method = 'cubic'
-    elif len(pos) == 2:
-        method = 'nearest'  # 2电极用最近邻(不需要三角化)
-    else:
-        raise ValueError(f"至少需要2个电极, 当前: {len(pos)}")
-    
     # 创建插值网格
     grid_x, grid_y = np.mgrid[-1:1:100j, -1:1:100j]
     
-    # 高斯插值(效果更好)
-    grid_z = griddata(pos, vals, (grid_x, grid_y), method=method, fill_value=0.0)
+    # 选择插值方法
+    if method == 'auto':
+        n = len(pos)
+        if n == 2:
+            method = 'nearest'
+        elif n == 3:
+            method = 'linear'
+        else:
+            method = 'cubic'
+    
+    # RBF插值（更平滑）
+    if method == 'rbf':
+        from scipy.interpolate import RBFInterpolator
+        rbf = RBFInterpolator(pos, vals, kernel='gaussian', epsilon=0.3)
+        grid_points = np.column_stack([grid_x.ravel(), grid_y.ravel()])
+        grid_z = rbf(grid_points).reshape(grid_x.shape)
+    else:
+        grid_z = griddata(pos, vals, (grid_x, grid_y), method=method, fill_value=0.0)
+    if vmax is None:
+        vmax = vals.max()
     
     # 绘制
     fig, ax = plt.subplots(figsize=(5, 5), dpi=100, facecolor='#0a0e14')
@@ -161,6 +194,35 @@ def topomap_to_base64(img_bytes: bytes) -> str:
 def generate_topomap_base64(values: dict, **kwargs) -> str:
     """生成topomap并返回base64字符串(方便WebSocket传输)"""
     img_bytes = generate_topomap(values, **kwargs)
+    return topomap_to_base64(img_bytes)
+
+
+def generate_topomap_from_array(
+    channel_values: list,  # [v0, v1, v2, ...]
+    n_channels: int = None,
+    channel_names: list = None,
+    **kwargs
+) -> bytes:
+    """
+    从通道值数组生成topomap（自动匹配电极位置）
+    
+    Args:
+        channel_values: 通道值列表
+        n_channels: 通道数(自动推断)
+        channel_names: 电极名列表(可选)
+    """
+    if n_channels is None:
+        n_channels = len(channel_values)
+    
+    names = get_electrode_names(n_channels, channel_names)
+    values = {names[i]: v for i, v in enumerate(channel_values[:len(names)])}
+    
+    return generate_topomap(values, **kwargs)
+
+
+def generate_topomap_base64_from_array(channel_values: list, **kwargs) -> str:
+    """从通道数组生成base64 topomap"""
+    img_bytes = generate_topomap_from_array(channel_values, **kwargs)
     return topomap_to_base64(img_bytes)
 
 

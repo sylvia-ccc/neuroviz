@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuroviz-sdk"
+version = "1.0.0"
+description = "NeuroViz Python SDK - BCI Development Toolkit"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Nowis NeuroViz", email = "neuroviz@nowis.ai"}
+]
+keywords = ["bci", "eeg", "neuroscience", "real-time", "brain-computer-interface"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "requests>=2.28.0",
+    "websocket-client>=1.4.0",
+    "numpy>=1.21.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=22.0",
+    "flake8>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nowis/neuroviz"
+Documentation = "https://neuroviz.nowis.ai/docs"
+Repository = "https://github.com/nowis/neuroviz"
+
+[tool.setuptools.packages.find]
+where = ["."]
