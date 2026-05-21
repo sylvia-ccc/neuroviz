@@ -1489,7 +1489,21 @@ function uploadFile(file) {
   formData.append('file', file);
   fetch('/api/upload', { method: 'POST', body: formData })
     .then(r => r.json())
-    .then(d => { console.log('Upload success:', d); switchSource('file'); })
+    .then(d => {
+      console.log('Upload success:', d);
+      if (d.status === 'ok') {
+        // 更新UI
+        document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
+        document.getElementById('btn-file').classList.add('btn-active');
+        // 重连WebSocket以使用新数据源
+        if (ws) {
+          ws.onclose = () => { console.log('WS reconnecting...'); connectWS(); };
+          ws.close();
+        } else {
+          connectWS();
+        }
+      }
+    })
     .catch(e => console.error('Upload failed:', e));
 }
 
