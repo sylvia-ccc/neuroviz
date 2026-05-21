@@ -26,6 +26,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 #toolbar { display: flex; align-items: center; gap: 12px; padding: 10px 20px; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); flex-wrap: wrap; }
 #toolbar h1 { font-size: 18px; font-weight: 700; color: var(--accent-blue); margin-right: 20px; }
 .btn { padding: 6px 14px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 13px; transition: all 0.2s; }
+.btn-sm { padding: 4px 12px; border: 1px solid var(--border-color); border-radius: 4px; background: var(--bg-card); color: var(--text-primary); cursor: pointer; font-size: 12px; transition: all 0.2s; }
 .btn:hover { background: var(--accent-blue); color: white; }
 .btn.btn-active { background: var(--accent-blue); color: white; }
 #sel-source { padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-primary); font-size: 13px; }
@@ -136,22 +137,28 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
       <option value="serial">Serial (EEG102)</option>
       <option value="lsl">LSL Stream</option>
     </select>
+    <select id="sel-mode" onchange="switchMode(this.value)" style="margin-right:12px;padding:6px 12px;background:var(--bg-primary);border:1px solid var(--border-color);color:var(--text-primary);border-radius:6px;font-size:13px;">
+      <option value="simple">📊 Simple</option>
+      <option value="research">🔬 Research</option>
+      <option value="bci">🧠 BCI Developer</option>
+    </select>
     <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
     <button class="btn" id="btn-file" onclick="switchSource('file')">📂 Upload</button>
-    <button class="btn" id="btn-serial" onclick="switchSource('serial')">🔌 Serial</button>
-    <button class="btn" id="btn-lsl" onclick="switchSource('lsl')">📡 LSL</button>
+    <button class="btn" id="btn-serial" onclick="switchSource('serial')" data-mode="bci">🔌 Serial</button>
+    <button class="btn" id="btn-lsl" onclick="switchSource('lsl')" data-mode="bci">📡 LSL</button>
     
-    <!-- Preprocessing Status -->
-    <div id="preproc-status">
+    <!-- Preprocessing Status (Research+) -->
+    <div id="preproc-status" data-mode="research bci">
       <span class="tag">50Hz 陷波</span>
       <span class="tag">1-40Hz 带通</span>
       <span class="tag">伪迹阈值 150µV</span>
     </div>
     
     <span id="status"><span id="status-dot"></span> Disconnected</span>
-    <button class="btn" onclick="showParadigmPanel()" id="btn-paradigm">🎯 Paradigm</button>
-    <button class="btn" onclick="showClassifierPanel()" id="btn-classifier">🧠 Classifier</button>
-    <button class="btn" onclick="showMarkerPanel()" id="btn-marker">🏷️ Marker</button>
+    <button class="btn" onclick="showParadigmPanel()" id="btn-paradigm" data-mode="bci">🎯 Paradigm</button>
+    <button class="btn" onclick="showClassifierPanel()" id="btn-classifier" data-mode="bci">🧠 Classifier</button>
+    <button class="btn" onclick="showMarkerPanel()" id="btn-marker" data-mode="bci">🏷️ Marker</button>
+    <button class="btn" onclick="exportData()" id="btn-export" data-mode="research bci" style="margin-left:8px;">📤 Export</button>
     <button class="btn" onclick="showHelp()" style="margin-left:auto;">❓ Help</button>
   </div>
 
@@ -162,11 +169,18 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
       <div class="widget" style="flex:1;">
         <h3>📈 Real-time Waveform</h3>
         <div class="canvas-wrap"><canvas id="c-wave"></canvas></div>
+        <!-- Simple模式: 数据质量基础显示 -->
+        <div id="data-quality" data-mode="simple" style="display:flex;gap:12px;margin-top:8px;font-size:12px;">
+          <span style="color:var(--text-secondary);">📊 数据质量:</span>
+          <span id="dq-status" style="color:#10b981;">良好</span>
+          <span id="dq-artifact" style="color:#64748b;">眨眼 0</span>
+          <span id="dq-bad" style="color:#64748b;">坏段 0%</span>
+        </div>
       </div>
     </div>
 
-    <!-- Row 2: PSD Chart | Band Stats Table -->
-    <div class="row row-2">
+    <!-- Row 2: PSD Chart | Band Stats Table (Research+) -->
+    <div class="row row-2" data-mode="research bci">
       <div class="widget">
         <h3>📊 PSD 功率谱密度</h3>
         <div class="canvas-wrap"><canvas id="c-psd"></canvas></div>
@@ -193,11 +207,16 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
 
     <!-- Row 3: 3D Brain | Emotion Quadrant -->
     <div class="row row-3">
-      <div class="widget">
-        <h3>🧠 3D Brain & Topomap</h3>
+      <div class="widget" style="flex:1;">
+        <!-- 3D/2D Tab Switcher -->
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <button class="btn btn-sm" id="tab-3d" onclick="switchBrainView('3d')">3D</button>
+          <button class="btn btn-sm" id="tab-2d" onclick="switchBrainView('2d')">2D</button>
+        </div>
+        <h3 id="brain-title">🧠 3D Brain</h3>
         <div class="canvas-wrap" id="brain-wrap">
           <canvas id="c-brain"></canvas>
-          <img id="i-topomap" style="position:absolute;bottom:8px;right:8px;width:120px;height:100px;border-radius:6px;border:1px solid var(--border-color);">
+          <img id="i-topomap" data-mode="simple research bci" style="position:absolute;bottom:8px;right:8px;width:120px;height:100px;border-radius:6px;border:1px solid var(--border-color);display:none;">
         </div>
       </div>
       <div class="widget">
@@ -207,16 +226,16 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     </div>
   </div>
 
-  <!-- Time-Freq Widget (fixed bottom-left) -->
-  <div id="timefreq-wrap">
+  <!-- Time-Freq Widget (fixed bottom-left) (Research+) -->
+  <div id="timefreq-wrap" data-mode="research bci">
     <img id="i-timefreq" style="width:100%;height:100%;">
     <select id="sel-ch" title="Timefreq channel"></select>
   </div>
 
   <!-- Export Bar -->
   
-  <!-- Epoch Analysis Panel -->
-  <div id="epoch-panel" style="position:fixed;top:60px;right:12px;width:280px;z-index:100;">
+  <!-- Epoch Analysis Panel (Research+) -->
+  <div id="epoch-panel" data-mode="research bci" style="position:fixed;top:60px;right:12px;width:280px;z-index:100;">
     <h3>📊 分段分析 (Epoching)</h3>
     <div id="epoch-controls">
       <span>分段:</span>
@@ -322,6 +341,10 @@ let spectrogramHistory = [];
 let spectrogramNF = 0;
 let timefreqChIdx = 0;
 let latestChannelBands = null;
+
+// Mode state
+let currentMode = 'simple';
+let brainView = '3d';  // '3d' or '2d' for brain widget
 
 // PSD & Band Stats State
 let rawDataBuffer = [];       // Accumulate raw data frames
@@ -864,6 +887,65 @@ function render() {
   requestAnimationFrame(render);
 }
 
+// ========== Mode Switching ==========
+function switchMode(mode) {
+  currentMode = mode;
+  
+  // Hide all elements with data-mode
+  document.querySelectorAll('[data-mode]').forEach(el => {
+    const modes = el.dataset.mode || '';
+    if (modes.includes(mode)) {
+      el.style.display = '';  // Restore default (flex/block)
+    } else {
+      el.style.display = 'none';
+    }
+  });
+  
+  // Update toolbar button visibility
+  const toolbarBtns = ['btn-serial', 'btn-lsl', 'btn-paradigm', 'btn-classifier', 'btn-marker', 'btn-export'];
+  toolbarBtns.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      const btnModes = btn.dataset.mode || '';
+      btn.style.display = btnModes.includes(mode) ? '' : 'none';
+    }
+  });
+  
+  // Switch brain view based on mode
+  if (mode === 'simple') {
+    switchBrainView('2d');
+  } else if (mode === 'research' || mode === 'bci') {
+    switchBrainView('3d');
+  }
+  
+  console.log('[Mode] Switched to:', mode);
+}
+
+// ========== Brain View Switching (3D/2D Tab) ==========
+function switchBrainView(view) {
+  brainView = view;
+  
+  const cBrain = document.getElementById('c-brain');
+  const iTopomap = document.getElementById('i-topomap');
+  const title = document.getElementById('brain-title');
+  const tab3d = document.getElementById('tab-3d');
+  const tab2d = document.getElementById('tab-2d');
+  
+  if (view === '3d') {
+    cBrain.style.display = '';
+    iTopomap.style.display = 'none';
+    title.textContent = '🧠 3D Brain';
+    if (tab3d) tab3d.classList.add('btn-active');
+    if (tab2d) tab2d.classList.remove('btn-active');
+  } else {
+    cBrain.style.display = 'none';
+    iTopomap.style.display = '';
+    title.textContent = '🗺️ 2D Topomap';
+    if (tab3d) tab3d.classList.remove('btn-active');
+    if (tab2d) tab2d.classList.add('btn-active');
+  }
+}
+
 // ========== Source Switching ==========
 function switchSource(type) {
   document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
@@ -915,6 +997,36 @@ document.getElementById('sel-ch').addEventListener('change', (e) => {
 });
 
 // ========== Export ==========
+async function exportData() {
+  // Simple模式显示下拉/弹窗让用户选择格式
+  const format = currentMode === 'simple' 
+    ? await showExportDialog() 
+    : 'csv';
+  
+  if (format === 'csv') {
+    exportCSV();
+  } else if (format === 'pdf') {
+    exportPDF();
+  }
+}
+
+function showExportDialog() {
+  return new Promise(resolve => {
+    const dlg = document.createElement('div');
+    dlg.id = 'export-dialog';
+    dlg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;';
+    dlg.innerHTML = `
+      <div style="background:var(--bg-card);padding:24px;border-radius:12px;min-width:280px;text-align:center;">
+        <h3 style="margin:0 0 16px 0;">📤 导出数据</h3>
+        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('csv')" style="width:100%;margin-bottom:8px;">CSV (波形数据)</button>
+        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('pdf')" style="width:100%;margin-bottom:8px;">PDF (分析报告)</button>
+        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve(null)" style="width:100%;background:transparent;border:none;color:var(--text-secondary);">取消</button>
+      </div>
+    `;
+    document.body.appendChild(dlg);
+  });
+}
+
 function exportCSV() {
   fetch('/api/export/csv', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_data:{}}) })
     .then(r => r.blob())
@@ -1725,6 +1837,25 @@ function updateArtifactBar() {
   document.getElementById('art-eog').textContent = '眼动 ' + (summary.eog || 0);
   document.getElementById('art-emg').textContent = '肌电 ' + (summary.emg || 0);
   document.getElementById('art-bad-ratio').textContent = '坏段 ' + (artifactData.bad_ratio_percent || 0) + '%';
+  
+  // Update Simple mode data quality indicator
+  const dqStatus = document.getElementById('dq-status');
+  if (dqStatus) {
+    const badRatio = artifactData.bad_ratio_percent || 0;
+    const blinkCount = summary.blink || 0;
+    document.getElementById('dq-artifact').textContent = '眨眼 ' + blinkCount;
+    document.getElementById('dq-bad').textContent = '坏段 ' + badRatio + '%';
+    if (badRatio > 20 || blinkCount > 50) {
+      dqStatus.textContent = '较差';
+      dqStatus.style.color = '#ef4444';
+    } else if (badRatio > 10 || blinkCount > 20) {
+      dqStatus.textContent = '一般';
+      dqStatus.style.color = '#f59e0b';
+    } else {
+      dqStatus.textContent = '良好';
+      dqStatus.style.color = '#10b981';
+    }
+  }
 }
 
 setInterval(fetchArtifactDetection, 5000);
@@ -1733,9 +1864,16 @@ setInterval(fetchArtifactDetection, 5000);
 setInterval(fetchEpochAnalysis, 5000);
 
 // ========== Init ==========
+// Initialize mode (default to simple)
+switchMode('simple');
+
 connectWS();
 initBrain();
 render();
+
+// Update brain tab active state
+document.getElementById('tab-3d').classList.add('btn-active');
+document.getElementById('tab-2d').classList.remove('btn-active');
 </script>
 </body>
 </html>
