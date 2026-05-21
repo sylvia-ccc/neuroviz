@@ -214,18 +214,12 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
       </div>
     </div>
 
-    <!-- Row 3: 3D Brain | Emotion Quadrant -->
+    <!-- Row 3: 2D Topomap | Emotion Quadrant -->
     <div class="row row-3">
       <div class="widget" style="flex:1;">
-        <!-- 3D/2D Tab Switcher -->
-        <div style="display:flex;gap:8px;margin-bottom:8px;">
-          <button class="btn btn-sm" id="tab-3d" onclick="switchBrainView('3d')">3D</button>
-          <button class="btn btn-sm" id="tab-2d" onclick="switchBrainView('2d')">2D</button>
-        </div>
-        <h3 id="brain-title">🧠 3D Brain</h3>
-        <div class="canvas-wrap" id="brain-wrap">
-          <canvas id="c-brain"></canvas>
-          <img id="i-topomap" data-mode="simple research bci" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;border-radius:6px;display:none;">
+        <h3>🗺️ 2D Topomap</h3>
+        <div class="canvas-wrap">
+          <img id="i-topomap" data-mode="simple research bci" style="width:100%;height:100%;object-fit:contain;border-radius:6px;">
         </div>
       </div>
       <div class="widget">
@@ -286,8 +280,7 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     <ul>
       <li><strong>实时波形</strong>：8通道EEG信号实时显示</li>
       <li><strong>频段分析</strong>：δ/θ/α/β/γ功率实时计算</li>
-      <li><strong>3D脑图</strong>：电极位置热力图可视化</li>
-      <li><strong>情绪状态</strong>：放松/专注/压力四象限</li>
+<li><strong>情绪状态</strong>：放松/专注/压力四象限</li>
     </ul>
     <h3>📂 数据导入</h3>
     <ul>
@@ -318,10 +311,6 @@ body { background: var(--bg-primary); color: var(--text-primary); font-family: '
     <p style="margin-top:16px;color:var(--text-secondary);font-size:12px;">版本 1.0.0 | © 2026 Nowis</p>
   </div>
 </div>
-
-<!-- Three.js + OrbitControls -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
-<script src="/static/lib/OrbitControls.js"></script>
 
 <script>
 // ========== Config ==========
@@ -740,259 +729,7 @@ function drawEmotion() {
   }
 }
 
-// ========== 3D Brain (Three.js) ==========
-let scene = null, camera = null, renderer = null, brainMesh = null, controls = null;
-let brainInited = false;
 
-// 10-20 system electrode positions (normalized to unit sphere)
-const ELECTRODES_10_20 = [
-  { name: 'Fp1', pos: [-0.55,  0.80,  0.65] },
-  { name: 'Fp2', pos: [ 0.55,  0.80,  0.65] },
-  { name: 'F7',  pos: [-0.95,  0.30,  0.20] },
-  { name: 'F8',  pos: [ 0.95,  0.30,  0.20] },
-  { name: 'T3',  pos: [-1.00, -0.05, -0.15] },
-  { name: 'T4',  pos: [ 1.00, -0.05, -0.15] },
-  { name: 'O1',  pos: [-0.55, -0.80, -0.55] },
-  { name: 'O2',  pos: [ 0.55, -0.80, -0.55] },
-];
-
-// Store electrode sphere meshes for coloring
-let electrodeMeshes = [];
-
-function initBrain() {
-  const canvas = document.getElementById('c-brain');
-  if (!canvas || brainInited) return;
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x1a2235);
-  camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-  camera.position.set(0, 0, 5);
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  // Light
-  scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  const dir = new THREE.DirectionalLight(0xffffff, 0.8);
-  dir.position.set(5, 5, 5);
-  scene.add(dir);
-  // Brain ellipsoid (slightly scaled to match 10-20 positions)
-  const brainGeo = new THREE.SphereGeometry(1.0, 64, 64);
-  const brainMat = new THREE.MeshPhongMaterial({ color: 0x1e3a5f, transparent: true, opacity: 0.45, wireframe: false });
-  brainMesh = new THREE.Mesh(brainGeo, brainMat);
-  scene.add(brainMesh);
-  // Electrode markers (8 channels, 10-20 system)
-  electrodeMeshes = [];
-  ELECTRODES_10_20.forEach((el, i) => {
-    const dotGeo = new THREE.SphereGeometry(0.055, 16, 16);
-    const dotMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
-    const dot = new THREE.Mesh(dotGeo, dotMat);
-    dot.position.set(el.pos[0], el.pos[1], el.pos[2]);
-    dot.userData = { name: el.name, index: i };
-    scene.add(dot);
-    electrodeMeshes.push(dot);
-  });
-  // Labels (HTML overlay)
-  addBrainLabels(canvas);
-  // Controls
-  if (typeof THREE.OrbitControls === 'function') {
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-  }
-  brainInited = true;
-}
-
-// Update electrode colors based on per-channel band values
-function updateElectrodeColors(channelBandsArr) {
-  if (!channelBandsArr || electrodeMeshes.length === 0) return;
-  electrodeMeshes.forEach((dot, i) => {
-    if (i >= channelBandsArr.length) return;
-    const bands = channelBandsArr[i];
-    const v = bands.alpha || bands.beta || 0;
-    const norm = Math.min(v * 2, 1.0);
-    const r = Math.round(30 + norm * 225);
-    const g = Math.round(60 + (1 - norm) * 160);
-    const b = Math.round(120 + norm * 135);
-    dot.material.color.setRGB(r/255, g/255, b/255);
-    const s = 0.04 + norm * 0.06;
-    dot.scale.setScalar(s);
-  });
-}
-
-// Brain surface heatmap via vertex coloring (Gaussian RBF interpolation)
-let brainVertexColors = null;
-function updateBrainHeatmap(channelBandsArr) {
-  if (!brainMesh || !channelBandsArr || channelBandsArr.length < 8) return;
-  const geo = brainMesh.geometry;
-  if (!brainVertexColors) {
-    brainVertexColors = new Float32Array(geo.attributes.position.count * 3);
-    geo.setAttribute('color', new THREE.BufferAttribute(brainVertexColors, 3));
-    geo.attributes.color.needsUpdate = true;
-  }
-  const positions = geo.attributes.position.array;
-  const colors = brainVertexColors;
-  const ePos = [[-0.55,0.80,0.65],[0.55,0.80,0.65],[-0.95,0.30,0.20],[0.95,0.30,0.20],[-1.00,-0.05,-0.15],[1.00,-0.05,-0.15],[-0.55,-0.80,-0.55],[0.55,-0.80,-0.55]];
-  const values = channelBandsArr.map((b, i) => b.alpha || b.beta || 0);
-  const maxV = Math.max(...values, 0.01);
-  for (let vi = 0; vi < positions.length; vi += 3) {
-    const vx = positions[vi], vy = positions[vi+1], vz = positions[vi+2];
-    let sumW = 0, sumV = 0;
-    for (let ei = 0; ei < 8; ei++) {
-      const dx = vx - ePos[ei][0], dy = vy - ePos[ei][1], dz = vz - ePos[ei][2];
-      const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-      const w = Math.exp(-dist * dist * 3.0);
-      sumW += w;
-      sumV += w * values[ei] / maxV;
-    }
-    const normV = sumW > 1e-6 ? sumV / sumW : 0;
-    const t = Math.min(Math.max(normV, 0), 1);
-    let r, g, b;
-    if (t < 0.25) { r=0.2; g=0.3; b=0.9; }
-    else if (t < 0.5) { r=0.2; g=0.8; b=0.7; }
-    else if (t < 0.75) { r=0.5; g=0.9; b=0.2; }
-    else { r=0.9; g=0.6; b=0.1; }
-    colors[vi]   = r;
-    colors[vi+1] = g;
-    colors[vi+2] = b;
-  }
-  geo.attributes.color.needsUpdate = true;
-  brainMesh.material.vertexColors = true;
-  brainMesh.material.color.setRGB(1, 1, 1);
-}
-
-function addBrainLabels(canvas) {
-  ELECTRODES_10_20.forEach(el => {
-    const lbl = document.createElement('div');
-    lbl.className = 'brain-label';
-    lbl.textContent = el.name;
-    lbl.style.cssText = `position:absolute;color:#94a3b8;font-size:9px;pointer-events:none;z-index:10;`;
-    document.getElementById('app').appendChild(lbl);
-    el._label = lbl;
-  });
-}
-
-function updateBrainLabels() {
-  if (!camera || !renderer) return;
-  ELECTRODES_10_20.forEach(el => {
-    if (!el._label) return;
-    const pos = new THREE.Vector3(el.pos[0], el.pos[1], el.pos[2]);
-    pos.project(camera);
-    const x = (pos.x * 0.5 + 0.5) * window.innerWidth;
-    const y = (-pos.y * 0.5 + 0.5) * window.innerHeight;
-    el._label.style.left = x + 'px';
-    el._label.style.top = y + 'px';
-  });
-}
-
-function renderBrain() {
-  if (!brainInited) return;
-  controls && controls.update();
-  renderer.render(scene, camera);
-  updateBrainLabels();
-}
-
-// ========== Render Loop ==========
-function render() {
-  drawWave();
-  drawEmotion();
-  renderBrain();
-  requestAnimationFrame(render);
-}
-
-// ========== Mode Switching ==========
-function switchMode(mode) {
-  currentMode = mode;
-  
-  // Hide all elements with data-mode
-  document.querySelectorAll('[data-mode]').forEach(el => {
-    const modes = el.dataset.mode || '';
-    if (modes.includes(mode)) {
-      el.style.display = '';  // Restore default (flex/block)
-    } else {
-      el.style.display = 'none';
-    }
-  });
-  
-  // Update toolbar button visibility
-  const toolbarBtns = ['btn-serial', 'btn-lsl', 'btn-paradigm', 'btn-classifier', 'btn-marker', 'btn-export'];
-  toolbarBtns.forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) {
-      const btnModes = btn.dataset.mode || '';
-      btn.style.display = btnModes.includes(mode) ? '' : 'none';
-    }
-  });
-  
-  // Switch brain view based on mode
-  if (mode === 'simple') {
-    switchBrainView('2d');
-  } else if (mode === 'research' || mode === 'bci') {
-    switchBrainView('3d');
-  }
-  
-  console.log('[Mode] Switched to:', mode);
-  
-  // Update mode toggle button active states
-  document.querySelectorAll('.mode-btn').forEach(b => {
-    b.classList.remove('active');
-  });
-  const activeBtn = document.getElementById('mode-' + mode);
-  if (activeBtn) {
-    activeBtn.classList.add('active');
-  }
-}
-
-// ========== Brain View Switching (3D/2D Tab) ==========
-function switchBrainView(view) {
-  brainView = view;
-  
-  const cBrain = document.getElementById('c-brain');
-  const iTopomap = document.getElementById('i-topomap');
-  const brainWrap = document.getElementById('brain-wrap');
-  const title = document.getElementById('brain-title');
-  const tab3d = document.getElementById('tab-3d');
-  const tab2d = document.getElementById('tab-2d');
-  
-  if (view === '3d') {
-    cBrain.style.display = '';
-    iTopomap.style.display = 'none';
-    title.textContent = '🧠 3D Brain';
-    if (tab3d) tab3d.classList.add('btn-active');
-    if (tab2d) tab2d.classList.remove('btn-active');
-    
-    // FIX: initBrain() ran when canvas was hidden (clientWidth=0 → NaN aspect).
-    // Re-initialize Three.js when canvas is visible (has real dimensions).
-    const initW = cBrain.clientWidth;
-    const initH = cBrain.clientHeight;
-    if (!brainInited || initW === 0) {
-      brainInited = false;
-      initBrain();  // re-init when visible → has real dimensions
-      return;
-    }
-    const w = initW || 400;
-    const h = initH || 320;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.render(scene, camera);
-    
-    // Request immediate topomap redraw on electrodes
-    if (latestChannelBands) {
-      updateBrainHeatmap(latestChannelBands);
-      updateElectrodeColors(latestChannelBands);
-    }
-  } else {
-    cBrain.style.display = 'none';
-    iTopomap.style.display = '';
-    title.textContent = '🗺️ 2D Topomap';
-    if (tab3d) tab3d.classList.remove('btn-active');
-    if (tab2d) tab2d.classList.add('btn-active');
-    
-    // Request backend to generate topomap NOW (don't wait 40 frames)
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify({ action: 'request_topomap' }));
-    }
-  }
-}
-
-// ========== Source Switching ==========
 function switchSource(type) {
   document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
   if (type === 'mock') document.getElementById('btn-mock').classList.add('btn-active');
@@ -1084,15 +821,7 @@ function exportPDF() {
     .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='neuroviz_report.pdf'; a.click(); });
 }
 
-// ========== Resize ==========
-window.addEventListener('resize', () => {
-  if (renderer && camera) {
-    const canvas = document.getElementById('c-brain');
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-  }
-});
+
 
 
 // ========== Epoch Analysis ==========
@@ -1918,7 +1647,6 @@ connectWS();
 render();
 
 // Update brain tab active state
-document.getElementById('tab-3d').classList.add('btn-active');
 document.getElementById('tab-2d').classList.remove('btn-active');
 </script>
 </body>
