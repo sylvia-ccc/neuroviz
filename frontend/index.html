@@ -1643,11 +1643,7 @@ setInterval(fetchEpochAnalysis, 5000);
 switchMode('simple');
 
 connectWS();
-// initBrain() is lazy: called on first switch to 3D (canvas must be visible)
 render();
-
-// Update brain tab active state
-document.getElementById('tab-2d').classList.remove('btn-active');
 </script>
 </body>
 </html>
