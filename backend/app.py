@@ -44,6 +44,33 @@ from paradigm import router as paradigm_router
 BASE_DIR = Path(__file__).parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
+async def _send_topomap_now(ws, current_payload, frame, features, data_source, topomap_module, timefreq_ch_idx=0):
+    """立即生成并推送Topomap（不受40帧间隔限制）"""
+    try:
+        electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T3','T4','C3','C4','T5','P3','P4','T6','O1','O2']
+        ch_bands = current_payload.get('channel_bands', [])
+        values = {}
+        if ch_bands:
+            for i, ch_data in enumerate(ch_bands):
+                if i < len(electrode_names):
+                    values[electrode_names[i]] = ch_data.get('alpha', 0.0)
+        elif 'bands_ch1' in features and 'bands_ch2' in features:
+            values['Fp1'] = features['bands_ch1'].get('alpha', 0.0)
+            values['Fp2'] = features['bands_ch2'].get('alpha', 0.0)
+        
+        if len(values) >= 2:
+            loop = asyncio.get_event_loop()
+            topomap_b64 = await loop.run_in_executor(
+                None,
+                lambda: topomap_module.generate_topomap_base64(values, title="Alpha Power")
+            )
+            msg = json.dumps({**current_payload, 'type': 'eeg', 'topomap': topomap_b64})
+            await ws.send_text(msg)
+            print(f"[NeuroViz] Topomap立即推送: {len(topomap_b64)} chars")
+    except Exception as e:
+        print(f"[NeuroViz] _send_topomap_now失败: {e}")
+
+
 app = FastAPI(title="NeuroViz")
 
 # 注册范式设计器路由
@@ -556,6 +583,10 @@ async def websocket_endpoint(ws: WebSocket):
                     if "timefreq_ch" in data:
                         timefreq_ch_idx = int(data["timefreq_ch"])
                         print(f"[NeuroViz] 时频图通道切换 → Ch{timefreq_ch_idx}")
+                elif data.get("action") == "request_topomap":
+                    # 客户端切换到2D视图时立即请求生成Topomap
+                    await _send_topomap_now(ws, payload, frame, features, data_source, topomap_module, timefreq_ch_idx)
+                    continue  # 本帧已发送，跳过常规payload
             except asyncio.TimeoutError:
                 pass
             except Exception:
