@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nowis NeuroViz - EEG Real-time Analysis</title>
+<title>NOWIS NeuroViz</title>
 <style>
 /* ===== Neuro Observatory Design System ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -521,8 +521,8 @@ body {
 
   <!-- Toolbar -->
   <div id="toolbar">
-    <h1><span style="color:#C8B388">Nowis</span> <span style="color:#8b5cf6">Neuro</span><span style="color:#3b82f6">Viz</span></h1>
-    <span style="font-size:11px;color:var(--text-secondary);margin-right:20px;">EEG Real-time Analysis</span>
+    <h1 style="letter-spacing:-0.5px;"><span style="color:var(--accent-gold);font-weight:700;">NOWIS</span> <span style="color:var(--accent-primary);font-weight:600;">NeuroViz</span></h1>
+    <span style="font-size:10px;color:var(--text-muted);margin-right:16px;letter-spacing:0.5px;font-weight:500;">EEG REAL-TIME ANALYSIS</span>
     <select id="sel-source">
       <option value="mock">Mock Data</option>
       <option value="file">File Upload</option>
@@ -530,15 +530,15 @@ body {
       <option value="lsl">LSL Stream</option>
     </select>
     <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
-    <button class="btn" id="btn-file" onclick="switchSource('file')">📂 Upload</button>
-    <button class="btn" id="btn-serial" onclick="switchSource('serial')" data-mode="bci">🔌 Serial</button>
-    <button class="btn" id="btn-lsl" onclick="switchSource('lsl')" data-mode="bci">📡 LSL</button>
+    <button class="btn" id="btn-file" onclick="switchSource('file')">Upload</button>
+    <button class="btn" id="btn-serial" onclick="switchSource('serial')" data-mode="bci">Serial</button>
+    <button class="btn" id="btn-lsl" onclick="switchSource('lsl')" data-mode="bci">LSL</button>
     
     <!-- Mode Toggle: Center Prominent -->
     <div id="mode-toggle">
-      <button class="mode-btn active" onclick="switchMode('simple')" id="mode-simple">📊 Simple</button>
-      <button class="mode-btn" onclick="switchMode('research')" id="mode-research">🔬 Research</button>
-      <button class="mode-btn" onclick="switchMode('bci')" id="mode-bci">🧠 BCI Developer</button>
+      <button class="mode-btn active" onclick="switchMode('simple')" id="mode-simple">Simple</button>
+      <button class="mode-btn" onclick="switchMode('research')" id="mode-research">Research</button>
+      <button class="mode-btn" onclick="switchMode('bci')" id="mode-bci">BCI Dev</button>
     </div>
     
     <!-- Preprocessing Status (Research+) -->
@@ -549,11 +549,11 @@ body {
     </div>
     
     <span id="status"><span id="status-dot"></span> Disconnected</span>
-    <button class="btn" onclick="showParadigmPanel()" id="btn-paradigm" data-mode="bci">🎯 Paradigm</button>
-    <button class="btn" onclick="showClassifierPanel()" id="btn-classifier" data-mode="bci">🧠 Classifier</button>
-    <button class="btn" onclick="showMarkerPanel()" id="btn-marker" data-mode="bci">🏷️ Marker</button>
-    <button class="btn" onclick="exportData()" id="btn-export" data-mode="research bci" style="margin-left:8px;">📤 Export</button>
-    <button class="btn" onclick="showHelp()" style="margin-left:auto;">❓ Help</button>
+    <button class="btn" onclick="showParadigmPanel()" id="btn-paradigm" data-mode="bci">Paradigm</button>
+    <button class="btn" onclick="showClassifierPanel()" id="btn-classifier" data-mode="bci">Classifier</button>
+    <button class="btn" onclick="showMarkerPanel()" id="btn-marker" data-mode="bci">Marker</button>
+    <button class="btn" onclick="exportData()" id="btn-export" data-mode="research bci" style="margin-left:8px;">Export</button>
+    <button class="btn" onclick="showHelp()" style="margin-left:auto;">Help</button>
   </div>
 
   <!-- Main: 3-Row Layout -->
@@ -561,14 +561,14 @@ body {
     <!-- Row 1: Waveform (full width) -->
     <div class="row row-1">
       <div class="widget" style="flex:1;">
-        <h3>📈 Real-time Waveform</h3>
+        <h3>实时波形</h3>
         <div class="canvas-wrap"><canvas id="c-wave"></canvas></div>
         <!-- Simple模式: 数据质量基础显示 -->
         <div id="data-quality" data-mode="simple" style="display:flex;gap:12px;margin-top:8px;font-size:12px;">
-          <span style="color:var(--text-secondary);">📊 数据质量:</span>
-          <span id="dq-status" style="color:#10b981;">良好</span>
-          <span id="dq-artifact" style="color:#64748b;">眨眼 0</span>
-          <span id="dq-bad" style="color:#64748b;">坏段 0%</span>
+          <span style="color:var(--text-secondary);">数据质量:</span>
+          <span id="dq-status" style="color:var(--color-success);">良好</span>
+          <span id="dq-artifact" style="color:var(--text-muted);">眨眼 0</span>
+          <span id="dq-bad" style="color:var(--text-muted);">坏段 0%</span>
         </div>
       </div>
     </div>
@@ -576,11 +576,11 @@ body {
     <!-- Row 2: PSD Chart | Band Stats Table (Research+) -->
     <div class="row row-2" data-mode="research bci">
       <div class="widget">
-        <h3>📊 PSD 功率谱密度</h3>
+        <h3>功率谱密度</h3>
         <div class="canvas-wrap"><canvas id="c-psd"></canvas></div>
       </div>
       <div class="widget">
-        <h3>📋 频段统计</h3>
+        <h3>频段统计</h3>
         <div class="canvas-wrap" style="overflow-y:auto;">
           <table id="band-stats-table">
             <thead>
@@ -607,14 +607,14 @@ body {
           <button class="btn btn-sm" id="tab-3d" onclick="switchBrainView('3d')">3D</button>
           <button class="btn btn-sm" id="tab-2d" onclick="switchBrainView('2d')">2D</button>
         </div>
-        <h3 id="brain-title">🧠 3D Brain</h3>
+        <h3 id="brain-title">3D Brain</h3>
         <div class="canvas-wrap" id="brain-wrap">
           <canvas id="c-brain"></canvas>
           <img id="i-topomap" data-mode="simple research bci" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;border-radius:6px;display:none;">
         </div>
       </div>
       <div class="widget">
-        <h3>😊 Emotion State (Russell)</h3>
+        <h3>情绪状态</h3>
         <div class="canvas-wrap"><canvas id="c-emotion"></canvas></div>
       </div>
     </div>
@@ -630,7 +630,7 @@ body {
   
   <!-- Epoch Analysis Panel (Research+) -->
   <div id="epoch-panel" data-mode="research bci" style="position:fixed;top:60px;right:12px;width:280px;z-index:100;">
-    <h3>📊 分段分析 (Epoching)</h3>
+    <h3>分段分析</h3>
     <div id="epoch-controls">
       <span>分段:</span>
       <select id="sel-epoch-len"><option value="5">5秒</option><option value="10">10秒</option><option value="30">30秒</option></select>
@@ -650,13 +650,13 @@ body {
   </div>
 
   <div id="export-bar">
-    <button class="btn" onclick="exportCSV()">📥 Export CSV</button>
-    <button class="btn" onclick="exportPDF()">📄 Export PDF</button>
+    <button class="btn" onclick="exportCSV()">Export CSV</button>
+    <button class="btn" onclick="exportPDF()">Export PDF</button>
   </div>
 
   <!-- Drop Overlay -->
   <div id="drop-overlay">
-    📂 Drop EDF / BDF / GDF / BrainVision / CSV file here
+    支持格式：EDF / BDF / GDF / BrainVision / CSV file here
     <small>Supports .edf, .bdf, .gdf, .vhdr, .csv formats</small>
   </div>
   <input type="file" id="file-input" accept=".edf,.bdf,.gdf,.vhdr,.csv">
@@ -667,14 +667,14 @@ body {
   <div id="help-content">
     <button id="help-close" onclick="hideHelp()">×</button>
     <h2>Nowis NeuroViz 使用指南</h2>
-    <h3>📊 核心功能</h3>
+    <h3>核心功能</h3>
     <ul>
       <li><strong>实时波形</strong>：8通道EEG信号实时显示</li>
       <li><strong>频段分析</strong>：δ/θ/α/β/γ功率实时计算</li>
       <li><strong>3D脑图</strong>：电极位置热力图可视化</li>
       <li><strong>情绪状态</strong>：放松/专注/压力四象限</li>
     </ul>
-    <h3>📂 数据导入</h3>
+    <h3>数据导入</h3>
     <ul>
       <li>拖拽 EDF/BDF/GDF/BrainVision/CSV 文件到页面</li>
       <li>点击 Upload 按钮选择文件</li>
@@ -683,13 +683,13 @@ body {
       <li><strong>GDF</strong>: 医学EEG标准格式</li>
       <li><strong>BrainVision</strong>: 研究级EEG主流格式（.vhdr）</li>
     </ul>
-    <h3>📡 LSL实时流</h3>
+    <h3>LSL实时流</h3>
     <ul>
       <li>支持 Lab Streaming Layer 标准</li>
       <li>兼容 OpenBCI, Muse, G.Tec 等设备</li>
       <li>点击 LSL 按钮扫描并连接</li>
     </ul>
-    <h3>📥 数据导出</h3>
+    <h3>数据导出</h3>
     <ul>
       <li><strong>CSV</strong>：原始波形数据</li>
       <li><strong>PDF</strong>：分析报告（含图表）</li>
@@ -1321,7 +1321,7 @@ function addBrainLabels(canvas) {
     const lbl = document.createElement('div');
     lbl.className = 'brain-label';
     lbl.textContent = el.name;
-    lbl.style.cssText = `position:absolute;color:#94a3b8;font-size:9px;pointer-events:none;z-index:10;`;
+    lbl.style.cssText = `position:absolute;color:var(--text-secondary);font-size:9px;pointer-events:none;z-index:10;`;
     document.getElementById('app').appendChild(lbl);
     el._label = lbl;
   });
@@ -1412,7 +1412,7 @@ function switchBrainView(view) {
   if (view === '3d') {
     cBrain.style.display = '';
     iTopomap.style.display = 'none';
-    title.textContent = '🧠 3D Brain';
+    title.textContent = '3D Brain';
     if (tab3d) tab3d.classList.add('btn-active');
     if (tab2d) tab2d.classList.remove('btn-active');
     
@@ -1440,7 +1440,7 @@ function switchBrainView(view) {
   } else {
     cBrain.style.display = 'none';
     iTopomap.style.display = '';
-    title.textContent = '🗺️ 2D Topomap';
+    title.textContent = '2D Topomap';
     if (tab3d) tab3d.classList.remove('btn-active');
     if (tab2d) tab2d.classList.add('btn-active');
     
@@ -1522,7 +1522,7 @@ function showExportDialog() {
     dlg.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;';
     dlg.innerHTML = `
       <div style="background:var(--bg-card);padding:24px;border-radius:12px;min-width:280px;text-align:center;">
-        <h3 style="margin:0 0 16px 0;">📤 导出数据</h3>
+        <h3 style="margin:0 0 16px 0;">导出数据</h3>
         <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('csv')" style="width:100%;margin-bottom:8px;">CSV (波形数据)</button>
         <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('pdf')" style="width:100%;margin-bottom:8px;">PDF (分析报告)</button>
         <button class="btn" onclick="this.closest('#export-dialog').remove();resolve(null)" style="width:100%;background:transparent;border:none;color:var(--text-secondary);">取消</button>
@@ -1586,19 +1586,19 @@ function showLslDialog() {
   if (!dialog) {
     dialog = document.createElement('div');
     dialog.id = 'lsl-dialog';
-    dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(10,14,23,0.9);z-index:99999;display:flex;justify-content:center;align-items:center;';
+    dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(8,11,20,0.88);backdrop-filter:blur(16px);z-index:99999;display:flex;justify-content:center;align-items:center;';
     dialog.innerHTML = `
-      <div style="background:#1a2235;border:1px solid #2d3748;border-radius:12px;padding:24px;max-width:500px;width:90%;">
-        <h3 style="color:#3b82f6;margin-bottom:16px;">📡 LSL Stream Connection</h3>
+      <div style="background:var(--bg-elevated);border:1px solid var(--border-strong);border-radius:12px;padding:24px;max-width:500px;width:90%;">
+        <h3 style="color:var(--accent-primary);margin-bottom:16px;">LSL Stream Connection</h3>
         <div id="lsl-streams" style="margin-bottom:16px;max-height:200px;overflow-y:auto;">Loading...</div>
         <div style="margin-bottom:16px;">
-          <label style="color:#94a3b8;font-size:12px;">Stream Name (optional):</label><br>
-          <input id="lsl-name" type="text" placeholder="Auto-detect first EEG stream" style="width:100%;margin-top:4px;padding:8px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:6px;">
+          <label style="color:var(--text-secondary);font-size:12px;">Stream Name (optional):</label><br>
+          <input id="lsl-name" type="text" placeholder="Auto-detect first EEG stream" style="width:100%;margin-top:4px;padding:8px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:6px;">
         </div>
         <div style="display:flex;gap:8px;">
-          <button onclick="refreshLslStreams()" style="flex:1;padding:8px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:6px;cursor:pointer;">🔄 Refresh</button>
-          <button onclick="connectLsl()" style="flex:1;padding:8px;background:#3b82f6;border:none;color:white;border-radius:6px;cursor:pointer;">Connect</button>
-          <button onclick="closeLslDialog()" style="flex:1;padding:8px;background:#ef4444;border:none;color:white;border-radius:6px;cursor:pointer;">Cancel</button>
+          <button onclick="refreshLslStreams()" style="flex:1;padding:8px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:6px;cursor:pointer;">🔄 Refresh</button>
+          <button onclick="connectLsl()" style="flex:1;padding:8px;background:var(--accent-primary);border:none;color:white;border-radius:6px;cursor:pointer;">Connect</button>
+          <button onclick="closeLslDialog()" style="flex:1;padding:8px;background:var(--color-danger);border:none;color:white;border-radius:6px;cursor:pointer;">Cancel</button>
         </div>
       </div>
     `;
@@ -1611,23 +1611,23 @@ function showLslDialog() {
 
 function refreshLslStreams() {
   const container = document.getElementById('lsl-streams');
-  container.innerHTML = '<span style="color:#94a3b8">Scanning...</span>';
+  container.innerHTML = '<span style="color:var(--text-secondary)">Scanning...</span>';
   fetch('/api/lsl/streams')
     .then(r => r.json())
     .then(data => {
       if (data.streams.length === 0) {
-        container.innerHTML = '<span style="color:#f59e0b">No LSL streams found. Make sure your EEG device is streaming via LSL.</span>';
+        container.innerHTML = '<span style="color:var(--color-warning)">No LSL streams found. Make sure your EEG device is streaming via LSL.</span>';
       } else {
         container.innerHTML = data.streams.map((s, i) => `
-          <div style="padding:8px;background:#111827;border:1px solid #2d3748;border-radius:6px;margin-bottom:8px;cursor:pointer;" onclick="selectLslStream('${s.name}')">
-            <div style="color:#e2e8f0;font-weight:600;">${s.name}</div>
-            <div style="color:#94a3b8;font-size:11px;">Type: ${s.type} | Channels: ${s.channel_count} | Rate: ${s.nominal_srate}Hz</div>
+          <div style="padding:8px;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:6px;margin-bottom:8px;cursor:pointer;" onclick="selectLslStream('${s.name}')">
+            <div style="color:var(--text-primary);font-weight:600;">${s.name}</div>
+            <div style="color:var(--text-secondary);font-size:11px;">Type: ${s.type} | Channels: ${s.channel_count} | Rate: ${s.nominal_srate}Hz</div>
           </div>
         `).join('');
       }
     })
     .catch(e => {
-      container.innerHTML = '<span style="color:#ef4444">Error: ' + e.message + '</span>';
+      container.innerHTML = '<span style="color:var(--color-danger)">Error: ' + e.message + '</span>';
     });
 }
 
@@ -1668,35 +1668,35 @@ function showMarkerPanel() {
   if (!panel) {
     panel = document.createElement('div');
     panel.id = 'marker-panel';
-    panel.style.cssText = 'position:fixed;top:60px;right:10px;width:280px;background:#1a2235;border:1px solid #2d3748;border-radius:8px;padding:12px;z-index:10000;';
+    panel.style.cssText = 'position:fixed;top:60px;right:10px;width:280px;background:var(--bg-glass);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;z-index:10000;box-shadow:var(--shadow-card),var(--shadow-glow)';
     panel.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h4 style="color:#8b5cf6;margin:0;">🏷️ Marker Panel</h4>
-        <button onclick="hideMarkerPanel()" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:18px;">×</button>
+        <h4 style="color:var(--accent-purple);margin:0;">Marker Panel</h4>
+        <button onclick="hideMarkerPanel()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:18px;">×</button>
       </div>
       
       <div style="margin-bottom:12px;">
-        <button onclick="startTrial()" id="btn-trial-start" style="width:100%;padding:8px;background:#10b981;border:none;color:white;border-radius:6px;cursor:pointer;margin-bottom:4px;">▶ Start Trial</button>
-        <button onclick="endTrial()" id="btn-trial-end" style="width:100%;padding:8px;background:#ef4444;border:none;color:white;border-radius:6px;cursor:pointer;display:none;">⏹ End Trial</button>
+        <button onclick="startTrial()" id="btn-trial-start" style="width:100%;padding:8px;background:var(--color-success);border:none;color:white;border-radius:6px;cursor:pointer;margin-bottom:4px;">Start Trial</button>
+        <button onclick="endTrial()" id="btn-trial-end" style="width:100%;padding:8px;background:var(--color-danger);border:none;color:white;border-radius:6px;cursor:pointer;display:none;">End Trial</button>
       </div>
       
       <div style="margin-bottom:12px;">
-        <input id="marker-name" type="text" placeholder="Event name" style="width:100%;padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;margin-bottom:4px;">
-        <button onclick="addMarker()" style="width:100%;padding:6px;background:#3b82f6;border:none;color:white;border-radius:4px;cursor:pointer;">+ Add Marker</button>
+        <input id="marker-name" type="text" placeholder="Event name" style="width:100%;padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;margin-bottom:4px;">
+        <button onclick="addMarker()" style="width:100%;padding:6px;background:var(--accent-primary);border:none;color:white;border-radius:4px;cursor:pointer;">+ Add Marker</button>
       </div>
       
       <div style="margin-bottom:8px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">Quick Markers</h5>
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">Quick Markers</h5>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
-          <button onclick="quickMarker('stimulus')" style="padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;cursor:pointer;font-size:11px;">Stim</button>
-          <button onclick="quickMarker('response')" style="padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;cursor:pointer;font-size:11px;">Resp</button>
-          <button onclick="quickMarker('artifact')" style="padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;cursor:pointer;font-size:11px;">Artf</button>
+          <button onclick="quickMarker('stimulus')" style="padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;cursor:pointer;font-size:11px;">Stim</button>
+          <button onclick="quickMarker('response')" style="padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;cursor:pointer;font-size:11px;">Resp</button>
+          <button onclick="quickMarker('artifact')" style="padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;cursor:pointer;font-size:11px;">Artf</button>
         </div>
       </div>
       
-      <div style="border-top:1px solid #2d3748;padding-top:8px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">Recent Markers <span id="marker-count" style="color:#8b5cf6;">0</span></h5>
-        <div id="marker-list" style="max-height:150px;overflow-y:auto;font-size:11px;color:#94a3b8;"></div>
+      <div style="border-top:1px solid var(--border-strong);padding-top:8px;">
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">Recent Markers <span id="marker-count" style="color:var(--accent-purple);">0</span></h5>
+        <div id="marker-list" style="max-height:150px;overflow-y:auto;font-size:11px;color:var(--text-secondary);"></div>
       </div>
     `;
     document.body.appendChild(panel);
@@ -1791,7 +1791,7 @@ function refreshMarkerList() {
       count.textContent = data.markers.length;
       list.innerHTML = data.markers.map(m => {
         const time = new Date(m.timestamp * 1000).toLocaleTimeString();
-        return `<div style="padding:4px 0;border-bottom:1px solid #2d3748;">${time} - <span style="color:#8b5cf6;">${m.name}</span>${m.value ? ' #'+m.value : ''}</div>`;
+        return `<div style="padding:4px 0;border-bottom:1px solid var(--border-strong);">${time} - <span style="color:var(--accent-purple);">${m.name}</span>${m.value ? ' #'+m.value : ''}</div>`;
       }).join('');
     });
 }
@@ -1804,16 +1804,16 @@ function showClassifierPanel() {
   if (!panel) {
     panel = document.createElement('div');
     panel.id = 'classifier-panel';
-    panel.style.cssText = 'position:fixed;top:60px;right:300px;width:320px;background:#1a2235;border:1px solid #2d3748;border-radius:8px;padding:12px;z-index:10000;';
+    panel.style.cssText = 'position:fixed;top:60px;right:300px;width:320px;background:var(--bg-glass);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;z-index:10000;box-shadow:var(--shadow-card),var(--shadow-glow)';
     panel.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h4 style="color:#10b981;margin:0;">🧠 BCI Classifier</h4>
-        <button onclick="hideClassifierPanel()" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:18px;">×</button>
+        <h4 style="color:var(--color-success);margin:0;">BCI Classifier</h4>
+        <button onclick="hideClassifierPanel()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:18px;">×</button>
       </div>
       
       <div style="margin-bottom:12px;">
-        <label style="color:#94a3b8;font-size:11px;">Paradigm:</label>
-        <select id="clf-paradigm" style="width:100%;padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+        <label style="color:var(--text-secondary);font-size:11px;">Paradigm:</label>
+        <select id="clf-paradigm" style="width:100%;padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           <option value="mi">Motor Imagery (MI)</option>
           <option value="p300">P300</option>
           <option value="ssvep">SSVEP</option>
@@ -1821,23 +1821,23 @@ function showClassifierPanel() {
       </div>
       
       <div style="margin-bottom:12px;">
-        <button onclick="initClassifier()" style="width:100%;padding:8px;background:#3b82f6;border:none;color:white;border-radius:6px;cursor:pointer;margin-bottom:4px;">Initialize Classifier</button>
+        <button onclick="initClassifier()" style="width:100%;padding:8px;background:var(--accent-primary);border:none;color:white;border-radius:6px;cursor:pointer;margin-bottom:4px;">Initialize Classifier</button>
       </div>
       
-      <div style="margin-bottom:12px;padding:8px;background:#111827;border-radius:6px;">
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;">
-          <span>Status: <span id="clf-status" style="color:#f59e0b;">Not initialized</span></span>
-          <span>Accuracy: <span id="clf-accuracy" style="color:#10b981;">--</span></span>
+      <div style="margin-bottom:12px;padding:8px;background:var(--bg-card);border-radius:6px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-secondary);">
+          <span>Status: <span id="clf-status" style="color:var(--color-warning);">Not initialized</span></span>
+          <span>Accuracy: <span id="clf-accuracy" style="color:var(--color-success);">--</span></span>
         </div>
-        <div style="margin-top:4px;font-size:11px;color:#94a3b8;">
-          Trials: <span id="clf-trials">0</span> | Trained: <span id="clf-trained" style="color:#ef4444;">No</span>
+        <div style="margin-top:4px;font-size:11px;color:var(--text-secondary);">
+          Trials: <span id="clf-trials">0</span> | Trained: <span id="clf-trained" style="color:var(--color-danger);">No</span>
         </div>
       </div>
       
       <div style="margin-bottom:12px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">Training</h5>
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">Training</h5>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px;">
-          <select id="clf-train-label" style="padding:6px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+          <select id="clf-train-label" style="padding:6px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
             <option value="left">Left</option>
             <option value="right">Right</option>
             <option value="up">Up</option>
@@ -1845,19 +1845,19 @@ function showClassifierPanel() {
             <option value="target">Target</option>
             <option value="nontarget">Non-target</option>
           </select>
-          <button onclick="addTrainingSample()" style="padding:6px;background:#10b981;border:none;color:white;border-radius:4px;cursor:pointer;">+ Add</button>
+          <button onclick="addTrainingSample()" style="padding:6px;background:var(--color-success);border:none;color:white;border-radius:4px;cursor:pointer;">+ Add</button>
         </div>
-        <button onclick="trainClassifier()" style="width:100%;padding:6px;background:#8b5cf6;border:none;color:white;border-radius:4px;cursor:pointer;">Train Model</button>
+        <button onclick="trainClassifier()" style="width:100%;padding:6px;background:var(--accent-purple);border:none;color:white;border-radius:4px;cursor:pointer;">Train Model</button>
       </div>
       
-      <div style="border-top:1px solid #2d3748;padding-top:8px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">Real-time Prediction</h5>
-        <div id="clf-prediction" style="padding:8px;background:#111827;border-radius:6px;text-align:center;">
-          <span style="color:#94a3b8;">--</span>
+      <div style="border-top:1px solid var(--border-strong);padding-top:8px;">
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">Real-time Prediction</h5>
+        <div id="clf-prediction" style="padding:8px;background:var(--bg-card);border-radius:6px;text-align:center;">
+          <span style="color:var(--text-secondary);">--</span>
         </div>
         <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-          <button onclick="correctPrediction()" style="padding:6px;background:#10b981;border:none;color:white;border-radius:4px;cursor:pointer;">✓ Correct</button>
-          <button onclick="wrongPrediction()" style="padding:6px;background:#ef4444;border:none;color:white;border-radius:4px;cursor:pointer;">✗ Wrong</button>
+          <button onclick="correctPrediction()" style="padding:6px;background:var(--color-success);border:none;color:white;border-radius:4px;cursor:pointer;">✓ Correct</button>
+          <button onclick="wrongPrediction()" style="padding:6px;background:var(--color-danger);border:none;color:white;border-radius:4px;cursor:pointer;">✗ Wrong</button>
         </div>
       </div>
     `;
@@ -1982,8 +1982,8 @@ function runPrediction(epoch) {
         const predEl = document.getElementById('clf-prediction');
         if (predEl) {
           predEl.innerHTML = `
-            <div style="color:#8b5cf6;font-size:18px;font-weight:bold;">${data.prediction}</div>
-            <div style="color:#94a3b8;font-size:11px;">Confidence: ${(data.confidence * 100).toFixed(1)}%</div>
+            <div style="color:var(--accent-purple);font-size:18px;font-weight:bold;">${data.prediction}</div>
+            <div style="color:var(--text-secondary);font-size:11px;">Confidence: ${(data.confidence * 100).toFixed(1)}%</div>
           `;
         }
       }
@@ -2022,73 +2022,73 @@ function showParadigmPanel() {
   if (!panel) {
     panel = document.createElement('div');
     panel.id = 'paradigm-panel';
-    panel.style.cssText = 'position:fixed;top:60px;right:630px;width:360px;background:#1a2235;border:1px solid #2d3748;border-radius:8px;padding:12px;z-index:10000;';
+    panel.style.cssText = 'position:fixed;top:60px;right:630px;width:360px;background:var(--bg-glass);backdrop-filter:blur(16px);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:16px;z-index:10000;box-shadow:var(--shadow-card),var(--shadow-glow)';
     panel.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h4 style="color:#f59e0b;margin:0;">🎯 Paradigm Designer</h4>
-        <button onclick="hideParadigmPanel()" style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:18px;">×</button>
+        <h4 style="color:var(--color-warning);margin:0;">Paradigm Designer</h4>
+        <button onclick="hideParadigmPanel()" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:18px;">×</button>
       </div>
       
       <div style="margin-bottom:12px;">
-        <label style="color:#94a3b8;font-size:11px;">Select Paradigm:</label>
-        <select id="para-type" style="width:100%;padding:8px;background:#111827;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;margin-top:4px;">
-          <option value="mi">🏃 Motor Imagery (MI)</option>
-          <option value="p300">📺 P300 Speller</option>
-          <option value="ssvep">💡 SSVEP</option>
-          <option value="neurofeedback">🧘 Neurofeedback</option>
+        <label style="color:var(--text-secondary);font-size:11px;">Select Paradigm:</label>
+        <select id="para-type" style="width:100%;padding:8px;background:var(--bg-card);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;margin-top:4px;">
+          <option value="mi">Motor Imagery (MI)</option>
+          <option value="p300">P300 Speller</option>
+          <option value="ssvep">SSVEP</option>
+          <option value="neurofeedback">Neurofeedback</option>
         </select>
       </div>
       
-      <div id="para-config-mi" style="margin-bottom:12px;padding:8px;background:#111827;border-radius:6px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">MI Configuration</h5>
+      <div id="para-config-mi" style="margin-bottom:12px;padding:8px;background:var(--bg-card);border-radius:6px;">
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">MI Configuration</h5>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
           <div>
-            <label style="color:#64748b;font-size:10px;">Trials:</label>
-            <input type="number" id="para-trials" value="40" style="width:100%;padding:6px;background:#1a2235;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+            <label style="color:var(--text-muted);font-size:10px;">Trials:</label>
+            <input type="number" id="para-trials" value="40" style="width:100%;padding:6px;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           </div>
           <div>
-            <label style="color:#64748b;font-size:10px;">Classes:</label>
-            <input type="text" id="para-classes" value="left,right" style="width:100%;padding:6px;background:#1a2235;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+            <label style="color:var(--text-muted);font-size:10px;">Classes:</label>
+            <input type="text" id="para-classes" value="left,right" style="width:100%;padding:6px;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
           <div>
-            <label style="color:#64748b;font-size:10px;">Cue (s):</label>
-            <input type="number" id="para-cue" value="1" step="0.5" style="width:100%;padding:6px;background:#1a2235;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+            <label style="color:var(--text-muted);font-size:10px;">Cue (s):</label>
+            <input type="number" id="para-cue" value="1" step="0.5" style="width:100%;padding:6px;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           </div>
           <div>
-            <label style="color:#64748b;font-size:10px;">Stim (s):</label>
-            <input type="number" id="para-stim" value="4" step="0.5" style="width:100%;padding:6px;background:#1a2235;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+            <label style="color:var(--text-muted);font-size:10px;">Stim (s):</label>
+            <input type="number" id="para-stim" value="4" step="0.5" style="width:100%;padding:6px;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           </div>
           <div>
-            <label style="color:#64748b;font-size:10px;">Rest (s):</label>
-            <input type="number" id="para-rest" value="2" step="0.5" style="width:100%;padding:6px;background:#1a2235;border:1px solid #2d3748;color:#e2e8f0;border-radius:4px;">
+            <label style="color:var(--text-muted);font-size:10px;">Rest (s):</label>
+            <input type="number" id="para-rest" value="2" step="0.5" style="width:100%;padding:6px;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);border-radius:4px;">
           </div>
         </div>
       </div>
       
-      <div style="margin-bottom:12px;padding:8px;background:#111827;border-radius:6px;">
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;">
-          <span>Status: <span id="para-status" style="color:#64748b;">Idle</span></span>
+      <div style="margin-bottom:12px;padding:8px;background:var(--bg-card);border-radius:6px;">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-secondary);">
+          <span>Status: <span id="para-status" style="color:var(--text-muted);">Idle</span></span>
           <span>Trial: <span id="para-current">0</span>/<span id="para-total">0</span></span>
         </div>
-        <div style="margin-top:4px;font-size:11px;color:#94a3b8;">
-          Phase: <span id="para-phase" style="color:#8b5cf6;">--</span> | Target: <span id="para-target" style="color:#f59e0b;">--</span>
+        <div style="margin-top:4px;font-size:11px;color:var(--text-secondary);">
+          Phase: <span id="para-phase" style="color:var(--accent-purple);">--</span> | Target: <span id="para-target" style="color:var(--color-warning);">--</span>
         </div>
       </div>
       
       <div style="margin-bottom:12px;">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
-          <button onclick="startParadigm()" style="padding:8px;background:#10b981;border:none;color:white;border-radius:6px;cursor:pointer;">▶ Start</button>
-          <button onclick="pauseParadigm()" id="btn-pause" style="padding:8px;background:#f59e0b;border:none;color:white;border-radius:6px;cursor:pointer;">⏸ Pause</button>
-          <button onclick="stopParadigm()" style="padding:8px;background:#ef4444;border:none;color:white;border-radius:6px;cursor:pointer;">⏹ Stop</button>
+          <button onclick="startParadigm()" style="padding:8px;background:var(--color-success);border:none;color:white;border-radius:6px;cursor:pointer;">Start</button>
+          <button onclick="pauseParadigm()" id="btn-pause" style="padding:8px;background:var(--color-warning);border:none;color:white;border-radius:6px;cursor:pointer;">Pause</button>
+          <button onclick="stopParadigm()" style="padding:8px;background:var(--color-danger);border:none;color:white;border-radius:6px;cursor:pointer;">Stop</button>
         </div>
       </div>
       
-      <div style="border-top:1px solid #2d3748;padding-top:8px;">
-        <h5 style="color:#94a3b8;margin:0 0 8px 0;font-size:11px;">Real-time Feedback</h5>
-        <div id="para-feedback" style="padding:12px;background:#111827;border-radius:6px;text-align:center;font-size:14px;color:#e2e8f0;">
-          <div style="color:#64748b;font-size:11px;">Waiting for paradigm...</div>
+      <div style="border-top:1px solid var(--border-strong);padding-top:8px;">
+        <h5 style="color:var(--text-secondary);margin:0 0 8px 0;font-size:11px;">Real-time Feedback</h5>
+        <div id="para-feedback" style="padding:12px;background:var(--bg-card);border-radius:6px;text-align:center;font-size:14px;color:var(--text-primary);">
+          <div style="color:var(--text-muted);font-size:11px;">Waiting for paradigm...</div>
         </div>
       </div>
     `;
@@ -2193,8 +2193,8 @@ function handleParadigmEvent(event) {
   
   if (event.type === 'paradigm_start') {
     feedbackEl.innerHTML = `
-      <div style="color:#10b981;font-weight:bold;">🎯 范式开始</div>
-      <div style="color:#94a3b8;font-size:11px;">${event.n_trials} Trials</div>
+      <div style="color:var(--color-success);font-weight:bold;">🎯 范式开始</div>
+      <div style="color:var(--text-secondary);font-size:11px;">${event.n_trials} Trials</div>
     `;
   }
   
@@ -2228,7 +2228,7 @@ function handleParadigmEvent(event) {
       <div style="color:${phaseColors[phase] || '#e2e8f0'};font-weight:bold;font-size:16px;">
         ${phaseTexts[phase] || phase}
       </div>
-      <div style="color:#64748b;font-size:11px;margin-top:4px;">
+      <div style="color:var(--text-muted);font-size:11px;margin-top:4px;">
         Trial ${event.trial_num} / ${document.getElementById('para-total').textContent}
       </div>
     `;
@@ -2242,8 +2242,8 @@ function handleParadigmEvent(event) {
   
   else if (event.type === 'paradigm_end') {
     feedbackEl.innerHTML = `
-      <div style="color:#3b82f6;font-weight:bold;">✅ 实验结束</div>
-      <div style="color:#94a3b8;font-size:11px;">完成 ${event.n_completed} Trials</div>
+      <div style="color:var(--accent-primary);font-weight:bold;">✅ 实验结束</div>
+      <div style="color:var(--text-secondary);font-size:11px;">完成 ${event.n_completed} Trials</div>
     `;
     
     document.getElementById('para-status').textContent = 'Completed';
@@ -2307,7 +2307,7 @@ document.addEventListener('keydown', e => {
   if (e.key === ' ') {
     e.preventDefault();
     isPaused = !isPaused;
-    console.log(isPaused ? '⏸ Paused' : '▶ Resumed');
+    console.log(isPaused ? 'Paused' : '▶ Resumed');
   }
   if (e.key === 'r' || e.key === 'R') {
     // Reset view
