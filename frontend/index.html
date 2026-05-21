@@ -507,6 +507,43 @@ body {
 #data-quality > span:first-child { color: var(--text-muted); font-weight: 500; }
 #dq-status { font-weight: 600; }
 #dq-artifact, #dq-bad { color: var(--text-muted); }
+
+/* ===== Full Waveform Mode ===== */
+body.waveform-fullscreen #main > .row:not(.row-waveform-full) { display: none !important; }
+body.waveform-fullscreen #main { padding: 0; gap: 0; }
+body.waveform-fullscreen .row-waveform-full { flex: 1; min-height: 0; }
+body.waveform-fullscreen .row-waveform-full .widget { border-radius: 0; padding: 10px 16px 12px; }
+body.waveform-fullscreen .row-waveform-full .widget h3 { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+body.waveform-fullscreen .row-waveform-full .canvas-wrap canvas { border-radius: 6px; }
+body.waveform-fullscreen #toolbar { padding: 6px 16px; }
+body.waveform-fullscreen #toolbar h1 { font-size: 14px; }
+body.waveform-fullscreen #toolbar .btn { padding: 4px 10px; font-size: 11px; }
+
+/* ===== Full Panel Mode (PSD / Band / Brain / Emotion) ===== */
+body.panel-fullscreen { overflow: hidden; }
+body.panel-fullscreen #toolbar { display: none; }
+body.panel-fullscreen #main { display: none; }
+body.panel-fullscreen #timefreq-wrap { display: none; }
+body.panel-fullscreen #epoch-panel { display: none !important; }
+
+.panel-fullscreen-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--bg-primary);
+  display: flex; flex-direction: column;
+  padding: 12px; gap: 10px;
+}
+.panel-fullscreen-overlay .panel-close {
+  position: absolute; top: 12px; right: 16px;
+  background: var(--bg-elevated); border: 1px solid var(--border-subtle);
+  color: var(--text-secondary); font-size: 12px; padding: 4px 12px;
+  border-radius: var(--radius-sm); cursor: pointer; z-index: 1;
+}
+.panel-fullscreen-overlay .panel-close:hover { border-color: var(--border-accent); color: var(--text-primary); }
+.panel-fullscreen-overlay .widget { flex: 1; min-height: 0; border-radius: var(--radius-md); }
+.panel-fullscreen-overlay .widget .canvas-wrap { flex: 1; min-height: 0; }
+.panel-fullscreen-overlay .widget .canvas-wrap canvas,
+.panel-fullscreen-overlay .widget .canvas-wrap img { border-radius: var(--radius-sm); }
+.panel-fullscreen-overlay .widget h3 { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
 </style>
 </head>
 <body>
@@ -559,9 +596,12 @@ body {
   <!-- Main: 3-Row Layout -->
   <div id="main">
     <!-- Row 1: Waveform (full width) -->
-    <div class="row row-1">
+    <div class="row row-1 row-waveform-full">
       <div class="widget" style="flex:1;">
-        <h3>实时波形</h3>
+        <h3>
+          实时波形
+          <button onclick="toggleFullWave()" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:8px;" title="全屏">⛶</button>
+        </h3>
         <div class="canvas-wrap"><canvas id="c-wave"></canvas></div>
         <!-- Simple模式: 数据质量基础显示 -->
         <div id="data-quality" data-mode="simple" style="display:flex;gap:12px;margin-top:8px;font-size:12px;">
@@ -576,11 +616,11 @@ body {
     <!-- Row 2: PSD Chart | Band Stats Table (Research+) -->
     <div class="row row-2" data-mode="research bci">
       <div class="widget">
-        <h3>功率谱密度</h3>
+        <h3>功率谱密度 <button onclick="toggleFullPanel('psd')" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:8px;" title="全屏">⛶</button></h3>
         <div class="canvas-wrap"><canvas id="c-psd"></canvas></div>
       </div>
       <div class="widget">
-        <h3>频段统计</h3>
+        <h3>频段统计 <button onclick="toggleFullPanel('band')" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:8px;" title="全屏">⛶</button></h3>
         <div class="canvas-wrap" style="overflow-y:auto;">
           <table id="band-stats-table">
             <thead>
@@ -607,14 +647,14 @@ body {
           <button class="btn btn-sm" id="tab-3d" onclick="switchBrainView('3d')">3D</button>
           <button class="btn btn-sm" id="tab-2d" onclick="switchBrainView('2d')">2D</button>
         </div>
-        <h3 id="brain-title">3D Brain</h3>
+        <h3 id="brain-title">脑图 <button onclick="toggleFullPanel('brain')" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:8px;" title="全屏">⛶</button></h3>
         <div class="canvas-wrap" id="brain-wrap">
           <canvas id="c-brain"></canvas>
           <img id="i-topomap" data-mode="simple research bci" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;border-radius:6px;display:none;">
         </div>
       </div>
       <div class="widget">
-        <h3>情绪状态</h3>
+        <h3>情绪状态 <button onclick="toggleFullPanel('emotion')" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:8px;" title="全屏">⛶</button></h3>
         <div class="canvas-wrap"><canvas id="c-emotion"></canvas></div>
       </div>
     </div>
@@ -890,32 +930,36 @@ function drawWave() {
   canvas.height = rect.height * devicePixelRatio;
   ctx.scale(devicePixelRatio, devicePixelRatio);
   const W = rect.width, H = rect.height;
-  
+  const isFull = document.body.classList.contains('waveform-fullscreen');
+  const lineW = isFull ? 2.2 : 1.8;
+  const gridAlpha = isFull ? 0.08 : 0.06;
+  const fontSz = isFull ? 13 : 10;
+
   // Background
   ctx.fillStyle = '#0d1117';
   ctx.fillRect(0, 0, W, H);
-  
-  // Horizontal grid (teal, subtle)
-  ctx.strokeStyle = 'rgba(45,212,191,0.06)';
+
+  // Grid
+  ctx.strokeStyle = `rgba(45,212,191,${gridAlpha})`;
   ctx.lineWidth = 1;
-  for (let i = 1; i < 5; i++) {
-    ctx.beginPath(); ctx.moveTo(0, H*i/5); ctx.lineTo(W, H*i/5); ctx.stroke();
+  const gridLines = isFull ? 8 : 5;
+  for (let i = 1; i < gridLines; i++) {
+    ctx.beginPath(); ctx.moveTo(0, H*i/gridLines); ctx.lineTo(W, H*i/gridLines); ctx.stroke();
   }
-  // Vertical grid
-  for (let i = 1; i < 5; i++) {
-    ctx.beginPath(); ctx.moveTo(W*i/5, 0); ctx.lineTo(W*i/5, H); ctx.stroke();
+  for (let i = 1; i < gridLines; i++) {
+    ctx.beginPath(); ctx.moveTo(W*i/gridLines, 0); ctx.lineTo(W*i/gridLines, H); ctx.stroke();
   }
-  
+
   // Time axis label
   ctx.fillStyle = 'rgba(148,163,184,0.5)';
-  ctx.font = '10px JetBrains Mono, monospace';
+  ctx.font = `${fontSz}px JetBrains Mono, monospace`;
   ctx.textAlign = 'right';
-  ctx.fillText('← 8s                              → 0s', W - 6, H - 4);
-  
+  ctx.fillText('← 8s                              → 0s', W - 6, H - (isFull ? 8 : 4));
+
   // µV scale reference
   ctx.fillStyle = 'rgba(148,163,184,0.4)';
   ctx.textAlign = 'left';
-  ctx.fillText('200 µVpp', 32, 14);
+  ctx.fillText('200 µVpp', 32, isFull ? 16 : 14);
   
   // Channels
   const nCh = displayBuffers.filter((_, i) => !hiddenChannels.has(i)).length;
@@ -931,7 +975,7 @@ function drawWave() {
     ctx.shadowColor = colors[ch % colors.length];
     ctx.shadowBlur = 4;
     ctx.strokeStyle = colors[ch % colors.length];
-    ctx.lineWidth = 1.8;
+    ctx.lineWidth = lineW;
     ctx.beginPath();
     for (let i = 0; i < buf.length; i++) {
       const x = (i / (buf.length - 1)) * W;
@@ -947,7 +991,7 @@ function drawWave() {
     ctx.strokeStyle = colors[ch % colors.length] + '60';
     ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = colors[ch % colors.length];
-    ctx.font = '10px JetBrains Mono, monospace';
+    ctx.font = `${isFull ? 12 : 10}px JetBrains Mono, monospace`;
     ctx.textAlign = 'center';
     ctx.fillText('Ch' + ch, 4 + badgeW/2, yBase - chHeight/2 + 14);
     chIdx++;
@@ -1347,11 +1391,104 @@ function renderBrain() {
   updateBrainLabels();
 }
 
+// ========== Full Waveform Toggle ==========
+let waveFullscreen = false;
+function toggleFullWave() {
+  waveFullscreen = !waveFullscreen;
+  document.body.classList.toggle('waveform-fullscreen', waveFullscreen);
+  setTimeout(() => window.dispatchEvent(new Event('resize')), 50);
+}
+
+// ========== Full Panel Toggle (PSD / Band / Brain / Emotion) ==========
+let activePanelFull = null; // 'psd' | 'band' | 'brain' | 'emotion'
+
+function toggleFullPanel(panel) {
+  const overlayId = 'panel-fullscreen-overlay';
+  let overlay = document.getElementById(overlayId);
+
+  if (activePanelFull === panel) {
+    // Exit fullscreen
+    overlay && overlay.remove();
+    activePanelFull = null;
+    document.body.classList.remove('panel-fullscreen');
+    return;
+  }
+
+  // Remove any existing overlay
+  overlay && overlay.remove();
+
+  // Build overlay HTML based on panel type
+  let content = '';
+  if (panel === 'psd') {
+    content = '<h3>功率谱密度</h3><div class="canvas-wrap"><canvas id="c-psd-full"></canvas></div>';
+  } else if (panel === 'band') {
+    content = '<h3>频段统计</h3><div class="canvas-wrap" style="overflow-y:auto;"><table id="band-stats-table-full" style="width:100%;"><thead><tr><th>频段</th><th>绝对功率 (µV²)</th><th>相对功率 (%)</th><th>状态</th></tr></thead><tbody id="band-stats-body-full"></tbody></table></div>';
+  } else if (panel === 'brain') {
+    content = '<h3>脑图</h3><div class="canvas-wrap"><img id="i-topomap-full" style="width:100%;height:100%;object-fit:contain;border-radius:6px;"></div>';
+  } else if (panel === 'emotion') {
+    content = '<h3>情绪状态</h3><div class="canvas-wrap"><canvas id="c-emotion-full"></canvas></div>';
+  }
+
+  // Create overlay
+  overlay = document.createElement('div');
+  overlay.id = overlayId;
+  overlay.className = 'panel-fullscreen-overlay';
+  overlay.innerHTML = `<button class="panel-close" onclick="toggleFullPanel('${panel}')">退出全屏 ✕</button><div class="widget">${content}</div>`;
+  document.body.appendChild(overlay);
+  document.body.classList.add('panel-fullscreen');
+  activePanelFull = panel;
+
+  // Sync data to fullscreen canvas / table
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+    syncFullPanel(panel);
+  }, 60);
+}
+
+function syncFullPanel(panel) {
+  if (panel === 'psd') {
+    const dst = document.getElementById('c-psd-full');
+    if (dst) {
+      dst.width = dst.offsetWidth * devicePixelRatio;
+      dst.height = dst.offsetHeight * devicePixelRatio;
+      const orig = document.getElementById('c-psd');
+      if (orig) {
+        const ctx = dst.getContext('2d');
+        ctx.drawImage(orig, 0, 0, dst.width, dst.height);
+      }
+    }
+  } else if (panel === 'band') {
+    const src = document.getElementById('band-stats-body');
+    const dst = document.getElementById('band-stats-body-full');
+    if (src && dst) dst.innerHTML = src.innerHTML;
+  } else if (panel === 'brain') {
+    const src = document.getElementById('i-topomap');
+    const dst = document.getElementById('i-topomap-full');
+    if (src && dst) dst.src = src.src;
+  } else if (panel === 'emotion') {
+    const src = document.getElementById('c-emotion');
+    const dst = document.getElementById('c-emotion-full');
+    if (src && dst) {
+      dst.width = dst.offsetWidth * devicePixelRatio;
+      dst.height = dst.offsetHeight * devicePixelRatio;
+      const ctx = dst.getContext('2d');
+      ctx.drawImage(src, 0, 0, dst.width, dst.height);
+    }
+  }
+}
+
+// Sync fullscreen panels in real time
+function syncActivePanels() {
+  if (!activePanelFull) return;
+  syncFullPanel(activePanelFull);
+}
+
 // ========== Render Loop ==========
 function render() {
   drawWave();
   drawEmotion();
   renderBrain();
+  syncActivePanels();
   requestAnimationFrame(render);
 }
 
@@ -2327,6 +2464,9 @@ document.addEventListener('keydown', e => {
     // Reset view
     if (brainControls) brainControls.reset();
     console.log('🔄 View reset');
+  }
+  if (e.key === 'w' || e.key === 'W') {
+    toggleFullWave();
   }
 });
 
