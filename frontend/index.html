@@ -890,25 +890,48 @@ function drawWave() {
   canvas.height = rect.height * devicePixelRatio;
   ctx.scale(devicePixelRatio, devicePixelRatio);
   const W = rect.width, H = rect.height;
-  ctx.fillStyle = '#1a2235';
+  
+  // Background
+  ctx.fillStyle = '#0d1117';
   ctx.fillRect(0, 0, W, H);
-  // Grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+  
+  // Horizontal grid (teal, subtle)
+  ctx.strokeStyle = 'rgba(45,212,191,0.06)';
   ctx.lineWidth = 1;
-  for (let i = 1; i < 5; i++) { ctx.beginPath(); ctx.moveTo(0, H*i/5); ctx.lineTo(W, H*i/5); ctx.stroke(); }
-  for (let i = 1; i < 5; i++) { ctx.beginPath(); ctx.moveTo(W*i/5, 0); ctx.lineTo(W*i/5, H); ctx.stroke(); }
-  // Channels (vertical offset to avoid overlap)
+  for (let i = 1; i < 5; i++) {
+    ctx.beginPath(); ctx.moveTo(0, H*i/5); ctx.lineTo(W, H*i/5); ctx.stroke();
+  }
+  // Vertical grid
+  for (let i = 1; i < 5; i++) {
+    ctx.beginPath(); ctx.moveTo(W*i/5, 0); ctx.lineTo(W*i/5, H); ctx.stroke();
+  }
+  
+  // Time axis label
+  ctx.fillStyle = 'rgba(148,163,184,0.5)';
+  ctx.font = '10px JetBrains Mono, monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('← 8s                              → 0s', W - 6, H - 4);
+  
+  // µV scale reference
+  ctx.fillStyle = 'rgba(148,163,184,0.4)';
+  ctx.textAlign = 'left';
+  ctx.fillText('200 µVpp', 32, 14);
+  
+  // Channels
   const nCh = displayBuffers.filter((_, i) => !hiddenChannels.has(i)).length;
   const chHeight = H / Math.max(nCh, 1);
   let chIdx = 0;
-  const colors = ['#3b82f6','#10b981','#8b5cf6','#ef4444','#f59e0b','#06b6d4','#ec4899','#84cc16'];
+  const colors = ['#60a5fa','#34d399','#a78bfa','#fb7185','#fbbf24','#22d3ee','#f472b6','#a3e635'];
   for (let ch = 0; ch < displayBuffers.length; ch++) {
     if (hiddenChannels.has(ch)) continue;
     const buf = displayBuffers[ch];
     if (!buf || buf.length === 0) { chIdx++; continue; }
     const yBase = chIdx * chHeight + chHeight / 2;
+    // Glow effect
+    ctx.shadowColor = colors[ch % colors.length];
+    ctx.shadowBlur = 4;
     ctx.strokeStyle = colors[ch % colors.length];
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.8;
     ctx.beginPath();
     for (let i = 0; i < buf.length; i++) {
       const x = (i / (buf.length - 1)) * W;
@@ -916,11 +939,17 @@ function drawWave() {
       if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
     }
     ctx.stroke();
-    // Channel label
+    ctx.shadowBlur = 0;
+    // Channel badge
+    const badgeW = 28, badgeH = 14;
+    ctx.fillStyle = colors[ch % colors.length] + '30';
+    ctx.beginPath(); ctx.roundRect(4, yBase - chHeight/2 + 3, badgeW, badgeH, 3); ctx.fill();
+    ctx.strokeStyle = colors[ch % colors.length] + '60';
+    ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = colors[ch % colors.length];
-    ctx.font = '10px sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText('Ch'+ch, 4, yBase - chHeight/2 + 12);
+    ctx.font = '10px JetBrains Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('Ch' + ch, 4 + badgeW/2, yBase - chHeight/2 + 14);
     chIdx++;
   }
 }
@@ -940,15 +969,15 @@ function drawPSD() {
   const plotW = W - padL - padR;
   const plotH = H - padT - padB;
   
-  ctx.fillStyle = '#1a2235';
+  ctx.fillStyle = '#0d1117';
   ctx.fillRect(0, 0, W, H);
 
   // Placeholder if no PSD data yet
   if (!psdData || !psdData.freqs || psdData.freqs.length === 0) {
-    ctx.fillStyle = '#64748b';
-    ctx.font = '13px sans-serif';
+    ctx.fillStyle = '#475569';
+    ctx.font = '12px Inter, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('Calculating PSD...', W/2, H/2);
+    ctx.fillText('计算中...', W/2, H/2);
     return;
   }
 
@@ -966,40 +995,50 @@ function drawPSD() {
     const xStart = padL + (fStart / maxFreq) * plotW;
     const xEnd = padL + (fEnd / maxFreq) * plotW;
     
-    ctx.fillStyle = band.color + '20';  // 20 = ~12% opacity
+    ctx.fillStyle = band.color + '18';
     ctx.fillRect(xStart, padT, xEnd - xStart, plotH);
     
-    // Band label
-    ctx.fillStyle = band.color;
-    ctx.font = '10px sans-serif';
+    // Band label above
+    ctx.fillStyle = band.color + 'cc';
+    ctx.font = '10px Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(band.name, (xStart + xEnd) / 2, padT - 5);
   });
   
   // Draw axes
-  ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+  ctx.strokeStyle = 'rgba(45,212,191,0.25)';
   ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH); ctx.stroke();
   
+  // Horizontal grid lines
+  ctx.strokeStyle = 'rgba(45,212,191,0.05)';
+  for (let i = 1; i < 5; i++) {
+    const y = padT + plotH * (i / 5);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + plotW, y); ctx.stroke();
+  }
+  
   // Y-axis labels
-  ctx.fillStyle = '#94a3b8';
-  ctx.font = '10px sans-serif';
+  ctx.fillStyle = '#64748b';
+  ctx.font = '10px JetBrains Mono, monospace';
   ctx.textAlign = 'right';
   for (let i = 0; i <= 5; i++) {
     const y = padT + plotH * (1 - i / 5);
     const val = minPower + (maxPower - minPower) * (i / 5);
-    ctx.fillText(val.toFixed(1), padL - 5, y + 3);
+    ctx.fillText(val.toFixed(1), padL - 6, y + 3);
   }
   
   // X-axis labels
+  ctx.fillStyle = '#64748b';
   ctx.textAlign = 'center';
   for (let f = 0; f <= maxFreq; f += 10) {
     const x = padL + (f / maxFreq) * plotW;
-    ctx.fillText(f + 'Hz', x, padT + plotH + 15);
+    ctx.fillText(f + 'Hz', x, padT + plotH + 18);
   }
   
-  // Draw PSD curve
-  ctx.strokeStyle = '#e2e8f0';
+  // Draw PSD curve with glow
+  ctx.shadowColor = '#60a5fa';
+  ctx.shadowBlur = 6;
+  ctx.strokeStyle = '#60a5fa';
   ctx.lineWidth = 2;
   ctx.beginPath();
   for (let i = 0; i < freqs.length && i < powers.length; i++) {
@@ -1008,14 +1047,15 @@ function drawPSD() {
     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   }
   ctx.stroke();
+  ctx.shadowBlur = 0;
   
   // Fill under curve with gradient
   ctx.lineTo(padL + plotW, padT + plotH);
   ctx.lineTo(padL, padT + plotH);
   ctx.closePath();
   const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
-  grad.addColorStop(0, 'rgba(59,130,246,0.3)');
-  grad.addColorStop(1, 'rgba(59,130,246,0.05)');
+  grad.addColorStop(0, 'rgba(96,165,250,0.25)');
+  grad.addColorStop(1, 'rgba(96,165,250,0.02)');
   ctx.fillStyle = grad;
   ctx.fill();
 }
@@ -1067,21 +1107,35 @@ function drawEmotion() {
   canvas.height = rect.height * devicePixelRatio;
   ctx.scale(devicePixelRatio, devicePixelRatio);
   const W = rect.width, H = rect.height;
-  ctx.fillStyle = '#1a2235';
+  ctx.fillStyle = '#0d1117';
   ctx.fillRect(0, 0, W, H);
+  
   // Placeholder when no data
   if (!latestEmotion) {
-    ctx.fillStyle = '#64748b';
-    ctx.font = '13px sans-serif';
+    ctx.fillStyle = '#475569';
+    ctx.font = '12px Inter, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('Waiting for emotion data...', W/2, H/2);
+    ctx.fillText('等待情绪数据...', W/2, H/2);
     return;
   }
+  
+  // Quadrant background tints
+  ctx.fillStyle = 'rgba(52,211,153,0.03)';
+  ctx.fillRect(W/2, 0, W/2, H/2); // High Arousal Positive
+  ctx.fillStyle = 'rgba(251,113,133,0.03)';
+  ctx.fillRect(0, 0, W/2, H/2);   // High Arousal Negative
+  ctx.fillStyle = 'rgba(129,140,248,0.03)';
+  ctx.fillRect(0, H/2, W/2, H/2); // Low Arousal Negative
+  ctx.fillStyle = 'rgba(96,165,250,0.03)';
+  ctx.fillRect(W/2, H/2, W/2, H/2); // Low Arousal Positive
+  
   // Axes
-  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.strokeStyle = 'rgba(148,163,184,0.15)';
   ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
   ctx.beginPath(); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
   ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.stroke();
+  ctx.setLineDash([]);
   // Convert valence string to numeric (-1 to +1)
   let v = latestEmotion.valence;
   if (typeof v === 'string') v = v === 'positive' ? 0.7 : v === 'negative' ? -0.7 : 0;
@@ -1094,34 +1148,54 @@ function drawEmotion() {
   // Point
   const px = W/2 + v * W/2 * 0.85;
   const py = H/2 - a * H/2 * 0.85;
-  // Trail glow
-  ctx.fillStyle = 'rgba(239,68,68,0.15)';
-  ctx.beginPath(); ctx.arc(px, py, 20, 0, Math.PI*2); ctx.fill();
-  ctx.fillStyle = '#ef4444';
-  ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI*2); ctx.fill();
-  // Labels
-  ctx.fillStyle = 'rgba(255,255,255,0.4)';
-  ctx.font = '10px sans-serif';
+  // Trail glow rings
+  const ring = ctx.createRadialGradient(px, py, 0, px, py, 24);
+  ring.addColorStop(0, 'rgba(167,139,250,0.25)');
+  ring.addColorStop(1, 'rgba(167,139,250,0)');
+  ctx.fillStyle = ring;
+  ctx.beginPath(); ctx.arc(px, py, 24, 0, Math.PI*2); ctx.fill();
+  // Outer ring
+  ctx.strokeStyle = 'rgba(167,139,250,0.3)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(px, py, 14, 0, Math.PI*2); ctx.stroke();
+  // Core dot
+  ctx.shadowColor = '#a78bfa';
+  ctx.shadowBlur = 10;
+  ctx.fillStyle = '#a78bfa';
+  ctx.beginPath(); ctx.arc(px, py, 7, 0, Math.PI*2); ctx.fill();
+  ctx.shadowBlur = 0;
+  // Center dot white
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(px, py, 3, 0, Math.PI*2); ctx.fill();
+  
+  // Quadrant labels
+  ctx.fillStyle = 'rgba(148,163,184,0.35)';
+  ctx.font = '9px Inter, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('Positive', W*0.8, H/2 - 6);
-  ctx.fillText('Negative', W*0.2, H/2 - 6);
-  ctx.fillText('High Arousal', W/2, 16);
-  ctx.fillText('Low Arousal', W/2, H - 8);
-  ctx.fillStyle = '#e2e8f0';
-  ctx.font = '12px sans-serif';
+  ctx.fillText('效价 +', W*0.82, H/2 - 5);
+  ctx.fillText('效价 -', W*0.18, H/2 - 5);
+  ctx.fillText('唤醒↑', W/2, 14);
+  ctx.fillText('唤醒↓', W/2, H - 5);
+  
+  // Value readout
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '11px JetBrains Mono, monospace';
   ctx.textAlign = 'left';
-  ctx.fillText('V: ' + v.toFixed(2), 8, 16);
-  ctx.fillText('A: ' + a.toFixed(2), 8, 30);
+  ctx.fillText('V: ' + (v >= 0 ? '+' : '') + v.toFixed(2), 6, 16);
+  ctx.fillText('A: ' + (a >= 0 ? '+' : '') + a.toFixed(2), 6, 30);
+  
   // Focus & Relaxation
   if (latestEmotion.focus !== undefined) {
-    ctx.fillStyle = '#10b981';
+    ctx.fillStyle = '#34d399';
     ctx.textAlign = 'right';
-    ctx.fillText('Focus: ' + latestEmotion.focus.toFixed(0) + '%', W - 8, 16);
+    ctx.font = '11px JetBrains Mono, monospace';
+    ctx.fillText('专注 ' + latestEmotion.focus.toFixed(0) + '%', W - 6, 16);
   }
   if (latestEmotion.relaxation !== undefined) {
-    ctx.fillStyle = '#8b5cf6';
+    ctx.fillStyle = '#818cf8';
     ctx.textAlign = 'right';
-    ctx.fillText('Relax: ' + latestEmotion.relaxation.toFixed(0) + '%', W - 8, 30);
+    ctx.font = '11px JetBrains Mono, monospace';
+    ctx.fillText('放松 ' + latestEmotion.relaxation.toFixed(0) + '%', W - 6, 30);
   }
 }
 
