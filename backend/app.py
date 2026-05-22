@@ -47,7 +47,7 @@ FRONTEND_DIR = BASE_DIR.parent / "frontend"
 async def _send_topomap_now(ws, current_payload, frame, features, data_source, topomap_module, timefreq_ch_idx=0):
     """立即生成并推送Topomap（不受40帧间隔限制）"""
     try:
-        electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T3','T4','C3','C4','T5','P3','P4','T6','O1','O2']
+        electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T7','T8','C3','C4','P7','P3','P4','P8','O1','O2']
         ch_bands = current_payload.get('channel_bands', [])
         values = {}
         if ch_bands:
@@ -71,6 +71,45 @@ async def _send_topomap_now(ws, current_payload, frame, features, data_source, t
         print(f"[NeuroViz] _send_topomap_now失败: {e}")
 
 
+def _generate_artifact_tips(artifact_result: dict) -> list:
+    """根据伪迹检测结果生成用户提示"""
+    tips = []
+    summary = artifact_result.get("summary", {})
+    
+    # 眨眼伪迹
+    blink_count = summary.get("blink", 0)
+    if blink_count > 3:
+        tips.append("👁️ 检测到频繁眨眼，建议放松眼部或闭眼采集")
+    elif blink_count > 0:
+        tips.append(f"👁️ 检测到{blink_count}次眨眼伪迹，数据基本可用")
+    
+    # 眼动伪迹
+    eog_count = summary.get("eog", 0)
+    if eog_count > 2:
+        tips.append("👀 检测到眼动伪迹，建议减少眼球转动")
+    
+    # 肌电伪迹
+    emg_count = summary.get("emg", 0)
+    if emg_count > 5:
+        tips.append("💪 检测到大量肌电干扰，建议放松面部和颈部肌肉")
+    elif emg_count > 0:
+        tips.append(f"💪 检测到{emg_count}处肌电干扰，注意放松")
+    
+    # 移动伪迹
+    move_count = summary.get("movement", 0)
+    if move_count > 0:
+        tips.append("🚶 检测到移动伪迹，采集时请保持静止")
+    
+    # 信号质量评估
+    total = artifact_result.get("total_artifacts", 0)
+    if total == 0:
+        tips.append("✅ 信号质量良好，无显著伪迹")
+    elif total > 10:
+        tips.append("⚠️ 信号质量较差，建议检查电极接触或重新采集")
+    
+    return tips
+
+
 app = FastAPI(title="NeuroViz")
 
 # 注册范式设计器路由
@@ -87,8 +126,8 @@ async def index():
 
 @app.post("/api/upload")
 async def upload_file(file: UploadFile = File(...)):
-    """上传EDF/CSV文件, 创建FileDataSource"""
-    global file_source, data_source, current_source_type
+    """上传EDF/CSV文件, 创建FileDataSource，返回详细解析结果"""
+    global file_source, data_source, current_source_type, emotion_engine
     
     # 保存文件
     upload_dir = BASE_DIR.parent / "data"
@@ -108,18 +147,171 @@ async def upload_file(file: UploadFile = File(...)):
         file_source = FileDataSource(str(file_path), fs_target=500)
         info = file_source.get_info()
         
+        # 增强返回信息：脑区映射 + 信号质量评估
+        enhanced_info = _enhance_file_info(info)
+        
         # 切换到文件源
         data_source = file_source
         current_source_type = "file"
+        # 重置情绪引擎
+        emotion_engine = EmotionEngine(fs=file_source.fs)
         
         print(f"[NeuroViz] 已切换到文件源: {file.filename}")
         return {
             "status": "ok",
             "filename": file.filename,
-            "info": info,
+            "info": enhanced_info,
         }
     except Exception as e:
         return {"error": f"加载文件失败: {e}"}
+
+
+def _map_brain_region(ch_name: str) -> dict:
+    """通道名→脑区映射，返回脑区信息"""
+    ch = ch_name.strip().upper()
+    # 标准10-20系统映射
+    brain_regions = {
+        # 前额叶
+        "FP1": {"region": "Frontal Pole", "zone": "前额叶", "function": "执行功能、决策", "color": "#FF6B6B"},
+        "FP2": {"region": "Frontal Pole", "zone": "前额叶", "function": "执行功能、决策", "color": "#FF6B6B"},
+        "FPZ": {"region": "Frontal Pole", "zone": "前额叶", "function": "执行功能、决策", "color": "#FF6B6B"},
+        # 额叶
+        "F7": {"region": "Frontal", "zone": "左额叶", "function": "语言处理、情绪", "color": "#FFA07A"},
+        "F8": {"region": "Frontal", "zone": "右额叶", "function": "语言处理、情绪", "color": "#FFA07A"},
+        "F3": {"region": "Frontal", "zone": "左额叶", "function": "运动规划", "color": "#FFA07A"},
+        "F4": {"region": "Frontal", "zone": "右额叶", "function": "运动规划", "color": "#FFA07A"},
+        "FZ": {"region": "Frontal", "zone": "额叶中线", "function": "运动准备", "color": "#FFA07A"},
+        # 中央
+        "C3": {"region": "Central", "zone": "左中央", "function": "感觉运动", "color": "#98D8C8"},
+        "C4": {"region": "Central", "zone": "右中央", "function": "感觉运动", "color": "#98D8C8"},
+        "CZ": {"region": "Central", "zone": "中央中线", "function": "感觉运动", "color": "#98D8C8"},
+        # 颞叶
+        "T7": {"region": "Temporal", "zone": "左颞叶", "function": "听觉、记忆", "color": "#87CEEB"},
+        "T8": {"region": "Temporal", "zone": "右颞叶", "function": "听觉、记忆", "color": "#87CEEB"},
+        "T3": {"region": "Temporal", "zone": "左颞叶", "function": "听觉、记忆", "color": "#87CEEB"},
+        "T4": {"region": "Temporal", "zone": "右颞叶", "function": "听觉、记忆", "color": "#87CEEB"},
+        "T5": {"region": "Temporal", "zone": "左颞叶", "function": "视觉记忆", "color": "#87CEEB"},
+        "T6": {"region": "Temporal", "zone": "右颞叶", "function": "视觉记忆", "color": "#87CEEB"},
+        # 顶叶
+        "P7": {"region": "Parietal", "zone": "左顶叶", "function": "空间感知", "color": "#DDA0DD"},
+        "P8": {"region": "Parietal", "zone": "右顶叶", "function": "空间感知", "color": "#DDA0DD"},
+        "P3": {"region": "Parietal", "zone": "左顶叶", "function": "感觉整合", "color": "#DDA0DD"},
+        "P4": {"region": "Parietal", "zone": "右顶叶", "function": "感觉整合", "color": "#DDA0DD"},
+        "PZ": {"region": "Parietal", "zone": "顶叶中线", "function": "感觉整合", "color": "#DDA0DD"},
+        # 枕叶
+        "O1": {"region": "Occipital", "zone": "左枕叶", "function": "视觉处理", "color": "#9370DB"},
+        "O2": {"region": "Occipital", "zone": "右枕叶", "function": "视觉处理", "color": "#9370DB"},
+        "OZ": {"region": "Occipital", "zone": "枕叶中线", "function": "视觉处理", "color": "#9370DB"},
+        "PO3": {"region": "Parieto-Occipital", "zone": "左顶枕", "function": "视觉空间", "color": "#9370DB"},
+        "PO4": {"region": "Parieto-Occipital", "zone": "右顶枕", "function": "视觉空间", "color": "#9370DB"},
+    }
+    return brain_regions.get(ch, None)
+
+
+def _enhance_file_info(info: dict) -> dict:
+    """增强文件信息：添加脑区映射和信号质量评估"""
+    channels = []
+    region_stats = {}
+    
+    for ch_name in info.get("channel_names", []):
+        ch_info = {
+            "name": ch_name,
+            "type": _detect_channel_type(ch_name),
+        }
+        # 脑区映射
+        brain = _map_brain_region(ch_name)
+        if brain:
+            ch_info["brain_region"] = brain["zone"]
+            ch_info["function"] = brain["function"]
+            ch_info["color"] = brain["color"]
+            # 统计各脑区通道数
+            region = brain["zone"]
+            region_stats[region] = region_stats.get(region, 0) + 1
+        else:
+            ch_info["brain_region"] = "未知"
+            ch_info["function"] = "未识别"
+            ch_info["color"] = "#808080"
+        channels.append(ch_info)
+    
+    # 信号质量评估（基于已知通道）
+    known_channels = sum(1 for c in channels if c["brain_region"] != "未知")
+    total_channels = len(channels)
+    quality = "excellent" if known_channels == total_channels else ("good" if known_channels > total_channels // 2 else "unknown")
+    
+    # 生成解读建议
+    suggestion = _generate_suggestion(info, channels, region_stats)
+    
+    return {
+        **info,
+        "channels": channels,
+        "region_stats": region_stats,
+        "quality": quality,
+        "suggestion": suggestion,
+    }
+
+
+def _detect_channel_type(ch_name: str) -> str:
+    """检测通道类型：EEG、EOG、EMG、ECG等"""
+    ch = ch_name.upper()
+    if ch.startswith("EOG"): return "EOG (眼电)"
+    if ch.startswith("EMG"): return "EMG (肌电)"
+    if ch.startswith("ECG") or ch.startswith("EKG"): return "ECG (心电)"
+    if ch.startswith("REF") or ch.startswith("REF"): return "参考电极"
+    if any(x in ch for x in ["EOG", "EMG", "ECG", "EKG", "TRIG", "MARK"]): return "其他"
+    # 10-20系统默认是EEG
+    if len(ch) <= 4 and any(c.isalpha() for c in ch): return "EEG"
+    return "EEG"
+
+
+def _generate_suggestion(info: dict, channels: list, region_stats: dict) -> dict:
+    """基于文件分析生成解读建议"""
+    n_ch = len(channels)
+    duration = info.get("duration_sec", 0)
+    fs = info.get("fs", 500)
+    
+    suggestion = {
+        "summary": "",
+        "features": [],
+        "tips": [],
+    }
+    
+    # 通道数分析
+    if n_ch <= 2:
+        suggestion["summary"] = "检测到前额叶脑电数据，适合基础放松/专注度分析"
+        suggestion["features"].append("⚡ 通道数较少，建议配合引导式校准获取更准确解读")
+    elif n_ch <= 8:
+        suggestion["summary"] = "检测到多通道脑电数据，可分析脑区活跃模式和区域间协调性"
+        suggestion["features"].append("🎯 可分析前额叶、额叶、颞叶等多个脑区的活跃状态")
+    else:
+        suggestion["summary"] = "检测到专业级多通道脑电数据，支持完整的脑区分析和连接性研究"
+        suggestion["features"].append("🧠 建议进行功能连接分析和ICA伪迹去除")
+    
+    # 脑区覆盖分析
+    regions_coverage = list(region_stats.keys())
+    if "前额叶" in regions_coverage:
+        suggestion["tips"].append("✅ 前额叶覆盖完整，适合专注度和情绪分析")
+    if "枕叶" in regions_coverage or "左枕叶" in regions_coverage:
+        suggestion["tips"].append("✅ 枕叶覆盖，可检测Alpha波（闭眼休息状态）")
+    if "左中央" in regions_coverage or "右中央" in regions_coverage:
+        suggestion["tips"].append("✅ 中央区覆盖，可分析感觉运动节律(Mu波)")
+    
+    # 时长分析
+    if duration < 60:
+        suggestion["tips"].append("📊 记录时长较短(<1分钟)，建议至少采集5分钟以获得稳定基线")
+    elif duration < 300:
+        suggestion["tips"].append("📊 记录时长适中(1-5分钟)，适合快速分析")
+    else:
+        suggestion["tips"].append("📊 记录时长充足(>5分钟)，建议进行完整的时序分析")
+    
+    # 采样率分析
+    if fs < 250:
+        suggestion["tips"].append("⚠️ 采样率偏低({}Hz)，低频分析可能受限，建议250Hz以上".format(fs))
+    elif fs < 500:
+        suggestion["tips"].append("📈 采样率{}Hz，满足基础分析需求".format(fs))
+    else:
+        suggestion["tips"].append("✅ 采样率{}Hz充足，支持高质量频谱分析".format(fs))
+    
+    return suggestion
 
 
 @app.post("/api/source/switch")
@@ -514,6 +706,8 @@ from paradigm.api import set_ws_clients
 set_ws_clients(connected_clients)
 
 data_source = None  # 当前活跃数据源
+artifact_detector = None  # 全局伪迹检测器
+last_artifact_check = 0  # 上次伪迹检测时间戳
 mock_source = None   # Mock数据源(缓存)
 file_source = None   # 文件数据源
 serial_source = None  # 串口数据源
@@ -566,6 +760,12 @@ async def websocket_endpoint(ws: WebSocket):
             "source_type": current_source_type,
         })
         
+        # 初始化伪迹检测器
+        global artifact_detector, last_artifact_check
+        artifact_detector = ArtifactDetector(fs=data_source.fs, threshold_uv=150.0)
+        last_artifact_check = time.time()
+        artifact_buffer = []  # 缓存帧用于伪迹检测
+        
         # 持续推送数据
         send_counter = 0  # Topomap计数器
         timefreq_ch_idx = 0  # 时频图通道索引（可动态切换）
@@ -595,6 +795,28 @@ async def websocket_endpoint(ws: WebSocket):
             # 读取一帧数据
             frame = data_source.read_frame()
             
+            # ===== 实时伪迹检测（预处理之前，用原始数据）=====
+            artifact_buffer.append(frame["raw"].copy())
+            if time.time() - last_artifact_check >= 2.0 and len(artifact_buffer) >= 10:
+                artifact_raw = np.concatenate(artifact_buffer[-20:], axis=1)
+                artifact_result = artifact_detector.detect_all(artifact_raw)
+                
+                # 始终推送结果（包括0伪迹=信号良好）
+                artifact_alert = {
+                    "type": "artifact_alert",
+                    "timestamp": time.time(),
+                    "total": artifact_result["total_artifacts"],
+                    "summary": artifact_result.get("summary", {}),
+                    "bad_ratio": artifact_result.get("bad_ratio_percent", 0),
+                    "tips": _generate_artifact_tips(artifact_result),
+                }
+                await ws.send_json(artifact_alert)
+                if artifact_result['total_artifacts'] > 0:
+                    print(f"[NeuroViz] 伪迹检测: {artifact_result['total_artifacts']}个 ({artifact_result.get('summary', {})})")
+                
+                artifact_buffer = artifact_buffer[-10:]
+                last_artifact_check = time.time()
+            
             # 预处理（陷波 + 带通 + 伪迹去除）
             if preprocessor is not None:
                 raw_clean = preprocessor.process(frame["raw"])
@@ -602,8 +824,10 @@ async def websocket_endpoint(ws: WebSocket):
                 frame["ch1"] = raw_clean[0] if raw_clean.shape[0] > 0 else frame["ch1"]
                 frame["ch2"] = raw_clean[1] if raw_clean.shape[0] > 1 else (raw_clean[0] if raw_clean.shape[0] > 0 else frame["ch2"])
             
-            # 情绪分析
+            # 情绪分析（使用预处理后数据）
             features = emotion_engine.analyze(frame["ch1"], frame["ch2"])
+            
+            # 伪迹检测已移到预处理之前
             
             # 组装推送数据（波形只推64点降采样）
             raw = frame["raw"]
@@ -626,6 +850,7 @@ async def websocket_endpoint(ws: WebSocket):
                     payload['channel_bands'] = [ {k: float(v) for k,v in ch.items()} for ch in ch_bands ]
             except Exception as e:
                 print(f"[NeuroViz] compute_all_channels 失败: {e}")
+                payload["channel_bands"] = []
             
             # 频谱瀑布图更新(添加spectrogram字段到payload)
             if 'spectrogram_processor' in globals() and spectrogram_processor:
@@ -639,7 +864,7 @@ async def websocket_endpoint(ws: WebSocket):
                 try:
                     # 使用channel_bands构建Topomap（全部8通道）
                     values = {}
-                    electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T3','T4','C3','C4','T5','P3','P4','T6','O1','O2']
+                    electrode_names = ['Fp1','Fp2','F7','F3','F4','F8','T7','T8','C3','C4','P7','P3','P4','P8','O1','O2']
                     if 'channel_bands' in payload and payload['channel_bands']:
                         for i, ch_data in enumerate(payload['channel_bands']):
                             if i < len(electrode_names):

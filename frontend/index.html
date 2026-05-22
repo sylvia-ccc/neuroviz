@@ -807,6 +807,13 @@ function connectWS() {
   };
   ws.onmessage = (event) => {
     const data = JSON.parse(event.data);
+    
+    // 处理伪迹警告
+    if (data.type === 'artifact_alert') {
+      handleArtifactAlert(data);
+      return;
+    }
+    
     if (data.type === 'config') {
       console.log('[WS] Config received:', data);
       const nCh = data.n_channels || 2;
@@ -881,7 +888,9 @@ function connectWS() {
       document.getElementById('i-timefreq').src = 'data:image/png;base64,' + data.timefreq;
     }
     if (data.topomap) {
-      document.getElementById('i-topomap').src = 'data:image/png;base64,' + data.topomap;
+      const el = document.getElementById('i-topomap');
+      el.src = 'data:image/png;base64,' + data.topomap;
+      el.style.display = 'block';
     }
   };
 }
@@ -2443,6 +2452,81 @@ function updateParadigmStatus() {
         }
       }
     });
+}
+
+// 处理伪迹警告
+function handleArtifactAlert(alert) {
+  console.log('[Artifact]', alert);
+  
+  // 更新伪迹计数栏
+  const artifactBar = document.getElementById('artifact-bar');
+  const summary = alert.summary || {};
+  
+  let html = '<span class="label">伪迹检测:</span>';
+  
+  if (summary.blink > 0) {
+    html += `<span class="count blink">👁️ 眨眼 ${summary.blink}</span>`;
+  }
+  if (summary.eog > 0) {
+    html += `<span class="count eog">👀 眼动 ${summary.eog}</span>`;
+  }
+  if (summary.emg > 0) {
+    html += `<span class="count emg">💪 肌电 ${summary.emg}</span>`;
+  }
+  if (summary.movement > 0) {
+    html += `<span class="count" style="background:rgba(251,113,133,0.15);color:#fb7185;">🚶 移动 ${summary.movement}</span>`;
+  }
+  if (alert.total === 0) {
+    html += '<span class="count" style="background:rgba(52,211,153,0.15);color:#34d399;">✅ 信号良好</span>';
+  }
+  
+  artifactBar.innerHTML = html;
+  
+  // 显示提示信息（如果有）
+  if (alert.tips && alert.tips.length > 0) {
+    showNotification(alert.tips.join('\n'), alert.total > 10 ? 'warning' : 'info');
+  }
+}
+
+// 显示通知
+function showNotification(message, type = 'info') {
+  // 创建或获取通知元素
+  let notif = document.getElementById('artifact-notification');
+  if (!notif) {
+    notif = document.createElement('div');
+    notif.id = 'artifact-notification';
+    notif.style.cssText = `
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      max-width: 400px;
+      text-align: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: pre-line;
+    `;
+    document.body.appendChild(notif);
+  }
+  
+  // 设置样式和内容
+  const styles = {
+    info: 'background:rgba(96,165,250,0.9);color:#fff;',
+    warning: 'background:rgba(251,191,36,0.9);color:#000;',
+    error: 'background:rgba(248,113,113,0.9);color:#fff;'
+  };
+  notif.style.cssText += styles[type] || styles.info;
+  notif.textContent = message;
+  notif.style.opacity = '1';
+  
+  // 3秒后淡出
+  setTimeout(() => {
+    notif.style.opacity = '0';
+  }, 3000);
 }
 
 // WebSocket实时处理范式事件

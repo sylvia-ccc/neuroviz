@@ -219,6 +219,10 @@ class MockDataSource:
         return sig
 
     def _apply_blink(self, raw, n_samples):
+        """
+        眨眼伪迹：高幅度尖峰（前额通道为主）
+        幅度 180µV（超过150µV检测阈值）
+        """
         if self.scene == "blink":
             self._blink_active = True
             self._blink_timer = int(0.25 * self.fs)
@@ -226,18 +230,23 @@ class MockDataSource:
         if getattr(self, '_blink_active', False) and self._blink_timer > 0:
             blink_n = min(n_samples, self._blink_timer)
             t_blink = np.arange(blink_n) / self.fs
-            env = 80.0 * np.exp(-0.5 * ((t_blink - 0.125) / 0.04) ** 2)
+            env = 180.0 * np.exp(-0.5 * ((t_blink - 0.125) / 0.04) ** 2)  # 180µV峰值
             for ch in range(self.n_channels):
-                if ch < 2:      w = 1.0
+                if ch < 2:      w = 1.0   # Fp1/Fp2 最大
                 elif ch < 4:    w = 0.4
                 elif ch < 6:    w = 0.05
-                else:            w = 0.02
+                else:           w = 0.02
                 raw[ch, :blink_n] += (w * env).astype(np.float32)
             self._blink_timer -= n_samples
             if self._blink_timer <= 0:
                 self._blink_active = False
         else:
             self._next_blink -= n_samples / self.fs
+            # 增加随机眨眼（即使在relax/focus模式）
+            if self._next_blink <= 0:
+                self._blink_active = True
+                self._blink_timer = int(0.25 * self.fs)
+                self._next_blink = np.random.uniform(5.0, 12.0)  # 5-12秒随机眨眼
 
     def _apply_ekg(self, raw, n, t):
         ekg = np.sin(2 * np.pi * 1.2 * t)

@@ -150,15 +150,25 @@ class ArtifactDetector:
         merged = self._merge_artifacts(artifacts, gap_ms=200)
         return merged
     
-    def detect_movement(self, data: np.ndarray) -> List[Dict]:
+    def detect_movement(self, data: np.ndarray, exclude_channels: list = None) -> List[Dict]:
         """
         检测移动伪迹（全通道大幅度偏移）
+        exclude_channels: 已被其他伪迹占用的通道（避免重复检测）
         """
         n_ch = data.shape[0]
         n_samples = data.shape[1]
         
-        # 所有通道同时超阈值
-        all_above = np.all(np.abs(data) > self.threshold, axis=0)
+        # 只检测未被其他伪迹占用的通道
+        if exclude_channels is None:
+            exclude_channels = []
+        
+        active_channels = [ch for ch in range(n_ch) if ch not in exclude_channels]
+        if len(active_channels) < n_ch:
+            # 只检测剩余通道的同时超阈值
+            subset = data[active_channels, :]
+            all_above = np.all(np.abs(subset) > self.threshold, axis=0)
+        else:
+            all_above = np.all(np.abs(data) > self.threshold, axis=0)
         
         artifacts = []
         i = 0
@@ -208,24 +218,36 @@ class ArtifactDetector:
         returns: {artifacts: [...], summary: {blink: n, eog: n, ...}, bad_ratio: %}
         """
         all_artifacts = []
+        blink_affected_channels = []
+        eog_affected_channels = []
         
-        # 眨眼（前额通道）
+        # 1. 眨眼（前额通道）- 优先检测
         if data.shape[0] >= 1:
             blinks = self.detect_blink(data, ch_idx=0)
             all_artifacts.extend(blinks)
+            if blinks:
+                blink_affected_channels.append(0)
+        if data.shape[0] >= 2:
+            blinks2 = self.detect_blink(data, ch_idx=1)
+            all_artifacts.extend(blinks2)
+            if blinks2:
+                blink_affected_channels.append(1)
         
-        # 眼动（需要2+通道）
+        # 2. 眼动（需要2+通道）
         if data.shape[0] >= 2:
             eogs = self.detect_eog(data, ch_indices=(0, 1))
             all_artifacts.extend(eogs)
+            if eogs:
+                eog_affected_channels = [0, 1]
         
-        # 肌电（检查所有通道）
+        # 3. 肌电（检查所有通道）
         for ch in range(min(data.shape[0], 4)):  # 最多检查4通道
             emgs = self.detect_emg(data, ch_idx=ch)
             all_artifacts.extend(emgs)
         
-        # 移动伪迹
-        movements = self.detect_movement(data)
+        # 4. 移动伪迹（排除已有其他伪迹的通道）
+        exclude_ch = list(set(blink_affected_channels + eog_affected_channels))
+        movements = self.detect_movement(data, exclude_channels=exclude_ch)
         all_artifacts.extend(movements)
         
         # 按时间排序
