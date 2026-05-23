@@ -375,6 +375,14 @@ body {
 #artifact-bar .eog { background: rgba(251,191,36,0.15); color: #fbbf24; }
 #artifact-bar .emg { background: rgba(129,140,248,0.15); color: #818cf8; }
 
+/* ===== Quality Bar ===== */
+#quality-bar { display: flex; gap: 6px; align-items: center; padding: 6px 10px; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); font-size: 11px; }
+#quality-bar .label { color: var(--text-muted); font-weight: 500; }
+#quality-bar .ql { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 1px; cursor: pointer; }
+.ql-good { background: #22c55e; box-shadow: 0 0 4px rgba(34,197,94,0.5); }
+.ql-warning { background: #eab308; box-shadow: 0 0 4px rgba(234,179,8,0.5); }
+.ql-bad { background: #ef4444; box-shadow: 0 0 4px rgba(239,68,68,0.5); }
+
 /* ===== Epoch Panel ===== */
 #epoch-panel {
   background: var(--bg-glass);
@@ -686,6 +694,19 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
       <span class="count emg" id="art-emg">肌电 0</span>
       <span class="label" id="art-bad-ratio">坏段 0%</span>
     </div>
+    <!-- 信号质量指示器 -->
+    <div id="quality-bar" style="margin-top:6px;">
+      <span class="label">信号:</span>
+      <span id="quality-overall" style="font-size:12px;font-weight:600;">检测中...</span>
+      <span id="quality-ch0" class="ql" title="Ch0"></span>
+      <span id="quality-ch1" class="ql" title="Ch1"></span>
+      <span id="quality-ch2" class="ql" title="Ch2"></span>
+      <span id="quality-ch3" class="ql" title="Ch3"></span>
+      <span id="quality-ch4" class="ql" title="Ch4"></span>
+      <span id="quality-ch5" class="ql" title="Ch5"></span>
+      <span id="quality-ch6" class="ql" title="Ch6"></span>
+      <span id="quality-ch7" class="ql" title="Ch7"></span>
+    </div>
     <div id="epoch-info" style="color:var(--text-secondary);font-size:11px;margin-top:4px;">共 0 段</div>
   </div>
 
@@ -775,6 +796,11 @@ let spectrogramHistory = [];
 let spectrogramNF = 0;
 let timefreqChIdx = 0;
 let latestChannelBands = null;
+let latestFeatures = null;
+let latestArtifactSummary = null;
+let latestTopomap = null;
+let latestSpectrogram = null;
+let sessionStartTime = Date.now();
 
 // Mode state
 let currentMode = 'simple';
@@ -810,7 +836,14 @@ function connectWS() {
     
     // 处理伪迹警告
     if (data.type === 'artifact_alert') {
+      latestArtifactSummary = data.summary;
       handleArtifactAlert(data);
+      return;
+    }
+    
+    // 处理信号质量
+    if (data.type === 'quality') {
+      handleQuality(data);
       return;
     }
     
@@ -824,6 +857,7 @@ function connectWS() {
       for (let i = 0; i < nCh; i++) sel.add(new Option('Ch' + i, i));
       console.log('[Config] n_channels=' + nCh);
     }
+    if (data.channels) latestChannelNames = data.channels;
     if (data.raw) {
       latestRawData = data.raw;
       // Roll buffers
@@ -867,6 +901,7 @@ function connectWS() {
       handleParadigmEvent(data.event);
     }
     if (data.features) {
+      latestFeatures = data.features;
       if (data.features.bands_ch1) latestBands = data.features.bands_ch1;
       else if (data.features.bands) latestBands = data.features.bands;
       if (data.features.emotion) latestEmotion = data.features.emotion;
@@ -888,9 +923,13 @@ function connectWS() {
       document.getElementById('i-timefreq').src = 'data:image/png;base64,' + data.timefreq;
     }
     if (data.topomap) {
+      latestTopomap = data.topomap;
       const el = document.getElementById('i-topomap');
       el.src = 'data:image/png;base64,' + data.topomap;
       el.style.display = 'block';
+    }
+    if (data.spectrogram) {
+      latestSpectrogram = data.spectrogram;
     }
   };
 }
@@ -1709,7 +1748,7 @@ function switchBrainView(view) {
 // ========== Source Switching ==========
 function switchSource(type) {
   document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
-  if (type === 'mock') document.getElementById('btn-mock').classList.add('btn-active');
+  if (type === 'mock') { document.getElementById('btn-mock').classList.add('btn-active'); showConnectionStatus('mock', true, 'AR(2) Simulated'); }
   if (type === 'file') document.getElementById('btn-file').classList.add('btn-active');
   if (type === 'serial') document.getElementById('btn-serial').classList.add('btn-active');
   if (type === 'lsl') document.getElementById('btn-lsl').classList.add('btn-active');
@@ -1792,24 +1831,59 @@ function showExportDialog() {
     dlg.innerHTML = `
       <div style="background:var(--bg-card);padding:24px;border-radius:12px;min-width:280px;text-align:center;">
         <h3 style="margin:0 0 16px 0;">导出数据</h3>
-        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('csv')" style="width:100%;margin-bottom:8px;">CSV (波形数据)</button>
-        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve('pdf')" style="width:100%;margin-bottom:8px;">PDF (分析报告)</button>
-        <button class="btn" onclick="this.closest('#export-dialog').remove();resolve(null)" style="width:100%;background:transparent;border:none;color:var(--text-secondary);">取消</button>
+        <button class="btn" id="dlg-btn-csv" style="width:100%;margin-bottom:8px;">CSV (波形数据)</button>
+        <button class="btn" id="dlg-btn-pdf" style="width:100%;margin-bottom:8px;">PDF (分析报告)</button>
+        <button class="btn" id="dlg-btn-cancel" style="width:100%;background:transparent;border:none;color:var(--text-secondary);">取消</button>
       </div>
     `;
     document.body.appendChild(dlg);
+    dlg.querySelector('#dlg-btn-csv').onclick = () => { dlg.remove(); resolve('csv'); };
+    dlg.querySelector('#dlg-btn-pdf').onclick = () => { dlg.remove(); resolve('pdf'); };
+    dlg.querySelector('#dlg-btn-cancel').onclick = () => { dlg.remove(); resolve(null); };
   });
 }
 
 function exportCSV() {
-  fetch('/api/export/csv', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_data:{}}) })
-    .then(r => r.blob())
-    .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='neuroviz_export.csv'; a.click(); });
+  if (!latestRawData || latestRawData.length === 0) {
+    showToast('⚠️ 无数据可导出'); return;
+  }
+  const raw = latestRawData.map(ch => ch instanceof Float32Array ? Array.from(ch) : ch);
+  const channels = latestChannelNames || raw.map((_, i) => `Ch${i}`);
+  fetch('/api/export/csv', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ raw, channels, fs: 500 })
+  })
+  .then(r => r.blob())
+  .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`neuroviz_${Date.now()}.csv`; a.click(); showToast('✅ CSV导出成功'); });
 }
+
 function exportPDF() {
-  fetch('/api/export/pdf', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({session_data:{}}) })
-    .then(r => r.blob())
-    .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download='neuroviz_report.pdf'; a.click(); });
+  if (!latestRawData || latestRawData.length === 0) {
+    showToast('⚠️ 无数据可导出'); return;
+  }
+  showToast('📋 正在生成报告...');
+  const raw = latestRawData.map(ch => ch instanceof Float32Array ? Array.from(ch) : ch);
+  const body = {
+    raw,
+    features: latestFeatures || {},
+    fs: 500,
+    channel_names: latestChannelNames || raw.map((_, i) => `Ch${i}`),
+    channel_bands: latestChannelBands || undefined,
+    artifact_summary: latestArtifactSummary || undefined,
+    session_duration_sec: sessionStartTime ? (Date.now() - sessionStartTime) / 1000 : undefined,
+    topomap: latestTopomap || undefined,
+    spectrogram: latestSpectrogram || undefined,
+  };
+  fetch('/api/export/pdf', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  })
+  .then(r => { 
+    if (!r.ok) return r.text().then(t => { throw new Error(t.slice(0,200)); });
+    return r.blob(); 
+  })
+  .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`neuroviz_report_${Date.now()}.pdf`; a.click(); showToast('✅ PDF报告导出成功'); })
+  .catch(e => { console.error('[PDF Export Error]', e); showToast('❌ 导出失败: ' + e.message); });
 }
 
 // ========== Resize ==========
@@ -1914,10 +1988,13 @@ function connectLsl() {
     .then(r => r.json())
     .then(data => {
       if (data.error) {
+        showConnectionStatus('lsl', false, data.error);
         alert('Connection failed: ' + data.error);
       } else {
         closeLslDialog();
         console.log('LSL connected:', data);
+        const info = data.n_channels ? `${data.n_channels}ch @ ${data.fs||'?'}Hz` : '';
+        showConnectionStatus('lsl', true, info || 'Connected');
       }
     })
     .catch(e => alert('Error: ' + e.message));
@@ -1926,6 +2003,29 @@ function connectLsl() {
 function closeLslDialog() {
   const dialog = document.getElementById('lsl-dialog');
   if (dialog) dialog.style.display = 'none';
+}
+
+// ========== Connection Status ==========
+function showConnectionStatus(source, connected, detail) {
+  let badge = document.getElementById('conn-badge');
+  if (!badge) {
+    badge = document.createElement('div');
+    badge.id = 'conn-badge';
+    badge.style.cssText = 'position:fixed;top:12px;right:12px;z-index:9999;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:all .3s;backdrop-filter:blur(8px);';
+    document.body.appendChild(badge);
+  }
+  const icon = connected ? '✅' : '❌';
+  const bg = connected ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.15)';
+  const border = connected ? '1px solid rgba(34,197,94,0.4)' : '1px solid rgba(239,68,68,0.4)';
+  const color = connected ? 'var(--color-success, #22c55e)' : 'var(--color-error, #ef4444)';
+  badge.style.background = bg;
+  badge.style.border = border;
+  badge.style.color = color;
+  badge.innerHTML = `${icon} ${source.toUpperCase()}: ${detail}`;
+  // 5秒后淡出
+  clearTimeout(badge._timer);
+  badge._timer = setTimeout(() => { badge.style.opacity = '0'; setTimeout(() => badge.remove(), 300); }, 5000);
+  badge.style.opacity = '1';
 }
 
 // ========== Marker Panel ==========
@@ -2485,6 +2585,30 @@ function handleArtifactAlert(alert) {
   // 显示提示信息（如果有）
   if (alert.tips && alert.tips.length > 0) {
     showNotification(alert.tips.join('\n'), alert.total > 10 ? 'warning' : 'info');
+  }
+}
+
+// 处理信号质量
+function handleQuality(q) {
+  console.log('[Quality]', q);
+  const overallEl = document.getElementById('quality-overall');
+  const statusMap = { good: '✅ 信号良好', warning: '⚠️ 信号一般', bad: '❌ 信号差' };
+  overallEl.textContent = statusMap[q.overall] || q.overall;
+  overallEl.style.color = q.overall === 'good' ? '#22c55e' : q.overall === 'warning' ? '#eab308' : '#ef4444';
+
+  // 更新各通道指示灯
+  (q.channels || []).forEach((ch, i) => {
+    const el = document.getElementById('quality-ch' + i);
+    if (!el) return;
+    el.className = 'ql ql-' + ch.status;
+    el.title = 'Ch' + i + ': ' + ch.status + (ch.issues.length ? ' (' + ch.issues.join(', ') + ')' : '') + '\n建议: ' + (ch.suggestion || '');
+  });
+
+  // 信号差时弹通知
+  if (q.overall === 'bad') {
+    const badCh = (q.channels || []).filter(ch => ch.status === 'bad');
+    const issues = badCh.flatMap(ch => ch.issues);
+    if (issues.length) showNotification('信号质量问题：\n' + issues.join('\n'), 'warning');
   }
 }
 

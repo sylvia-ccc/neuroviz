@@ -31,6 +31,7 @@ from processors.spectrogram import SpectrogramProcessor
 from processors.preprocessing import Preprocessor
 from processors.report import export_csv, export_pdf
 from processors.timefreq import TimeFreqProcessor
+from processors.quality import QualityDetector
 from processors.psd import compute_psd_multi, compute_stats_multi, BANDS, REF_RANGES
 from processors.epoch import Epocher, compute_epoch_trend
 from processors.artifact import ArtifactDetector
@@ -720,6 +721,9 @@ current_source_type = "mock"  # mock | file | serial
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
     global data_source, emotion_engine, mock_source, file_source, current_source_type
+    global preprocessor, timefreq_processor, spectrogram_processor
+    global artifact_detector, last_artifact_check, artifact_buffer
+    global quality_detector, last_quality_check
     
     await ws.accept()
     connected_clients.append(ws)
@@ -761,10 +765,12 @@ async def websocket_endpoint(ws: WebSocket):
         })
         
         # 初始化伪迹检测器
-        global artifact_detector, last_artifact_check
         artifact_detector = ArtifactDetector(fs=data_source.fs, threshold_uv=150.0)
         last_artifact_check = time.time()
         artifact_buffer = []  # 缓存帧用于伪迹检测
+        
+        # 初始化信号质量检测器
+        quality_detector = QualityDetector(fs=data_source.fs, n_channels=data_source.n_channels)
         
         # 持续推送数据
         send_counter = 0  # Topomap计数器
@@ -797,6 +803,8 @@ async def websocket_endpoint(ws: WebSocket):
             
             # ===== 实时伪迹检测（预处理之前，用原始数据）=====
             artifact_buffer.append(frame["raw"].copy())
+            
+            # 伪迹检测（每2秒）
             if time.time() - last_artifact_check >= 2.0 and len(artifact_buffer) >= 10:
                 artifact_raw = np.concatenate(artifact_buffer[-20:], axis=1)
                 artifact_result = artifact_detector.detect_all(artifact_raw)
@@ -816,6 +824,22 @@ async def websocket_endpoint(ws: WebSocket):
                 
                 artifact_buffer = artifact_buffer[-10:]
                 last_artifact_check = time.time()
+            
+            # 信号质量评估（独立定时器，每2秒）
+            if not hasattr(globals(), 'last_quality_check') or time.time() - last_quality_check >= 2.0:
+                quality_detector.push(frame["raw"])
+                quality_result = quality_detector.assess_all()
+                quality_payload = {
+                    "type": "quality",
+                    "timestamp": time.time(),
+                    "overall": quality_result["overall"],
+                    "channels": [{"ch": i, "status": ch["status"], "issues": ch["issues"], "suggestion": ch["suggestion"]} for i, ch in enumerate(quality_result["channels"])],
+                    "summary": quality_result["summary"],
+                }
+                await ws.send_json(quality_payload)
+                if quality_result["overall"] != "good":
+                    print(f"[NeuroViz] 信号质量: {quality_result['overall']}, 问题通道: {[i for i,ch in enumerate(quality_result['channels']) if ch['status'] != 'good']}")
+                last_quality_check = time.time()
             
             # 预处理（陷波 + 带通 + 伪迹去除）
             if preprocessor is not None:
@@ -1071,17 +1095,46 @@ async def export_csv_endpoint(body: dict):
 
 @app.post("/api/export/pdf")
 async def export_pdf_endpoint(body: dict):
-    """导出PDF报告"""
-    raw = np.array(body["raw"], dtype=np.float32)
+    """导出专业PDF分析报告"""
+    try:
+        raw_data = body.get("raw")
+        if not raw_data or len(raw_data) == 0:
+            return JSONResponse({"error": "无数据可导出，请先采集数据"}, status_code=400)
+        raw = np.array(raw_data, dtype=np.float32)
+        if raw.ndim == 1:
+            raw = raw.reshape(1, -1)
+        print(f"[NeuroViz] PDF导出: shape={raw.shape}, fs={body.get('fs',500)}")
+    except Exception as e:
+        print(f"[NeuroViz] PDF导出数据解析失败: {e}")
+        return JSONResponse({"error": f"数据格式错误: {e}"}, status_code=400)
+    
     features = body.get("features", {})
     fs = body.get("fs", 500)
+    channel_names = body.get("channel_names")
+    channel_bands = body.get("channel_bands")
+    artifact_summary = body.get("artifact_summary")
+    session_duration = body.get("session_duration_sec")
+    topomap_b64 = body.get("topomap")
+    spectrogram_b64 = body.get("spectrogram")
     
-    # 生成临时文件
     tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".pdf", delete=False, dir="/tmp")
     path = tmp.name
     tmp.close()
     
-    export_pdf(raw, features, path, fs)
+    try:
+        export_pdf(
+            raw, features, path, fs,
+            channel_names=channel_names,
+            channel_bands=channel_bands,
+            artifact_summary=artifact_summary,
+            session_duration_sec=session_duration,
+            topomap_b64=topomap_b64,
+            spectrogram_b64=spectrogram_b64,
+        )
+    except Exception as e:
+        print(f"[NeuroViz] PDF生成失败: {e}")
+        import traceback; traceback.print_exc()
+        return JSONResponse({"error": f"PDF生成失败: {e}"}, status_code=500)
     
     return FileResponse(
         path=path,

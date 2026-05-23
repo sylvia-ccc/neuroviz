@@ -8,7 +8,7 @@ import time
 from typing import Optional, List
 
 try:
-    from pylsl import resolve_stream, StreamInlet
+    import pylsl as lsl
     HAS_PYLSL = True
 except ImportError:
     HAS_PYLSL = False
@@ -34,13 +34,11 @@ class LSLDataSource:
         self.stream_type = stream_type
         self.timeout = timeout
 
-        self._inlet: Optional[StreamInlet] = None
+        self._inlet: Optional[lsl.StreamInlet] = None
         self._fs_original = fs_target
         self.n_channels = 0
         self.channel_names = []
         self._scene = "relax"
-        self._buffer = []
-        self._ptr = 0
         self._connected = False
 
         self._connect()
@@ -49,26 +47,25 @@ class LSLDataSource:
         """连接LSL流"""
         print(f"[LSLSource] 搜索{'"' + self.stream_name + '"' if self.stream_name else '任意'} {self.stream_type}流...")
 
-        # 发现流
-        streams = resolve_stream("type", self.stream_type, timeout=self.timeout)
-        if not streams:
-            raise RuntimeError(f"未找到类型为'{self.stream_type}'的LSL流")
+        # 发现流（使用正确的API）
+        streams = lsl.resolve_streams(wait_time=self.timeout)
+        
+        # 过滤类型和名称
+        filtered = []
+        for s in streams:
+            if s.type() == self.stream_type:
+                if self.stream_name is None or s.name() == self.stream_name:
+                    filtered.append(s)
+        
+        if not filtered:
+            available = [f"{s.name()} ({s.type()})" for s in streams]
+            raise RuntimeError(f"未找到类型为'{self.stream_type}'的LSL流，可用: {available}")
 
         # 选择流
-        target_stream = None
-        if self.stream_name:
-            for s in streams:
-                if s.name() == self.stream_name:
-                    target_stream = s
-                    break
-            if not target_stream:
-                available = [s.name() for s in streams]
-                raise RuntimeError(f"未找到名为'{self.stream_name}'的流，可用: {available}")
-        else:
-            target_stream = streams[0]
+        target_stream = filtered[0]
 
-        # 创建inlet
-        self._inlet = StreamInlet(target_stream, max_buflen=360)
+        # 创建inlet（使用正确的API）
+        self._inlet = lsl.StreamInlet(target_stream)
         self._fs_original = int(target_stream.nominal_srate())
         self.n_channels = target_stream.channel_count()
         self.channel_names = [f"Ch{i}" for i in range(self.n_channels)]
@@ -147,13 +144,13 @@ class LSLDataSource:
             print("[LSLSource] 连接已关闭")
 
 
-def list_lsl_streams(timeout: float = 2.0) -> List[dict]:
-    """列出当前网络上可用的LSL流"""
+def list_lsl_streams(wait_time: float = 2.0) -> List[dict]:
+    """列出当前网络上可用的LSL流（使用正确的API）"""
     if not HAS_PYLSL:
         print("需要pylsl: pip install pylsl")
         return []
 
-    streams = resolve_stream(timeout=timeout)
+    streams = lsl.resolve_streams(wait_time=wait_time)
     result = []
     for s in streams:
         result.append({
