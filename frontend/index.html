@@ -1858,32 +1858,43 @@ function exportCSV() {
 }
 
 function exportPDF() {
-  if (!latestRawData || latestRawData.length === 0) {
-    showToast('⚠️ 无数据可导出'); return;
+  console.log('[exportPDF] called, latestRawData:', latestRawData);
+  if (!latestRawData || !Array.isArray(latestRawData) || latestRawData.length === 0) {
+    showToast('⚠️ 无数据可导出，请先连接设备');
+    console.warn('[exportPDF] No data, latestRawData =', latestRawData);
+    return;
   }
   showToast('📋 正在生成报告...');
-  const raw = latestRawData.map(ch => ch instanceof Float32Array ? Array.from(ch) : ch);
-  const body = {
-    raw,
-    features: latestFeatures || {},
-    fs: 500,
-    channel_names: latestChannelNames || raw.map((_, i) => `Ch${i}`),
-    channel_bands: latestChannelBands || undefined,
-    artifact_summary: latestArtifactSummary || undefined,
-    session_duration_sec: sessionStartTime ? (Date.now() - sessionStartTime) / 1000 : undefined,
-    topomap: latestTopomap || undefined,
-    spectrogram: latestSpectrogram || undefined,
-  };
-  fetch('/api/export/pdf', {
-    method: 'POST', headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(body)
-  })
-  .then(r => { 
-    if (!r.ok) return r.text().then(t => { throw new Error(t.slice(0,200)); });
-    return r.blob(); 
-  })
-  .then(b => { const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`neuroviz_report_${Date.now()}.pdf`; a.click(); showToast('✅ PDF报告导出成功'); })
-  .catch(e => { console.error('[PDF Export Error]', e); showToast('❌ 导出失败: ' + e.message); });
+  try {
+    const raw = latestRawData.map(ch => ch instanceof Float32Array ? Array.from(ch) : (Array.isArray(ch) ? ch : []));
+    console.log('[exportPDF] raw prepared, channels:', raw.length, 'sampleLen:', raw[0]?.length);
+    const body = {
+      raw,
+      features: latestFeatures || {},
+      fs: 500,
+      channel_names: latestChannelNames || raw.map((_, i) => `Ch${i}`),
+      channel_bands: latestChannelBands || undefined,
+      artifact_summary: latestArtifactSummary || undefined,
+      session_duration_sec: sessionStartTime ? (Date.now() - sessionStartTime) / 1000 : undefined,
+      topomap: latestTopomap || undefined,
+      spectrogram: latestSpectrogram || undefined,
+    };
+    console.log('[exportPDF] sending, body.raw length:', body.raw.length);
+    fetch('/api/export/pdf', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(body)
+    })
+    .then(r => {
+      console.log('[exportPDF] response status:', r.status);
+      if (!r.ok) return r.text().then(t => { throw new Error(t.slice(0,200)); });
+      return r.blob();
+    })
+    .then(b => { console.log('[exportPDF] PDF blob size:', b.size); const a = document.createElement('a'); a.href=URL.createObjectURL(b); a.download=`neuroviz_report_${Date.now()}.pdf`; a.click(); showToast('✅ PDF报告导出成功'); })
+    .catch(e => { console.error('[exportPDF] Error:', e); showToast('❌ 导出失败: ' + e.message); });
+  } catch(err) {
+    console.error('[exportPDF] prepare error:', err);
+    showToast('❌ 数据准备失败: ' + err.message);
+  }
 }
 
 // ========== Resize ==========
