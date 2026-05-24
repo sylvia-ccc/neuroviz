@@ -11,7 +11,7 @@ import time
 import numpy as np
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pathlib import Path
 
 # 添加backend目录到路径
@@ -411,7 +411,7 @@ async def disconnect_serial():
 @app.get("/api/lsl/streams")
 async def api_list_lsl_streams():
     """列出当前网络上可用的LSL流"""
-    streams = list_lsl_streams(timeout=2.0)
+    streams = list_lsl_streams(wait_time=2.0)
     return {"streams": streams, "count": len(streams)}
 
 @app.post("/api/lsl/connect")
@@ -1076,22 +1076,31 @@ async def generate_topomap_endpoint(body: dict):
 @app.post("/api/export/csv")
 async def export_csv_endpoint(body: dict):
     """导出CSV"""
-    raw = np.array(body["raw"], dtype=np.float32)
-    channels = body.get("channels", [f"Ch{i}" for i in range(raw.shape[0])])
-    fs = body.get("fs", 500)
-    
-    # 生成临时文件
-    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, dir="/tmp")
-    path = tmp.name
-    tmp.close()
-    
-    export_csv(raw, channels, fs, path)
-    
-    return FileResponse(
-        path=path,
-        filename=f"neuroviz_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-        media_type="text/csv"
-    )
+    try:
+        raw_data = body.get("raw")
+        if not raw_data or len(raw_data) == 0:
+            return JSONResponse({"error": "无数据可导出"}, status_code=400)
+        raw = np.array(raw_data, dtype=np.float32)
+        if raw.ndim == 1:
+            raw = raw.reshape(1, -1)
+        channels = body.get("channels", [f"Ch{i}" for i in range(raw.shape[0])])
+        fs = body.get("fs", 500)
+        
+        # 生成临时文件
+        tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False, dir="/tmp")
+        path = tmp.name
+        tmp.close()
+        
+        export_csv(raw, channels, fs, path)
+        
+        return FileResponse(
+            path=path,
+            filename=f"neuroviz_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+            media_type="text/csv"
+        )
+    except Exception as e:
+        print(f"[NeuroViz] CSV导出失败: {e}")
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 @app.post("/api/export/pdf")
 async def export_pdf_endpoint(body: dict):
