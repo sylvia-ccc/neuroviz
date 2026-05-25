@@ -1747,6 +1747,7 @@ function switchBrainView(view) {
 
 // ========== Source Switching ==========
 function switchSource(type) {
+  console.log('[switchSource] called with type:', type);
   document.querySelectorAll('#toolbar .btn').forEach(b => b.classList.remove('btn-active'));
   if (type === 'mock') { document.getElementById('btn-mock').classList.add('btn-active'); showConnectionStatus('mock', true, 'AR(2) Simulated'); }
   if (type === 'file') document.getElementById('btn-file').classList.add('btn-active');
@@ -1759,6 +1760,7 @@ function switchSource(type) {
     document.getElementById('file-input').click();
   }
   if (type === 'lsl') {
+    console.log('[switchSource] Calling showLslDialog()');
     showLslDialog();
   }
 }
@@ -1936,11 +1938,25 @@ async function fetchEpochAnalysis() {
 
 // ========== LSL Dialog ==========
 function showLslDialog() {
+  console.log('[LSL] showLslDialog() called');
   let dialog = document.getElementById('lsl-dialog');
   if (!dialog) {
+    console.log('[LSL] Creating new dialog');
     dialog = document.createElement('div');
     dialog.id = 'lsl-dialog';
-    dialog.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(8,11,20,0.88);backdrop-filter:blur(16px);z-index:99999;display:flex;justify-content:center;align-items:center;';
+    // Use Object.assign for robust style setting
+    Object.assign(dialog.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: 'rgba(8,11,20,0.88)',
+      zIndex: '99999',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    });
     dialog.innerHTML = `
       <div style="background:var(--bg-elevated);border:1px solid var(--border-strong);border-radius:12px;padding:24px;max-width:500px;width:90%;">
         <h3 style="color:var(--accent-primary);margin-bottom:16px;">LSL Stream Connection</h3>
@@ -1957,9 +1973,12 @@ function showLslDialog() {
       </div>
     `;
     document.body.appendChild(dialog);
+    console.log('[LSL] Dialog created and appended to body');
   } else {
+    console.log('[LSL] Reusing existing dialog, setting display:flex');
     dialog.style.display = 'flex';
   }
+  console.log('[LSL] Calling refreshLslStreams()');
   refreshLslStreams();
 }
 
