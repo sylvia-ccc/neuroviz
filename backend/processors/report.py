@@ -70,6 +70,8 @@ BAND_NAMES_CN = {
     "gamma": "γ (30-50Hz)",
 }
 
+REPORT_FONT_NAME = "Helvetica"
+
 
 def export_pdf(
     data: np.ndarray,
@@ -114,7 +116,7 @@ def export_pdf(
         raise RuntimeError("需要reportlab: pip install reportlab")
 
     # ---- 注册中文字体 ----
-    _register_chinese_fonts()
+    font_name = _register_chinese_fonts()
 
     doc = SimpleDocTemplate(
         output_path, pagesize=A4,
@@ -127,30 +129,30 @@ def export_pdf(
     # ---- 自定义样式 ----
     style_title = ParagraphStyle(
         "CNTitle",
-        fontName="STHeiti", fontSize=22, leading=28,
+        fontName=font_name, fontSize=22, leading=28,
         textColor=colors.HexColor(BRAND["purple"]),
         spaceAfter=6, alignment=TA_CENTER,
     )
     style_subtitle = ParagraphStyle(
         "CNSubtitle",
-        fontName="STHeiti", fontSize=10, leading=14,
+        fontName=font_name, fontSize=10, leading=14,
         textColor=colors.HexColor("#666666"),
         spaceAfter=12,
     )
     style_h2 = ParagraphStyle(
         "CNH2",
-        fontName="STHeiti", fontSize=14, leading=20,
+        fontName=font_name, fontSize=14, leading=20,
         textColor=colors.HexColor(BRAND["dark"]),
         spaceBefore=14, spaceAfter=6,
     )
     style_body = ParagraphStyle(
         "CNBody",
-        fontName="STHeiti", fontSize=10, leading=16,
+        fontName=font_name, fontSize=10, leading=16,
         textColor=colors.HexColor("#333333"),
     )
     style_small = ParagraphStyle(
         "CNSmall",
-        fontName="STHeiti", fontSize=8, leading=12,
+        fontName=font_name, fontSize=8, leading=12,
         textColor=colors.HexColor("#999999"),
     )
 
@@ -332,7 +334,8 @@ def export_pdf(
 # ============ 辅助函数 ============
 
 def _register_chinese_fonts():
-    """注册中文字体（macOS系统字体）"""
+    """Register a Chinese-capable font and return its ReportLab font name."""
+    global REPORT_FONT_NAME
     from reportlab.pdfbase import pdfmetrics as _pm
     from reportlab.pdfbase.ttfonts import TTFont as _TF
     font_paths = [
@@ -347,15 +350,19 @@ def _register_chinese_fonts():
             _pm.registerFont(_TF('STHeiti-Italic', path, subfontIndex=0))
             _pm.registerFont(_TF('STHeiti-BoldItalic', path, subfontIndex=0))
             _pm.registerFontFamily('STHeiti', normal='STHeiti', bold='STHeiti-Bold', italic='STHeiti-Italic', boldItalic='STHeiti-BoldItalic')
-            return
+            REPORT_FONT_NAME = "STHeiti"
+            return REPORT_FONT_NAME
         except Exception:
             continue
     try:
         from reportlab.pdfbase.cidfonts import UnicodeCIDFont
         _pm.registerFont(UnicodeCIDFont('STSong-Light'))
         _pm.registerFontFamily('STSong-Light', normal='STSong-Light', bold='STSong-Light')
+        REPORT_FONT_NAME = "STSong-Light"
+        return REPORT_FONT_NAME
     except Exception:
-        pass
+        REPORT_FONT_NAME = "Helvetica"
+        return REPORT_FONT_NAME
 
 
 def _add_table(story, rows, col_widths=None, header_row=0):
@@ -367,7 +374,7 @@ def _add_table(story, rows, col_widths=None, header_row=0):
     style_cmds = [
         ("ALIGN", (0, 0), (-1, -1), "CENTER"),
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-        ("FONTNAME", (0, 0), (-1, -1), "STHeiti"),
+        ("FONTNAME", (0, 0), (-1, -1), REPORT_FONT_NAME),
         ("FONTSIZE", (0, 0), (-1, -1), 9),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
         ("TOPPADDING", (0, 0), (-1, -1), 6),
@@ -377,7 +384,7 @@ def _add_table(story, rows, col_widths=None, header_row=0):
         style_cmds += [
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor(BRAND["dark"])),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-            ("FONTNAME", (0, 0), (-1, 0), "STHeiti"),
+            ("FONTNAME", (0, 0), (-1, 0), REPORT_FONT_NAME),
             ("FONTSIZE", (0, 0), (-1, 0), 10),
         ]
     # 交替行背景
