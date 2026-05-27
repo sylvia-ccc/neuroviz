@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.bak
+*.bak2
+
+# Virtual environments
+backend/venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test data (large files)
+data/rawData*.csv
+data/test_*.edf
+data/test_*.csv
+data/sample_*.csv
+data/image.png
+data/neuroviz_export.csv
+
+# Test output
+test_topomap.png
