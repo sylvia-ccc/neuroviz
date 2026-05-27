@@ -4,6 +4,65 @@
 
 ---
 
+## 🚀 Codex 快速开始
+
+### 第一步：同步最新代码
+```bash
+# 1. 克隆仓库
+git clone https://github.com/sylvia-ccc/neuroviz.git
+cd neuroviz
+
+# 2. 【重要】从服务器拉取最新代码（服务器代码比本地新）
+# 登录服务器拉取差异：
+ssh root@43.136.117.175
+cd /var/www/neuroviz
+git diff backend/app.py > /tmp/server_app.patch
+# 下载 patch 到本地：
+exit
+scp root@43.136.117.175:/tmp/server_app.patch .
+git apply server_app.patch
+
+# 或者直接用 rsync 同步整个 backend 目录
+rsync -avz --exclude='venv' --exclude='__pycache__' \
+  root@43.136.117.175:/var/www/neuroviz/backend/ ./backend/
+```
+
+### 第二步：修复高优先级 Bug
+```bash
+# 1. 先启动本地后端测试
+cd neuroviz/backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --host 127.0.0.1 --port 8080
+
+# 2. 打开 frontend/index.html 测试
+# 浏览器访问 http://127.0.0.1:8080（后端会返回前端HTML）
+
+# 3. 修复 Bug 1: updateArtifactBar null 检查
+# 在 index.html 约 2839 行附近，添加 setSafe 辅助函数
+
+# 4. 修复 Bug 2: uploadFile response.ok 检查
+# 在 fetch 上传后添加 if (!response.ok) 检查
+```
+
+### 第三步：验证修复
+- 刷新浏览器，确认无 TypeError
+- 测试文件上传，确认无 413 错误
+- 提交代码：`git add . && git commit -m "fix(frontend): ..." && git push`
+
+---
+
+**Codex 任务优先级**：
+1. 🔴 同步服务器代码到本地（否则本地代码落后）
+2. 🔴 修复 updateArtifactBar null 检查（前端崩溃）
+3. 🔴 修复 uploadFile response.ok 检查（上传报错）
+4. 🟡 验证 LSL 对话框功能
+5. 🟡 验证 CSV 文件上传回放
+6. 🟢 继续 Phase 3-4 功能开发
+
+---
+
 ## 1. 项目概述
 
 **NeuroViz** — 硬件无关的 EEG 脑电可视化平台
@@ -353,5 +412,134 @@ git reset --hard fb3f8db
 
 ---
 
+## 13. 项目来龙去脉
+
+### 开发历史
+- **2026-05-19**：项目启动，Phase 1 MVP 完成（波形/频段/情绪/Topomap），商业化策略确定
+- **2026-05-20**：Phase 2 完成（文件上传/预处理/导出/时频），8通道支持，Mock AR(2)+Cholesky
+- **2026-05-21**：多通道 Topomap，3D脑热力图删除（2-8通道插值无专业意义），UI 重设计 Steps 1-3
+- **2026-05-22**：伪迹检测、PDF导出、信号质量评估实现
+- **2026-05-23**：LSL 流发现成功，API 错误修复
+- **2026-05-24**：GitHub 仓库创建，ICP 备案，DEPLOYMENT_CHECKLIST
+- **2026-05-25**：服务器部署（Nginx + SSL + WebSocket），线上 https://neuroviz.bigmonsterclaw.com
+- **2026-05-26**：线上调试——修复 Nginx 413（client_max_body_size）、WebSocket 超时（proxy_read_timeout 3600s）、asyncio.to_thread 修复（/api/analysis/artifact 和 /api/analysis/epoch 两端点同步阻塞卡死事件循环）
+- **2026-05-27**：项目交接，CODEX.md 创建，代码推送到 GitHub
+
+### 之前踩过的坑（Codex 必读，避免重蹈覆辙）
+
+1. **FastAPI 异步端点中同步阻塞调用会卡死事件循环**
+   - 症状：`/api/analysis/epoch` 和 `/api/analysis/artifact` 返回 500 超时
+   - 根因：`return epocher.analyze_all_epochs(raw)` 是同步调用，阻塞事件循环
+   - 修复：`return await asyncio.to_thread(epocher.analyze_all_epochs, raw)`
+   - **规则**：FastAPI async 端点中任何耗时的同步函数都必须用 `asyncio.to_thread()` 包装
+
+2. **Nginx 默认 `client_max_body_size` 太小**
+   - 症状：EEG 文件上传返回 413 Request Entity Too Large
+   - 根因：Nginx 默认限制 1MB，EEG 文件通常几 MB 到几十 MB
+   - 修复：在 Nginx 配置中添加 `client_max_body_size 50M;`
+   - **规则**：任何涉及文件上传的项目，Nginx 配置必须设置 client_max_body_size
+
+3. **Nginx 默认 proxy_read_timeout 60秒会断开 WebSocket**
+   - 症状：WebSocket 连接后约 60 秒自动断开，"keepalive ping timeout"
+   - 根因：Nginx 默认 60 秒读超时，WebSocket 空闲时被断开
+   - 修复：`proxy_read_timeout 3600s;` 和 `proxy_send_timeout 3600s;`
+   - **规则**：WebSocket 代理必须设置足够长的超时
+
+4. **前端 `display:none` 的 Canvas 无法初始化**
+   - 根因：Canvas 在隐藏状态时宽高为 0，无法正确初始化
+   - 修复：懒加载，在 Tab 切换到可见时才初始化
+   - **规则**：Canvas/Three.js 场景必须延迟到元素可见时初始化
+
+5. **sed 修改 Python 代码极易产生缩进错误**
+   - 根因：Python 缩进敏感，sed 很难精确处理
+   - 修复：改用 Python 脚本修改 Python 代码，或直接全量重写
+   - **规则**：修改 Python 代码优先用 Python 脚本或直接编辑，不要用 sed
+
+6. **WebSocket 端点不能引用 HTTP 路由的局部变量**
+   - 根因：WebSocket 和 HTTP 是不同的作用域
+   - 修复：使用全局变量或通过 app.state 共享
+   - **规则**：WebSocket 和 HTTP 路由之间用全局状态或 app.state 传递数据
+
+7. **前端 `response.json()` 在非 JSON 响应时崩溃**
+   - 根因：413 等错误返回 HTML 页面，`response.json()` 解析 HTML 报错
+   - 修复：先检查 `if (!response.ok)` 再解析
+   - **规则**：所有 fetch 调用必须先检查 response.ok
+
+8. **CDN 不稳定**
+   - 根因：Three.js CDN 时常无法加载
+   - 修复：本地化库文件（frontend/lib/OrbitControls.js）
+   - **规则**：关键库文件本地化，不依赖 CDN
+
+9. **numpy 2.x trapz 已废弃**
+   - 根因：`np.trapz` 在 numpy 2.x 中已移除
+   - 修复：改用 `np.trapezoid`
+   - **规则**：注意 numpy API 变更
+
+10. **2 通道 EEG 无法做 3D 全脑插值**
+    - 根因：2-8 电极不足以支撑 3D 全脑热力图
+    - 决策：删除 3D 脑热力图，保留 2D Topomap
+    - **规则**：不做专业上无意义的功能
+
+### 服务器代码与本地代码的差异详情
+
+服务器上 `app.py` 有以下本地没有的修改（通过 sed/python 直接在服务器上修改的）：
+
+1. **第 1033 行**：`return epocher.analyze_all_epochs(raw)` → `return await asyncio.to_thread(epocher.analyze_all_epochs, raw)`
+2. **第 1052 行**：`return detector.detect_all(raw)` → `return await asyncio.to_thread(detector.detect_all, raw)`
+3. **第 162-163 行**：`/api/upload` 端点添加了调试 print 输出
+4. **第 782 行**：WebSocket 循环添加了 `[NeuroViz][DEBUG] WebSocket循环开始` 调试输出
+5. **第 801 行**：WebSocket 异常捕获添加了详细错误输出
+
+**Codex 必须做的事**：从服务器同步这些修改到本地，然后推送到 GitHub，确保 Git 仓库是最新代码。
+
+### 前端代码结构（index.html ~2885 行）
+
+主要功能区域分布：
+- CSS 样式：行 1-300（玻璃态 + CSS 变量 + 品牌色）
+- HTML 结构：行 300-800（控制面板 + Canvas 容器 + 数据源切换）
+- WebSocket 连接：行 800-900
+- 波形渲染（drawWave）：行 900-1100
+- 频段柱状图：行 1100-1300
+- 情绪四象限：行 1300-1500
+- Topomap 显示：行 1500-1600
+- 频谱瀑布图：行 1600-1800
+- 伪迹检测 UI：行 1800-1900
+- 信号质量指示灯：行 1900-2000
+- 文件上传（uploadFile）：行 2000-2100
+- LSL 对话框：行 2100-2300
+- 导出功能（CSV/PDF）：行 2300-2500
+- 通道选择器：行 2500-2700
+- **updateArtifactBar**：行 ~2839（需要修复）
+- 辅助函数：行 2700-2885
+
+### WebSocket 连接地址
+
+前端当前 WebSocket 连接逻辑：
+- 自动检测协议：`location.protocol === 'https:' ? 'wss:' : 'ws:'`
+- 本地开发：`ws://127.0.0.1:8080/ws`
+- 线上：`wss://neuroviz.bigmonsterclaw.com/ws`
+
+### 关键全局变量
+
+```javascript
+let ws;                    // WebSocket 实例
+let dataSource = 'mock';   // 当前数据源
+let latestRawData = null;  // 最新原始数据
+let hiddenChannels = new Set(); // 隐藏的通道
+let channelBands = {};     // 8通道频段能量
+let baselineFrames = 0;    // 基线校准帧计数
+```
+
+### 品牌视觉规范
+
+- **品牌色**：深空玄灰 #121826、神经紫 #7B61FF、鎏金 #C8B388、浅蓝 #8AA6C2
+- **UI 风格**：glassmorphism（毛玻璃面板）+ CSS 变量主题系统
+- **概念**："Neural Observatory"（神经观测站）
+- **字体**：数据区域用 monospace，标签用 system-ui
+- **CSS 变量**：定义在 `:root` 中，通过 `var(--nv-purple)` 等引用
+
+---
+
 **文档生成时间**：2026-05-27
 **文档作者**：QClaw（基于项目文件和对话历史整理）
+**最后更新**：2026-05-27 10:45
