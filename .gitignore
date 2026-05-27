@@ -23,6 +23,7 @@ logs/
 
 # Test data (large files)
 data/rawData*.csv
+data/featureData*.csv
 data/test_*.edf
 data/test_*.csv
 data/sample_*.csv
