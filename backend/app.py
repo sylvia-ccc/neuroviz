@@ -45,6 +45,21 @@ from paradigm import router as paradigm_router
 BASE_DIR = Path(__file__).parent
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
 
+
+def _json_safe(value):
+    """Convert numpy values and non-finite floats into strict JSON-safe data."""
+    if isinstance(value, dict):
+        return {str(k): _json_safe(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_json_safe(v) for v in value]
+    if isinstance(value, np.ndarray):
+        return _json_safe(value.tolist())
+    if isinstance(value, np.generic):
+        return _json_safe(value.item())
+    if isinstance(value, float):
+        return value if np.isfinite(value) else 0.0
+    return value
+
 async def _send_topomap_now(ws, current_payload, frame, features, data_source, topomap_module, timefreq_ch_idx=0):
     """立即生成并推送Topomap（不受40帧间隔限制）"""
     try:
@@ -925,7 +940,7 @@ async def websocket_endpoint(ws: WebSocket):
                     import traceback; traceback.print_exc()
             
             try:
-                await ws.send_json(payload)
+                await ws.send_json(_json_safe(payload))
             except Exception:
                 break
             await asyncio.sleep(0.05)  # 20fps推送
@@ -968,7 +983,7 @@ async def analyze_psd(body: dict):
     elif "raw_data" in body:
         frames = body["raw_data"]
         all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
-        raw = np.concatenate([np.array(r, dtype=np.float64).T for r in all_raw], axis=1)
+        raw = np.concatenate([np.array(r, dtype=np.float64) for r in all_raw], axis=1)
     else:
         return {"error": "no raw data provided"}
     
@@ -996,7 +1011,7 @@ async def analyze_band_stats(body: dict):
     elif "raw_data" in body:
         frames = body["raw_data"]
         all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
-        raw = np.concatenate([np.array(r, dtype=np.float64).T for r in all_raw], axis=1)
+        raw = np.concatenate([np.array(r, dtype=np.float64) for r in all_raw], axis=1)
     else:
         return {"error": "no raw data provided"}
     
@@ -1029,7 +1044,7 @@ async def analyze_epochs(body: dict):
         return {"error": "no raw data provided"}
     
     epocher = Epocher(fs=fs, epoch_len=epoch_len, overlap=overlap)
-    return epocher.analyze_all_epochs(raw)
+    return await asyncio.to_thread(epocher.analyze_all_epochs, raw)
 
 
 @app.post("/api/analysis/artifact")
@@ -1048,7 +1063,7 @@ async def detect_artifacts(body: dict):
         return {"error": "no raw data provided"}
     
     detector = ArtifactDetector(fs=fs, threshold_uv=threshold)
-    return detector.detect_all(raw)
+    return await asyncio.to_thread(detector.detect_all, raw)
 
 
 @app.post("/api/analysis/topomap")

@@ -1157,19 +1157,20 @@ function updateBandStatsTable() {
   const tbody = document.getElementById('band-stats-body');
   if (!tbody) return;
   
-  if (!bandStatsData || !bandStatsData.bands) {
+  const bandsData = bandStatsData?.bands || bandStatsData?.channels?.[0]?.bands;
+  if (!bandsData) {
     tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-secondary);padding:20px 0;">等待数据中...</td></tr>';
     return;
   }
   
   let html = '';
   BANDS.forEach(band => {
-    const stats = bandStatsData.bands[band.fullName.toLowerCase()] || bandStatsData.bands[band.name] || {};
-    const absPower = stats.absolute_power || stats.absPower || 0;
-    const relPower = stats.relative_power || stats.relPower || 0;
+    const stats = bandsData[band.fullName.toLowerCase()] || bandsData[band.name] || {};
+    const absPower = stats.absolute_power || stats.absPower || stats.abs || 0;
+    const relPower = stats.relative_power || stats.relPower || stats.rel || 0;
     const status = stats.status || 'normal';
     const statusClass = 'status-' + status;
-    const statusText = status === 'normal' ? '正常' : status === 'high' ? '偏高' : '偏低';
+    const statusText = status === 'normal' ? '正常' : status === 'high' ? '偏高' : status === 'low' ? '偏低' : status;
     
     html += `<tr>
       <td><span class="band-color" style="background:${band.color}"></span>${band.fullName} (${band.name})</td>
@@ -1784,7 +1785,13 @@ function uploadFile(file) {
   const formData = new FormData();
   formData.append('file', file);
   fetch('/api/upload', { method: 'POST', body: formData })
-    .then(r => r.json())
+    .then(async r => {
+      if (!r.ok) {
+        const message = await r.text();
+        throw new Error(`Upload failed (${r.status}): ${message.slice(0, 200)}`);
+      }
+      return r.json();
+    })
     .then(d => {
       console.log('Upload success:', d);
       if (d.status === 'ok') {
@@ -2839,18 +2846,22 @@ async function fetchArtifactDetection() {
 function updateArtifactBar() {
   if (!artifactData) return;
   const summary = artifactData.summary || {};
-  document.getElementById('art-blink').textContent = '眨眼 ' + (summary.blink || 0);
-  document.getElementById('art-eog').textContent = '眼动 ' + (summary.eog || 0);
-  document.getElementById('art-emg').textContent = '肌电 ' + (summary.emg || 0);
-  document.getElementById('art-bad-ratio').textContent = '坏段 ' + (artifactData.bad_ratio_percent || 0) + '%';
+  const setSafe = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+  setSafe('art-blink', '眨眼 ' + (summary.blink || 0));
+  setSafe('art-eog', '眼动 ' + (summary.eog || 0));
+  setSafe('art-emg', '肌电 ' + (summary.emg || 0));
+  setSafe('art-bad-ratio', '坏段 ' + (artifactData.bad_ratio_percent || 0) + '%');
   
   // Update Simple mode data quality indicator
   const dqStatus = document.getElementById('dq-status');
   if (dqStatus) {
     const badRatio = artifactData.bad_ratio_percent || 0;
     const blinkCount = summary.blink || 0;
-    document.getElementById('dq-artifact').textContent = '眨眼 ' + blinkCount;
-    document.getElementById('dq-bad').textContent = '坏段 ' + badRatio + '%';
+    setSafe('dq-artifact', '眨眼 ' + blinkCount);
+    setSafe('dq-bad', '坏段 ' + badRatio + '%');
     if (badRatio > 20 || blinkCount > 50) {
       dqStatus.textContent = '较差';
       dqStatus.style.color = '#ef4444';

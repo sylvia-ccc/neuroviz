@@ -29,6 +29,22 @@ def export_csv(data: np.ndarray, channels: list, fs: int, output_path: str):
     return output_path
 
 
+def _safe_float(value, default: float = 0.0) -> float:
+    """Normalize numeric report inputs that may arrive as strings or NaN."""
+    if isinstance(value, str):
+        value = {
+            "positive": 0.7,
+            "neutral": 0.0,
+            "negative": -0.7,
+            "calibrating": 0.0,
+        }.get(value.lower(), default)
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return default
+    return number if np.isfinite(number) else default
+
+
 # ============ 品牌色 ============
 BRAND = {
     "dark": "#121826",
@@ -168,10 +184,11 @@ def export_pdf(
         story.append(Spacer(1, 0.4*cm))
         story.append(Paragraph("🧠 情绪状态分析", style_h2))
 
-        arousal = features.get("arousal", 0)
-        valence = features.get("valence", 0)
-        focus = features.get("focus", 0)
-        relaxation = features.get("relaxation", 0)
+        arousal = _safe_float(features.get("arousal", 0))
+        valence_raw = features.get("valence", 0)
+        valence = _safe_float(valence_raw)
+        focus = _safe_float(features.get("focus", 0))
+        relaxation = _safe_float(features.get("relaxation", 0))
 
         # 情绪状态判断
         emotion_label = _classify_emotion(arousal, valence)
@@ -180,7 +197,7 @@ def export_pdf(
         emotion_rows = [
             ["指标", "数值", "状态"],
             ["唤醒度 (Arousal)", f"{arousal:.2f}", "高唤醒" if arousal > 0.6 else "低唤醒"],
-            ["效价 (Valence)", f"{valence:.2f}", "积极" if valence > 0.3 else "消极" if valence < -0.3 else "中性"],
+            ["效价 (Valence)", f"{valence:.2f}", "校准中" if valence_raw == "calibrating" else "积极" if valence > 0.3 else "消极" if valence < -0.3 else "中性"],
             ["情绪分类", emotion_label, ""],
             ["专注度", f"{focus:.2f}", focus_label],
             ["放松度", f"{relaxation:.2f}", "深度放松" if relaxation > 0.7 else "一般" if relaxation > 0.3 else "紧张"],
