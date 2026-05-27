@@ -107,6 +107,29 @@
 | PDF 导出 | 通过 | 返回 200，`application/pdf`，144736 bytes |
 | 运行时异常 / 后端 5xx | 通过 | 0 条运行时异常或 5xx |
 
+## 本地完整复测记录
+
+验证时间：2026-05-28
+
+验证工具：
+
+- 使用项目虚拟环境 `backend/venv`。
+- 使用本地后端临时端口 `8098`。
+- 使用 headless Chrome DevTools Protocol 执行浏览器端链路验证。
+
+验证结果：
+
+| 验证项 | 结果 | 证据 |
+|---|---|---|
+| Mock / WebSocket / 波形 / 频段 / 情绪 / 质量 / 伪迹栏 | 通过 | `rawShape=[8,64]`，WebSocket `Connected`，`latestBands` / `latestEmotion` 存在，质量状态可显示 |
+| PSD / 频段统计 / Topomap / 频谱 | 通过 | `psdLen=103`，`bandStatsChannels=8`，Topomap 与时频图已加载 |
+| CSV 上传回放 | 通过 | `data/sample_eeg_8ch_500hz_30s.csv` 上传返回 200，回放 8 通道，频段统计 8 通道 |
+| EDF 上传回放 | 通过 | `data/test_valid_8ch.edf` 上传返回 200，回放 8 通道，频段统计 8 通道 |
+| LSL 模拟流 | 通过 | `backend/mock_lsl_stream.py` 发现 `Mock-EEG-8ch`，连接后 WebSocket 继续推送 8 通道 |
+| CSV 导出 | 通过 | 返回 200，`text/csv`，3097 bytes |
+| PDF 导出 | 通过 | 返回 200，`application/pdf`，144805 bytes |
+| 运行时异常 / 后端 5xx | 通过 | 0 条 JavaScript 异常；干净上传回归中 0 条网络失败 |
+
 本轮修复记录：
 
 - 上传失败时先检查 `response.ok`，避免 HTML 错误页被当 JSON 解析。
@@ -137,4 +160,4 @@
 
 ## 下一轮建议
 
-本地 v1.0 核心链路已通过，服务器有效差异已小步合并到本地。下一阶段建议重新执行本地完整验证；通过后再确认是否 push GitHub，并制定服务器部署/回滚步骤。
+本地 v1.0 核心链路已在 2026-05-28 复测通过，服务器有效差异已小步合并到本地。下一阶段建议确认是否 push GitHub；push 后再制定服务器部署/回滚步骤。
