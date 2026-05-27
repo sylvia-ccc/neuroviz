@@ -818,7 +818,8 @@ let ws = null;
 let reconnectTimer = null;
 
 function connectWS() {
-  ws = new WebSocket(`ws://${location.host}/ws`);
+  const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${wsProtocol}//${location.host}/ws`);
   ws.onopen = () => {
     document.getElementById('status-dot').classList.add('connected');
     document.getElementById('status').childNodes[1].textContent = ' Connected';

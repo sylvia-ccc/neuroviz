@@ -160,7 +160,7 @@ async def upload_file(file: UploadFile = File(...)):
     
     # 创建FileDataSource
     try:
-        file_source = FileDataSource(str(file_path), fs_target=500)
+        file_source = await asyncio.to_thread(FileDataSource, str(file_path), fs_target=500)
         info = file_source.get_info()
         
         # 增强返回信息：脑区映射 + 信号质量评估
