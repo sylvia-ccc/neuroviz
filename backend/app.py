@@ -38,6 +38,7 @@ from processors.artifact import ArtifactDetector
 from processors.topomap import generate_topomap_base64, generate_topomap_base64_from_array
 from processors.markers import marker_manager, MarkerManager, LSLMarkerReceiver
 from processors.classifier import OnlineClassifier, BCIManager
+from processors.connectivity import ConnectivityProcessor
 
 # 范式设计器
 from paradigm import router as paradigm_router
@@ -369,6 +370,74 @@ async def get_source_status():
     if file_source:
         info["file_info"] = file_source.get_info()
     return info
+
+
+@app.get("/api/datasets")
+async def list_datasets():
+    """列出 data/ 目录下所有可用数据集"""
+    data_dir = BASE_DIR.parent / "data"
+    datasets = []
+
+    if data_dir.exists():
+        for f in sorted(data_dir.iterdir()):
+            if f.is_file() and f.suffix.lower() in ('.edf', '.bdf', '.gdf', '.vhdr', '.csv'):
+                size_mb = f.stat().st_size / (1024 * 1024)
+                # 快速探测文件信息（不加载全部数据）
+                info = {"filename": f.name, "path": str(f), "size_mb": round(size_mb, 1), "format": f.suffix.lower()}
+
+                if f.suffix.lower() == '.edf':
+                    try:
+                        import mne as _mne
+                        raw = _mne.io.read_raw_edf(str(f), preload=False, verbose="ERROR")
+                        info["n_channels"] = raw.info['nchan']
+                        info["fs"] = int(raw.info['sfreq'])
+                        info["duration_sec"] = round(raw.n_times / raw.info['sfreq'], 1)
+                        info["channel_names"] = raw.ch_names[:8]
+                        info["channel_type"] = "EEG"
+                    except Exception:
+                        info["error"] = "无法解析"
+                elif f.suffix.lower() == '.csv':
+                    try:
+                        import csv as _csv
+                        with open(f, 'r') as fh:
+                            reader = _csv.reader(fh)
+                            first_row = next(reader)
+                            info["n_columns"] = len(first_row)
+                            info["format_detail"] = "CSV"
+                    except Exception:
+                        info["error"] = "无法解析"
+
+                datasets.append(info)
+
+    return {"datasets": datasets, "count": len(datasets)}
+
+
+@app.post("/api/datasets/load")
+async def load_dataset(body: dict):
+    """加载 data/ 目录下的已有数据集文件"""
+    global file_source, data_source, current_source_type, emotion_engine
+
+    filename = body.get("filename")
+    if not filename:
+        return {"error": "未指定文件名"}
+
+    file_path = BASE_DIR.parent / "data" / filename
+    if not file_path.exists():
+        return {"error": f"文件不存在: {filename}"}
+
+    try:
+        file_source = await asyncio.to_thread(FileDataSource, str(file_path), fs_target=500)
+        info = file_source.get_info()
+        enhanced_info = _enhance_file_info(info)
+
+        data_source = file_source
+        current_source_type = "file"
+        emotion_engine = EmotionEngine(fs=file_source.fs)
+
+        print(f"[NeuroViz] 加载数据集: {filename}")
+        return {"status": "ok", "filename": filename, "info": enhanced_info}
+    except Exception as e:
+        return {"error": f"加载失败: {e}"}
 
 
 # ===== 串口数据源 API =====
@@ -730,7 +799,10 @@ serial_source = None  # 串口数据源
 emotion_engine = None
 preprocessor = None  # 预处理模块
 timefreq_processor = None  # 时频分析模块
-current_source_type = "mock"  # mock | file | serial
+current_source_type = "mock"  # mock | file | serial | lsl
+connectivity_processor = None  # 功能连接矩阵处理器
+last_connectivity_check = 0  # 上次连接矩阵更新时间
+connectivity_band = "alpha"  # 当前连接分析频段
 
 
 @app.websocket("/ws")
@@ -786,6 +858,15 @@ async def websocket_endpoint(ws: WebSocket):
         
         # 初始化信号质量检测器
         quality_detector = QualityDetector(fs=data_source.fs, n_channels=data_source.n_channels)
+
+        # 初始化功能连接矩阵处理器
+        global connectivity_processor, last_connectivity_check, connectivity_band
+        if connectivity_processor is None or connectivity_processor.n_channels != data_source.n_channels:
+            connectivity_processor = ConnectivityProcessor(
+                fs=data_source.fs, n_channels=data_source.n_channels,
+                band=connectivity_band, update_interval_sec=2.0, window_sec=4.0
+            )
+        last_connectivity_check = time.time()
         
         # 持续推送数据
         send_counter = 0  # Topomap计数器
@@ -804,6 +885,12 @@ async def websocket_endpoint(ws: WebSocket):
                     if "timefreq_ch" in data:
                         timefreq_ch_idx = int(data["timefreq_ch"])
                         print(f"[NeuroViz] 时频图通道切换 → Ch{timefreq_ch_idx}")
+                elif data.get("action") == "set_connectivity_band":
+                    band = data.get("band", "alpha")
+                    if connectivity_processor:
+                        connectivity_processor.set_band(band)
+                        connectivity_band = band
+                        print(f"[NeuroViz] 连接矩阵频段切换 → {band}")
                 elif data.get("action") == "request_topomap":
                     # 客户端切换到2D视图时立即请求生成Topomap
                     await _send_topomap_now(ws, payload, frame, features, data_source, topomap_module, timefreq_ch_idx)
@@ -850,12 +937,40 @@ async def websocket_endpoint(ws: WebSocket):
                     "overall": quality_result["overall"],
                     "channels": [{"ch": i, "status": ch["status"], "issues": ch["issues"], "suggestion": ch["suggestion"]} for i, ch in enumerate(quality_result["channels"])],
                     "summary": quality_result["summary"],
+                    "calibrated": quality_result.get("calibrated", True),
+                    "calibration_frames": quality_result.get("calibration_frames", 30),
+                    "calibration_target": quality_result.get("calibration_target", 30),
+                    "channel_names": data_source.channel_names,
                 }
                 await ws.send_json(quality_payload)
                 if quality_result["overall"] != "good":
-                    print(f"[NeuroViz] 信号质量: {quality_result['overall']}, 问题通道: {[i for i,ch in enumerate(quality_result['channels']) if ch['status'] != 'good']}")
+                    bad_chs = [i for i, ch in enumerate(quality_result["channels"]) if ch["status"] != "good"]
+                    if len(bad_chs) <= 8:
+                        print(f"[NeuroViz] 信号质量: {quality_result['overall']}, 问题通道: {bad_chs}")
+                    else:
+                        print(f"[NeuroViz] 信号质量: {quality_result['overall']}, {len(bad_chs)}/{quality_detector.n_channels} 通道异常")
                 last_quality_check = time.time()
-            
+
+            # 功能连接矩阵（每2秒，推入缓冲并计算）
+            connectivity_processor.push(frame["raw"])
+            if time.time() - last_connectivity_check >= connectivity_processor.update_interval_sec:
+                if len(connectivity_processor.buffer) >= connectivity_processor.nperseg:
+                    conn_payload = connectivity_processor.get_matrix_payload(
+                        channel_names=data_source.channel_names
+                    )
+                    conn_msg = {
+                        "type": "connectivity",
+                        "timestamp": time.time(),
+                        "matrix": conn_payload["matrix"],
+                        "channel_names": conn_payload["channel_names"],
+                        "band": conn_payload["band"],
+                        "freq_range": conn_payload["freq_range"],
+                        "top_connections": conn_payload["top_connections"],
+                        "mean_connectivity": conn_payload["mean_connectivity"],
+                    }
+                    await ws.send_json(_json_safe(conn_msg))
+                last_connectivity_check = time.time()
+
             # 预处理（陷波 + 带通 + 伪迹去除）
             if preprocessor is not None:
                 raw_clean = preprocessor.process(frame["raw"])
@@ -1086,6 +1201,70 @@ async def generate_topomap_endpoint(body: dict):
         return {"error": "需要 values 或 channel_values"}
     
     return {"topomap_base64": b64}
+
+
+@app.post("/api/analysis/connectivity")
+async def analyze_connectivity(body: dict):
+    """计算功能连接矩阵（相干性）
+
+    body: {
+        "raw": [[ch0_data], [ch1_data], ...],  # (n_channels, n_samples)
+        "fs": 500,
+        "band": "alpha"  # delta/theta/alpha/beta/gamma/broadband
+    }
+
+    Returns:
+        {
+            "matrix": [[...]],          # NxN 相干性矩阵 (0~1)
+            "channel_names": [...],
+            "band": "alpha",
+            "freq_range": [lo, hi],
+            "top_connections": [...],
+            "mean_connectivity": float,
+        }
+    """
+    fs = body.get("fs", 500)
+    band = body.get("band", "alpha")
+    channel_names = body.get("channel_names")
+
+    if "raw" in body:
+        raw = np.array(body["raw"], dtype=np.float64)
+    elif "raw_data" in body:
+        frames = body["raw_data"]
+        all_raw = [f["raw"] if isinstance(f, dict) else f for f in frames]
+        raw = np.concatenate([np.array(r, dtype=np.float64) for r in all_raw], axis=1)
+    else:
+        return {"error": "no raw data provided"}
+
+    if raw.ndim == 1:
+        raw = raw.reshape(1, -1)
+
+    n_channels = raw.shape[0]
+
+    def _compute():
+        proc = ConnectivityProcessor(fs=fs, n_channels=n_channels, band=band,
+                                      window_sec=4.0, update_interval_sec=1.0)
+        proc.push(raw)
+        names = channel_names or [f"Ch{i}" for i in range(n_channels)]
+        return proc.get_matrix_payload(channel_names=names)
+
+    result = await asyncio.to_thread(_compute)
+    return result
+
+
+@app.get("/api/connectivity/bands")
+async def list_connectivity_bands():
+    """获取可用的连接分析频段列表"""
+    from processors.connectivity import BANDS
+    bands = [
+        {"name": "delta", "range": BANDS["delta"], "label": "δ (1-4Hz) 慢波睡眠"},
+        {"name": "theta", "range": BANDS["theta"], "label": "θ (4-8Hz) 记忆/冥想"},
+        {"name": "alpha", "range": BANDS["alpha"], "label": "α (8-13Hz) 放松同步"},
+        {"name": "beta", "range": BANDS["beta"], "label": "β (13-30Hz) 专注/运动"},
+        {"name": "gamma", "range": BANDS["gamma"], "label": "γ (30-50Hz) 高级认知"},
+        {"name": "broadband", "range": (1, 50), "label": "全频段 (1-50Hz)"},
+    ]
+    return {"bands": bands, "current": connectivity_band}
 
 
 @app.post("/api/export/csv")

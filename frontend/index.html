@@ -245,6 +245,7 @@ body {
 .row-1 { flex: 1; min-height: 0; }
 .row-2 { flex: 1; min-height: 0; }
 .row-3 { flex: 1.2; min-height: 0; }
+.row-4 { flex: 0 0 auto; min-height: 0; max-height: 340px; }
 .row > .widget { flex: 1; }
 
 /* ===== Widget Cards ===== */
@@ -334,6 +335,7 @@ body {
 @media (max-width: 1200px) {
   .row { flex-direction: column; }
   .row-2, .row-3 { flex: none; height: 300px; }
+  .row-4 { flex: none; height: auto; max-height: none; }
 }
 
 /* ===== Band Stats Table ===== */
@@ -576,6 +578,7 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
     </select>
     <button class="btn btn-active" id="btn-mock" onclick="switchSource('mock')">Mock</button>
     <button class="btn" id="btn-file" onclick="switchSource('file')">Upload</button>
+    <button class="btn" id="btn-datasets" onclick="showDatasetsPanel()">Datasets</button>
     <button class="btn" id="btn-serial" onclick="switchSource('serial')" data-mode="bci">Serial</button>
     <button class="btn" id="btn-lsl" onclick="switchSource('lsl')" data-mode="bci">LSL</button>
     
@@ -668,6 +671,37 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
     </div>
   </div>
 
+  <!-- Row 4: Connectivity Matrix (Research+) -->
+  <div class="row row-4" data-mode="research bci" style="margin-top:8px;gap:12px;">
+    <div class="widget" style="flex:1;max-width:520px;">
+      <h3 style="display:flex;align-items:center;gap:8px;">
+        功能连接矩阵
+        <select id="sel-connectivity-band" onchange="switchConnectivityBand()" style="font-size:11px;padding:2px 6px;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);border-radius:4px;">
+          <option value="alpha">α (8-13Hz)</option>
+          <option value="beta">β (13-30Hz)</option>
+          <option value="theta">θ (4-8Hz)</option>
+          <option value="delta">δ (1-4Hz)</option>
+          <option value="gamma">γ (30-50Hz)</option>
+          <option value="broadband">全频段</option>
+        </select>
+        <button onclick="toggleFullPanel('connectivity')" style="background:none;border:none;color:var(--text-secondary);font-size:14px;cursor:pointer;margin-left:auto;" title="全屏">⛶</button>
+      </h3>
+      <div class="canvas-wrap" style="display:flex;justify-content:center;align-items:center;">
+        <canvas id="c-connectivity" width="400" height="400" style="max-width:100%;max-height:280px;"></canvas>
+      </div>
+    </div>
+    <div class="widget" style="flex:1;">
+      <h3>连接强度排行</h3>
+      <div class="canvas-wrap" style="overflow-y:auto;">
+        <div id="connectivity-top" style="padding:8px 4px;font-size:12px;color:var(--text-secondary);">等待数据中...</div>
+        <div style="margin-top:12px;padding-top:8px;border-top:1px solid var(--border-color);">
+          <div style="font-size:11px;color:var(--text-secondary);margin-bottom:4px;">全局平均连接强度</div>
+          <div id="connectivity-mean" style="font-size:24px;font-family:monospace;color:var(--nv-purple,#7B61FF);">--</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Time-Freq Widget (fixed bottom-left) (Research+) -->
   <div id="timefreq-wrap" data-mode="research bci">
     <img id="i-timefreq" style="width:100%;height:100%;">
@@ -698,14 +732,7 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
     <div id="quality-bar" style="margin-top:6px;">
       <span class="label">信号:</span>
       <span id="quality-overall" style="font-size:12px;font-weight:600;">检测中...</span>
-      <span id="quality-ch0" class="ql" title="Ch0"></span>
-      <span id="quality-ch1" class="ql" title="Ch1"></span>
-      <span id="quality-ch2" class="ql" title="Ch2"></span>
-      <span id="quality-ch3" class="ql" title="Ch3"></span>
-      <span id="quality-ch4" class="ql" title="Ch4"></span>
-      <span id="quality-ch5" class="ql" title="Ch5"></span>
-      <span id="quality-ch6" class="ql" title="Ch6"></span>
-      <span id="quality-ch7" class="ql" title="Ch7"></span>
+      <span id="quality-channels" style="display:inline-flex;flex-wrap:wrap;gap:1px;"></span>
     </div>
     <div id="epoch-info" style="color:var(--text-secondary);font-size:11px;margin-top:4px;">共 0 段</div>
   </div>
@@ -723,6 +750,19 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
   <input type="file" id="file-input" accept=".edf,.bdf,.gdf,.vhdr,.csv">
 </div>
 
+<!-- Datasets Panel (Modal) -->
+<div id="datasets-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;justify-content:center;align-items:center;">
+  <div style="background:var(--bg-card,#1a1a2e);border-radius:12px;padding:24px;width:90%;max-width:700px;max-height:80vh;overflow-y:auto;border:1px solid var(--border-color,#333);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <h2 style="margin:0;font-size:18px;color:var(--text-primary,#e0e0e0);">📊 数据集管理</h2>
+      <button onclick="hideDatasetsPanel()" style="background:none;border:none;color:var(--text-secondary);font-size:20px;cursor:pointer;">×</button>
+    </div>
+    <p style="font-size:12px;color:var(--text-secondary,#888);margin:0 0 16px 0;">点击数据集即可加载分析。上传的文件也会保存在这里。</p>
+    <div id="datasets-list" style="display:flex;flex-direction:column;gap:8px;">加载中...</div>
+    <div id="dataset-info-display" style="margin-top:16px;display:none;padding:12px;background:var(--bg-secondary,#111);border-radius:8px;font-size:12px;color:var(--text-secondary);"></div>
+  </div>
+</div>
+
 <!-- Help Modal -->
 <div id="help-modal">
   <div id="help-content">
@@ -734,6 +774,7 @@ body.panel-fullscreen #epoch-panel { display: none !important; }
       <li><strong>频段分析</strong>：δ/θ/α/β/γ功率实时计算</li>
       <li><strong>3D脑图</strong>：电极位置热力图可视化</li>
       <li><strong>情绪状态</strong>：放松/专注/压力四象限</li>
+      <li><strong>功能连接</strong>：通道间相干性矩阵，识别脑区协调模式</li>
     </ul>
     <h3>数据导入</h3>
     <ul>
@@ -800,6 +841,7 @@ let latestFeatures = null;
 let latestArtifactSummary = null;
 let latestTopomap = null;
 let latestSpectrogram = null;
+let latestQuality = null;
 let sessionStartTime = Date.now();
 
 // Mode state
@@ -845,6 +887,12 @@ function connectWS() {
     // 处理信号质量
     if (data.type === 'quality') {
       handleQuality(data);
+      return;
+    }
+
+    // 处理功能连接矩阵
+    if (data.type === 'connectivity') {
+      handleConnectivity(data);
       return;
     }
     
@@ -2629,24 +2677,58 @@ function handleArtifactAlert(alert) {
 // 处理信号质量
 function handleQuality(q) {
   console.log('[Quality]', q);
+  latestQuality = q;
+
   const overallEl = document.getElementById('quality-overall');
   const statusMap = { good: '✅ 信号良好', warning: '⚠️ 信号一般', bad: '❌ 信号差' };
-  overallEl.textContent = statusMap[q.overall] || q.overall;
-  overallEl.style.color = q.overall === 'good' ? '#22c55e' : q.overall === 'warning' ? '#eab308' : '#ef4444';
+  if (q.calibrated === false) {
+    overallEl.textContent = '校准中... (' + (q.calibration_frames || 0) + '/' + (q.calibration_target || 30) + ')';
+    overallEl.style.color = 'var(--text-muted)';
+  } else {
+    overallEl.textContent = statusMap[q.overall] || q.overall;
+    overallEl.style.color = q.overall === 'good' ? '#22c55e' : q.overall === 'warning' ? '#eab308' : '#ef4444';
+  }
 
-  // 更新各通道指示灯
-  (q.channels || []).forEach((ch, i) => {
-    const el = document.getElementById('quality-ch' + i);
+  // 动态生成通道指示灯（支持任意通道数）
+  const channelsEl = document.getElementById('quality-channels');
+  if (!channelsEl) return;
+  const channels = q.channels || [];
+  const nCh = channels.length;
+
+  // 如果指示灯数量不匹配，重建
+  if (channelsEl.children.length !== nCh) {
+    channelsEl.innerHTML = '';
+    for (let i = 0; i < nCh; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'ql';
+      dot.style.cssText = 'display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 1px;cursor:pointer;flex-shrink:0;';
+      // 64通道时缩小指示灯尺寸
+      if (nCh > 32) {
+        dot.style.width = '6px';
+        dot.style.height = '6px';
+      }
+      channelsEl.appendChild(dot);
+    }
+  }
+
+  // 更新各通道指示灯状态
+  channels.forEach((ch, i) => {
+    const el = channelsEl.children[i];
     if (!el) return;
     el.className = 'ql ql-' + ch.status;
-    el.title = 'Ch' + i + ': ' + ch.status + (ch.issues.length ? ' (' + ch.issues.join(', ') + ')' : '') + '\n建议: ' + (ch.suggestion || '');
+    const chName = (q.channel_names && q.channel_names[i]) ? q.channel_names[i] : 'Ch' + i;
+    el.title = chName + ': ' + ch.status + (ch.issues && ch.issues.length ? ' (' + ch.issues.join(', ') + ')' : '') + (ch.suggestion ? '\n建议: ' + ch.suggestion : '');
   });
 
-  // 信号差时弹通知
-  if (q.overall === 'bad') {
-    const badCh = (q.channels || []).filter(ch => ch.status === 'bad');
-    const issues = badCh.flatMap(ch => ch.issues);
-    if (issues.length) showNotification('信号质量问题：\n' + issues.join('\n'), 'warning');
+  // 信号差时弹通知（但限制频率避免刷屏）
+  if (q.overall === 'bad' && !handleQuality._lastNotif) {
+    const badCh = channels.filter(ch => ch.status === 'bad');
+    const issues = badCh.flatMap(ch => ch.issues || []);
+    if (issues.length) {
+      showNotification('信号质量问题：\n' + issues.slice(0, 5).join('\n') + (issues.length > 5 ? '\n... 等 ' + issues.length + ' 个问题' : ''), 'warning');
+      handleQuality._lastNotif = Date.now();
+      setTimeout(() => { handleQuality._lastNotif = 0; }, 10000); // 10秒内不重复弹
+    }
   }
 }
 
@@ -2892,6 +2974,265 @@ render();
 // Update brain tab active state
 document.getElementById('tab-3d').classList.add('btn-active');
 document.getElementById('tab-2d').classList.remove('btn-active');
+
+// ========== Functional Connectivity Matrix ==========
+let latestConnectivity = null;  // { matrix, channel_names, band, top_connections, mean_connectivity }
+
+function handleConnectivity(data) {
+  latestConnectivity = data;
+  drawConnectivityMatrix(data);
+  updateConnectivityTop(data);
+}
+
+function drawConnectivityMatrix(data) {
+  const canvas = document.getElementById('c-connectivity');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const matrix = data.matrix;
+  if (!matrix || matrix.length === 0) return;
+  const n = matrix.length;
+  const names = data.channel_names || matrix.map((_, i) => 'Ch' + i);
+
+  // Canvas sizing
+  const size = Math.min(canvas.width, canvas.height);
+  const margin = 40;
+  const cellArea = size - margin * 2;
+  const cellSize = n > 1 ? cellArea / n : cellArea;
+  const labelFontSize = Math.max(7, Math.min(11, cellSize * 0.6));
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Title
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-primary') || '#e0e0e0';
+  ctx.font = '12px system-ui';
+  ctx.textAlign = 'center';
+  const bandLabel = {alpha:'α',beta:'β',theta:'θ',delta:'δ',gamma:'γ',broadband:'BB'}[data.band] || data.band;
+  ctx.fillText(`Coherence ${bandLabel} (${data.freq_range ? data.freq_range[0]+'-'+data.freq_range[1]+'Hz' : ''})`,
+    canvas.width / 2, 14);
+
+  // Draw cells
+  const offsetX = margin;
+  const offsetY = margin + 4;
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      const val = matrix[i][j];
+      const x = offsetX + j * cellSize;
+      const y = offsetY + i * cellSize;
+      // Color: blue (low) -> purple (mid) -> red (high)
+      ctx.fillStyle = coherenceToColor(val);
+      ctx.fillRect(x, y, cellSize - 1, cellSize - 1);
+    }
+  }
+
+  // Channel labels (top + left)
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#888';
+  ctx.font = labelFontSize + 'px monospace';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'bottom';
+  for (let j = 0; j < n; j++) {
+    const label = (names[j] || 'Ch' + j).replace('Ch', '');
+    ctx.fillText(label, offsetX + j * cellSize + cellSize / 2, offsetY - 2);
+  }
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < n; i++) {
+    const label = (names[i] || 'Ch' + i).replace('Ch', '');
+    ctx.fillText(label, offsetX - 4, offsetY + i * cellSize + cellSize / 2);
+  }
+
+  // Color bar
+  const barX = offsetX + cellArea + 10;
+  const barY = offsetY;
+  const barW = 8;
+  const barH = cellArea;
+  if (barX + barW < canvas.width) {
+    const grad = ctx.createLinearGradient(barX, barY + barH, barX, barY);
+    grad.addColorStop(0, coherenceToColor(0));
+    grad.addColorStop(0.5, coherenceToColor(0.5));
+    grad.addColorStop(1, coherenceToColor(1));
+    ctx.fillStyle = grad;
+    ctx.fillRect(barX, barY, barW, barH);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary') || '#888';
+    ctx.font = '9px system-ui';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillText('1.0', barX + barW + 2, barY);
+    ctx.textBaseline = 'bottom';
+    ctx.fillText('0.0', barX + barW + 2, barY + barH);
+  }
+}
+
+function coherenceToColor(val) {
+  // Clamp 0~1
+  const v = Math.max(0, Math.min(1, val));
+  // Blue -> Purple -> Red gradient
+  let r, g, b;
+  if (v < 0.5) {
+    // Blue (#1a4480) -> Purple (#7B61FF)
+    const t = v * 2;
+    r = Math.round(26 + (123 - 26) * t);
+    g = Math.round(68 + (97 - 68) * t);
+    b = Math.round(128 + (255 - 128) * t);
+  } else {
+    // Purple (#7B61FF) -> Red/Orange (#FF6B4A)
+    const t = (v - 0.5) * 2;
+    r = Math.round(123 + (255 - 123) * t);
+    g = Math.round(97 + (107 - 97) * t);
+    b = Math.round(255 + (74 - 255) * t);
+  }
+  return `rgb(${r},${g},${b})`;
+}
+
+function updateConnectivityTop(data) {
+  const container = document.getElementById('connectivity-top');
+  const meanEl = document.getElementById('connectivity-mean');
+  if (!container) return;
+
+  const top = data.top_connections || [];
+  if (top.length === 0) {
+    container.innerHTML = '<span style="color:var(--text-secondary);">等待数据中...</span>';
+  } else {
+    let html = '';
+    top.forEach((c, i) => {
+      const pct = (c.strength * 100).toFixed(1);
+      const barW = c.strength * 100;
+      html += `<div style="display:flex;align-items:center;gap:6px;margin:3px 0;">
+        <span style="width:14px;color:var(--text-secondary);font-size:10px;">${i + 1}</span>
+        <span style="min-width:80px;font-family:monospace;font-size:11px;">${c.ch_a} ↔ ${c.ch_b}</span>
+        <div style="flex:1;height:6px;background:var(--bg-secondary);border-radius:3px;overflow:hidden;">
+          <div style="width:${barW}%;height:100%;background:var(--nv-purple,#7B61FF);border-radius:3px;"></div>
+        </div>
+        <span style="min-width:40px;text-align:right;font-family:monospace;font-size:11px;color:var(--nv-purple,#7B61FF);">${pct}%</span>
+      </div>`;
+    });
+    container.innerHTML = html;
+  }
+
+  if (meanEl) {
+    meanEl.textContent = data.mean_connectivity !== undefined
+      ? (data.mean_connectivity * 100).toFixed(1) + '%'
+      : '--';
+  }
+}
+
+function switchConnectivityBand() {
+  const sel = document.getElementById('sel-connectivity-band');
+  if (!sel) return;
+  const band = sel.value;
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ action: 'set_connectivity_band', band: band }));
+    console.log('[Connectivity] Switching band to', band);
+  }
+}
+
+// ========== Datasets Management ==========
+function showDatasetsPanel() {
+  const modal = document.getElementById('datasets-modal');
+  modal.style.display = 'flex';
+  loadDatasetsList();
+}
+
+function hideDatasetsPanel() {
+  document.getElementById('datasets-modal').style.display = 'none';
+}
+
+async function loadDatasetsList() {
+  const listEl = document.getElementById('datasets-list');
+  listEl.innerHTML = '<span style="color:var(--text-secondary);">加载中...</span>';
+
+  try {
+    const resp = await fetch('/api/datasets');
+    const data = await resp.json();
+    const datasets = data.datasets || [];
+
+    if (datasets.length === 0) {
+      listEl.innerHTML = '<span style="color:var(--text-secondary);">暂无数据集，请上传文件</span>';
+      return;
+    }
+
+    let html = '';
+    for (const ds of datasets) {
+      const fmtIcon = ds.format === '.edf' ? '🧠' : ds.format === '.csv' ? '📋' : '📄';
+      const chInfo = ds.n_channels ? `${ds.n_channels}ch` : ds.n_columns ? `${ds.n_columns}col` : '?';
+      const fsInfo = ds.fs ? `${ds.fs}Hz` : '';
+      const durInfo = ds.duration_sec ? `${ds.duration_sec}s` : '';
+      const meta = [chInfo, fsInfo, durInfo].filter(x => x).join(' | ');
+      const sizeStr = ds.size_mb < 1 ? `${(ds.size_mb * 1024).toFixed(0)}KB` : `${ds.size_mb}MB`;
+      const isError = ds.error;
+
+      html += `<div style="display:flex;align-items:center;gap:12px;padding:10px;background:var(--bg-secondary,#111);border-radius:8px;cursor:${isError ? 'not-allowed' : 'pointer'};opacity:${isError ? 0.5 : 1};border:1px solid transparent;transition:border-color 0.2s;" onclick="${isError ? '' : `loadDataset('${ds.filename}')`}" onmouseover="this.style.borderColor='var(--nv-purple,#7B61FF)'" onmouseout="this.style.borderColor='transparent'">
+        <span style="font-size:20px;">${fmtIcon}</span>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;color:var(--text-primary,#e0e0e0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ds.filename}</div>
+          <div style="font-size:11px;color:var(--text-secondary,#888);">${isError ? ds.error : meta}</div>
+        </div>
+        <span style="font-size:11px;color:var(--text-secondary,#888);">${sizeStr}</span>
+        <span style="font-size:16px;color:var(--nv-purple,#7B61FF);${isError ? 'visibility:hidden' : ''}">▶</span>
+      </div>`;
+    }
+    listEl.innerHTML = html;
+  } catch (e) {
+    listEl.innerHTML = '<span style="color:#FF6B6B;">加载失败: ' + e.message + '</span>';
+  }
+}
+
+async function loadDataset(filename) {
+  const infoEl = document.getElementById('dataset-info-display');
+  infoEl.style.display = 'block';
+  infoEl.innerHTML = `<span style="color:var(--nv-purple,#7B61FF);">⏳ 正在加载 ${filename}...</span>`;
+
+  try {
+    const resp = await fetch('/api/datasets/load', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: filename })
+    });
+    const data = await resp.json();
+
+    if (data.status === 'ok') {
+      const info = data.info;
+      const ch = info.channels || [];
+      const regions = info.region_stats || {};
+      const sug = info.suggestion || {};
+
+      let infoHtml = `<div style="color:var(--text-primary);font-weight:600;margin-bottom:8px;">✅ ${filename} 加载成功</div>`;
+      infoHtml += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">`;
+      infoHtml += `<span>通道数: <b>${info.n_channels}</b></span>`;
+      infoHtml += `<span>采样率: <b>${info.fs}Hz</b></span>`;
+      infoHtml += `<span>时长: <b>${info.duration_sec ? info.duration_sec.toFixed(1) : '?'}s</b></span>`;
+      infoHtml += `<span>质量: <b>${info.quality || '?'}</b></span>`;
+      infoHtml += `</div>`;
+
+      if (sug.summary) {
+        infoHtml += `<div style="margin-top:8px;color:var(--nv-purple,#7B61FF);">${sug.summary}</div>`;
+      }
+      if (sug.tips && sug.tips.length > 0) {
+        infoHtml += `<div style="margin-top:4px;">`;
+        for (const tip of sug.tips.slice(0, 4)) {
+          infoHtml += `<div style="font-size:11px;color:var(--text-secondary);">• ${tip}</div>`;
+        }
+        infoHtml += `</div>`;
+      }
+      if (Object.keys(regions).length > 0) {
+        infoHtml += `<div style="margin-top:8px;font-size:11px;color:var(--text-secondary);">脑区覆盖: ${Object.keys(regions).join(', ')}</div>`;
+      }
+
+      infoEl.innerHTML = infoHtml;
+
+      // 更新状态
+      document.getElementById('btn-mock').classList.remove('btn-active');
+      document.getElementById('btn-file').classList.add('btn-active');
+      showConnectionStatus('file', true, filename);
+
+      // 3秒后关闭面板
+      setTimeout(() => { hideDatasetsPanel(); }, 3000);
+    } else {
+      infoEl.innerHTML = `<span style="color:#FF6B6B;">❌ ${data.error || '加载失败'}</span>`;
+    }
+  } catch (e) {
+    infoEl.innerHTML = `<span style="color:#FF6B6B;">❌ ${e.message}</span>`;
+  }
+}
 </script>
 </body>
 </html>
